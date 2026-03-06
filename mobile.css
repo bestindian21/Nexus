@@ -149,6 +149,15 @@
   .hero__h1 { font-size: clamp(32px, 6vw, 48px); }
 }
 
+/* ---- SALES IMAGE MOBILE SWAP ---- */
+@media (max-width: 768px) {
+  .sales-img {
+    background-image: url('salesmobile.jpg') !important;
+    background-size: cover !important;
+    background-position: center top !important;
+  }
+}
+
 /* ---- REDUCED MOTION ---- */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
