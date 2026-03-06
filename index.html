@@ -11,6 +11,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <!-- Calendly popup widget -->
+  <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+  <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+  <!-- Mobile styles -->
+  <link rel="stylesheet" href="mobile.css" />
 
   <style>
     /* ================================================
@@ -48,6 +53,14 @@
       line-height: 1.6;
       overflow-x: hidden;
       cursor: none;
+    }
+
+    /* Hide custom cursor on touch devices */
+    @media (hover: none), (pointer: coarse) {
+      body { cursor: auto; }
+      .c-dot, .c-ring { display: none !important; }
+      button { cursor: pointer; }
+      a { cursor: pointer; }
     }
 
     h1,h2,h3,h4,h5,h6 {
@@ -184,18 +197,11 @@
     }
     .nav__i { display: flex; align-items: center; justify-content: space-between; }
     .logo {
-      display: flex; align-items: center; gap: 11px;
+      display: flex; align-items: center;
       font-family: 'Space Grotesk', sans-serif;
-      font-weight: 800; font-size: 22px; letter-spacing: -.04em;
+      font-weight: 800; font-size: 28px; letter-spacing: -.05em;
     }
-    .logo-icon {
-      width: 36px; height: 36px;
-      background: linear-gradient(135deg, var(--purple), var(--cyan));
-      border-radius: 9px;
-      display: flex; align-items: center; justify-content: center;
-      font-weight: 900; font-size: 18px; letter-spacing: -.05em;
-      flex-shrink: 0;
-    }
+    .logo-icon { display: none; }
     .nav__links { display: flex; align-items: center; gap: 4px; list-style: none; }
     .nav__links a {
       padding: 8px 15px; font-size: 14px; font-weight: 500;
@@ -495,11 +501,17 @@
     .t-card:hover::after { opacity: 1; }
     .t-card:hover { transform: translateY(-7px); box-shadow: 0 28px 60px rgba(0,0,0,.4); }
     .t-avatar {
-      width: 82px; height: 82px;
+      width: 110px; height: 110px;
+      border-radius: 50%; overflow: hidden;
+      margin: 0 auto 22px;
+      border: 3px solid rgba(124,58,237,.45);
+      box-shadow: 0 0 0 5px rgba(124,58,237,.1), 0 10px 30px rgba(0,0,0,.35);
       background: linear-gradient(135deg, var(--purple), var(--cyan));
-      border-radius: 50%; display: flex; align-items: center; justify-content: center;
-      font-family: 'Space Grotesk', sans-serif; font-size: 32px; font-weight: 800;
-      margin: 0 auto 20px;
+      flex-shrink: 0;
+    }
+    .t-avatar img {
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
     }
     .t-name { font-size: 24px; font-weight: 700; margin-bottom: 5px; }
     .t-role { font-size: 12.5px; color: var(--lavender); font-weight: 600; letter-spacing: .06em; text-transform: uppercase; margin-bottom: 14px; }
@@ -515,29 +527,36 @@
     ================================================ */
     .testi { padding: 110px 0; background: linear-gradient(180deg, transparent, rgba(124,58,237,.025), transparent); }
     .testi__sl { position: relative; overflow: hidden; margin-top: 64px; }
-    .testi__tr { display: flex; gap: 22px; transition: transform .55s cubic-bezier(.25,.46,.45,.94); }
+    .testi__tr { display: flex; gap: 22px; transition: transform .55s cubic-bezier(.25,.46,.45,.94); align-items: stretch; }
     .t-card2 {
       background: var(--bg2); border: 1px solid var(--borderS);
-      border-radius: var(--rL); padding: 40px;
-      min-width: calc(50% - 11px); flex-shrink: 0; position: relative;
+      border-radius: var(--rL); padding: 36px 36px 32px;
+      width: calc(50% - 11px); min-width: calc(50% - 11px); flex-shrink: 0;
+      position: relative; overflow: hidden;
+      display: flex; flex-direction: column;
+      transition: border-color .3s, transform .3s;
     }
+    .t-card2:hover { border-color: rgba(124,58,237,.3); transform: translateY(-3px); }
     .t-card2::before {
-      content: '\201C'; position: absolute; top: 20px; right: 24px;
-      font-size: 80px; font-family: 'Space Grotesk', sans-serif; font-weight: 800;
-      color: var(--purple); opacity: .18; line-height: 1;
+      content: '\201C'; position: absolute; top: 16px; right: 22px;
+      font-size: 72px; font-family: 'Space Grotesk', sans-serif; font-weight: 800;
+      color: var(--purple); opacity: .14; line-height: 1; pointer-events: none;
     }
-    .t-stars { display: flex; gap: 4px; margin-bottom: 18px; }
-    .t-stars span { color: var(--gold); font-size: 16px; }
-    .t-txt { font-size: 17px; color: var(--off-white, #f1f5f9); line-height: 1.75; margin-bottom: 26px; font-weight: 300; }
-    .t-ath { display: flex; align-items: center; gap: 14px; }
+    .t-stars { display: flex; gap: 3px; margin-bottom: 16px; }
+    .t-stars span { color: var(--gold); font-size: 15px; }
+    .t-txt {
+      font-size: 15.5px; color: #cbd5e1; line-height: 1.8;
+      margin-bottom: 24px; font-weight: 400; flex: 1;
+    }
+    .t-ath { display: flex; align-items: center; gap: 12px; border-top: 1px solid var(--borderS); padding-top: 20px; margin-top: auto; }
     .t-av {
-      width: 44px; height: 44px; border-radius: 50%;
+      width: 42px; height: 42px; border-radius: 50%; flex-shrink: 0;
       background: linear-gradient(135deg, var(--purple), var(--indigo));
       display: flex; align-items: center; justify-content: center;
-      font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 16px;
+      font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 15px;
     }
-    .t-n { font-weight: 600; font-size: 15px; }
-    .t-co { font-size: 13px; color: var(--g400); }
+    .t-n { font-weight: 600; font-size: 14.5px; }
+    .t-co { font-size: 12.5px; color: var(--g400); margin-top: 2px; }
     .testi__nav { display: flex; align-items: center; justify-content: center; gap: 12px; margin-top: 38px; }
     .testi__btn {
       width: 44px; height: 44px; background: var(--bg2);
@@ -546,7 +565,7 @@
       color: var(--g400); transition: all .2s; cursor: none;
     }
     .testi__btn:hover { border-color: var(--purple); color: #fff; background: rgba(124,58,237,.1); }
-    .testi__dots { display: flex; gap: 8px; }
+    .testi__dots { display: flex; gap: 8px; align-items: center; }
     .testi__dot {
       width: 8px; height: 8px; background: var(--g600);
       border-radius: 50%; cursor: none; transition: all .25s;
@@ -600,6 +619,50 @@
     .f-soc:hover { border-color: var(--purple); color: #fff; background: rgba(124,58,237,.1); }
 
     /* ================================================
+       WORK IN PROGRESS
+    ================================================ */
+    .w-card.wip { position: relative; }
+    .w-card.wip:hover { transform: none; box-shadow: none; }
+    .w-card.wip .w-card__content,
+    .w-card.wip .w-card__img { filter: blur(3px); opacity: .45; user-select: none; pointer-events: none; }
+    .wip-overlay {
+      position: absolute; inset: 0; z-index: 10;
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px;
+      background: rgba(4,4,13,.55);
+      backdrop-filter: blur(1px);
+      border-radius: var(--rL);
+    }
+    .wip-overlay::before {
+      content: ''; position: absolute; inset: 0; border-radius: var(--rL);
+      background-image: repeating-linear-gradient(
+        -45deg, transparent, transparent 18px,
+        rgba(124,58,237,.07) 18px, rgba(124,58,237,.07) 20px
+      );
+      pointer-events: none;
+    }
+    .wip-badge {
+      position: relative; z-index: 1;
+      display: flex; align-items: center; gap: 10px;
+      background: rgba(10,10,28,.85);
+      border: 1px solid rgba(124,58,237,.5);
+      border-radius: 100px; padding: 10px 22px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 13px; font-weight: 700; letter-spacing: .06em;
+      text-transform: uppercase; color: var(--lavender);
+      box-shadow: 0 0 28px rgba(124,58,237,.25);
+    }
+    .wip-pulse {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--gold); flex-shrink: 0;
+      animation: wipPulse 1.6s ease-in-out infinite;
+    }
+    @keyframes wipPulse {
+      0%,100% { opacity: 1; box-shadow: 0 0 0 0 rgba(245,158,11,.5); }
+      50%      { opacity: .6; box-shadow: 0 0 0 6px rgba(245,158,11,0); }
+    }
+    .wip-sub { position: relative; z-index: 1; font-size: 12px; color: var(--g500); letter-spacing: .04em; }
+
+    /* ================================================
        GRADIENT DECO BLOBS
     ================================================ */
     .blob {
@@ -651,22 +714,21 @@
     <div class="wrap">
       <div class="nav__i">
         <a href="#" class="logo">
-          <div class="logo-icon">N</div>
           <span class="gt">Nexus</span>
         </a>
         <ul class="nav__links">
           <li><a href="#services">Services</a></li>
-          <li><a href="#work">Work</a></li>
+          <li><a href="portfolio.html">Work</a></li>
           <li><a href="#features">Features</a></li>
           <li><a href="#team">Team</a></li>
           <li><a href="#testimonials">Testimonials</a></li>
         </ul>
         <div class="nav__cta">
-          <a href="#cta" class="btn btn-o">Request Audit</a>
-          <a href="#cta" class="btn btn-p">
+          <a href="#cta" class="btn btn-o">Request Service</a>
+          <button onclick="openCal()" class="btn btn-p">
             Book a Call
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
+          </button>
         </div>
         <button class="nav__tog" id="navTog" aria-label="Menu">
           <span></span><span></span><span></span>
@@ -683,8 +745,8 @@
     <a href="#team" class="mob-link">Team</a>
     <a href="#testimonials" class="mob-link">Testimonials</a>
     <div class="mob-ctabtn">
-      <a href="#cta" class="btn btn-o mob-link">Request Audit</a>
-      <a href="#cta" class="btn btn-p mob-link">Book a Consultation</a>
+      <a href="#cta" class="btn btn-o mob-link">Request Service</a>
+      <button onclick="openCal()" class="btn btn-p mob-link">Book a Consultation</button>
     </div>
   </div>
 
@@ -698,22 +760,22 @@
       <div class="hero__c">
         <div class="hero__badge">
           <span class="bd"></span>
-          The Site is Live 
+          Now Onboarding 2026 Clients
         </div>
         <h1 class="hero__h1">
           Make Your Brand<br>
           <span class="gt">Impossible to Ignore</span>
         </h1>
         <p class="hero__sub">
-          We build cutting-edge websites and run performance marketing across Meta &amp; TikTok that turns visitors into revenue — with results you can actually measure.
+          We build <strong>cutting-edge websites</strong> and run <strong>performance marketing</strong> across Meta &amp; TikTok that turns visitors into revenue with results you can actually measure.
         </p>
         <div class="hero__btns">
-          <a href="#cta" class="btn btn-p">
+          <button onclick="openCal()" class="btn btn-p">
             Book a Consultation
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
+          </button>
           <a href="#cta" class="btn btn-o">
-            Request a Free Audit
+            Request a Service
           </a>
         </div>
       </div>
@@ -792,7 +854,7 @@
       <div class="sh">
         <div class="pill">What We Do</div>
         <h2 class="sh__t reveal">Everything Your Brand Needs<br>to <span class="gt">Win Online</span></h2>
-        <p class="sh__s reveal d1">Three core pillars, one integrated strategy — built to convert, scale, and dominate your market.</p>
+        <p class="sh__s reveal d1">Three core pillars, one integrated strategy. <strong>Built to convert, scale, and dominate</strong> your market.</p>
       </div>
       <div class="svc__g">
         <!-- Service 1 -->
@@ -802,7 +864,7 @@
           <h3 class="svc-card__t">Web Design &amp; Development</h3>
           <p class="svc-card__d">High-performance, mobile-first websites and landing pages engineered to convert. Built fast. Built to close.</p>
           <ul class="svc-card__ul">
-            <li>Custom design — no templates</li>
+            <li>Custom design, no templates</li>
             <li>Desktop &amp; mobile-first</li>
             <li>E-commerce &amp; sales channels</li>
             <li>Lightning-fast load times</li>
@@ -814,7 +876,7 @@
           <span class="svc-card__num">02</span>
           <div class="svc-card__ico">&#10024;</div>
           <h3 class="svc-card__t">Online Presence &amp; Brand Polish</h3>
-          <p class="svc-card__d">We audit, refine, and upgrade your brand's digital footprint — so your credibility matches your ambition.</p>
+          <p class="svc-card__d">We audit, refine, and upgrade your brand's digital footprint so your <strong>credibility matches your ambition</strong>.</p>
           <ul class="svc-card__ul">
             <li>Brand messaging &amp; voice</li>
             <li>SEO-ready foundations</li>
@@ -828,7 +890,7 @@
           <span class="svc-card__num">03</span>
           <div class="svc-card__ico">&#128293;</div>
           <h3 class="svc-card__t">Performance Marketing</h3>
-          <p class="svc-card__d">Meta &amp; TikTok ad campaigns designed around real outcomes — more revenue, not just more clicks.</p>
+          <p class="svc-card__d">Meta &amp; TikTok ad campaigns designed around <strong>real outcomes</strong>. More revenue, not just more clicks.</p>
           <ul class="svc-card__ul">
             <li>Meta (Facebook &amp; Instagram) Ads</li>
             <li>TikTok Shop &amp; TikTok Ads</li>
@@ -858,7 +920,7 @@
         <div class="proc-step reveal d1">
           <div class="proc-step__n">02</div>
           <h3 class="proc-step__t">Strategy &amp; Proposal</h3>
-          <p class="proc-step__d">We map out a custom roadmap — site, ads, brand — with clear deliverables and timelines.</p>
+          <p class="proc-step__d">We map out a custom roadmap covering site, ads, and brand with clear deliverables and timelines.</p>
         </div>
         <div class="proc-step reveal d2">
           <div class="proc-step__n">03</div>
@@ -885,18 +947,11 @@
       <div class="work__g">
         <!-- Featured card -->
         <div class="w-card w-card--feat reveal">
-          <div class="w-card__img" style="background:linear-gradient(135deg,#1a0533,#0d1b4b,#0c2e3a)">
-            <div class="w-card__num">01</div>
-            <div style="position:relative;z-index:1;text-align:center;padding:28px">
-              <div style="font-size:52px;margin-bottom:12px">&#128722;</div>
-              <div style="font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:700;opacity:.8">E-Commerce Store</div>
-              <div style="font-size:13px;color:var(--g400);margin-top:6px">New Shopify build + Meta ads</div>
-            </div>
-          </div>
+          <div class="w-card__img" style="background:#f0f4f8 url('Sales.jpg') center top / 85% auto no-repeat;"></div>
           <div class="w-card__content">
-            <span class="w-tag">E-Commerce + Meta Ads</span>
-            <h3 class="w-card__t">Fashion Brand Revenue Overhaul</h3>
-            <p class="w-card__d">Complete Shopify redesign paired with full-funnel Meta ad strategy. New creative direction, optimized checkout flow, and retargeting sequences that compounded week over week.</p>
+            <span class="w-tag">E-Commerce + TikTok Shop + Affiliate + Organic</span>
+            <h3 class="w-card__t">Clothing Brand Revenue Overhaul For Deladoe</h3>
+            <p class="w-card__d">Complete Shopify build paired with TikTok Shop, affiliate programs, and organic content strategy. Full-funnel execution that scaled Deladoe to over $1.82M in gross sales across 86K+ orders.</p>
             <div class="w-metrics">
               <div class="w-met"><div class="w-met__v">+340%</div><div class="w-met__l">Revenue</div></div>
               <div class="w-met"><div class="w-met__v">5.2x</div><div class="w-met__l">ROAS</div></div>
@@ -905,7 +960,11 @@
           </div>
         </div>
 
-        <div class="w-card reveal d1">
+        <div class="w-card wip reveal d1">
+          <div class="wip-overlay">
+            <div class="wip-badge"><span class="wip-pulse"></span>Case Study Coming Soon</div>
+            <div class="wip-sub">Full breakdown dropping shortly</div>
+          </div>
           <div class="w-card__img" style="background:linear-gradient(135deg,#0d2b1f,#0a1a2e,#1a0d3a)">
             <div class="w-card__num">02</div>
             <div style="position:relative;z-index:1;text-align:center;padding:28px">
@@ -924,7 +983,11 @@
           </div>
         </div>
 
-        <div class="w-card reveal d2">
+        <div class="w-card wip reveal d2">
+          <div class="wip-overlay">
+            <div class="wip-badge"><span class="wip-pulse"></span>Case Study Coming Soon</div>
+            <div class="wip-sub">Full breakdown dropping shortly</div>
+          </div>
           <div class="w-card__img" style="background:linear-gradient(135deg,#1a1205,#2a0d1a,#050d2a)">
             <div class="w-card__num">03</div>
             <div style="position:relative;z-index:1;text-align:center;padding:28px">
@@ -943,43 +1006,6 @@
           </div>
         </div>
 
-        <div class="w-card reveal">
-          <div class="w-card__img" style="background:linear-gradient(135deg,#0a1a08,#0c1a2e,#1a0a2e)">
-            <div class="w-card__num">04</div>
-            <div style="position:relative;z-index:1;text-align:center;padding:28px">
-              <div style="font-size:48px;margin-bottom:10px">&#128170;</div>
-              <div style="font-family:'Space Grotesk',sans-serif;font-size:19px;font-weight:700;opacity:.8">Fitness Brand</div>
-            </div>
-          </div>
-          <div class="w-card__content">
-            <span class="w-tag">TikTok Shop + Meta</span>
-            <h3 class="w-card__t">Fitness Brand TikTok Explosion</h3>
-            <p class="w-card__d">Creative-led TikTok strategy + Meta retargeting turned a struggling supplement brand into a $200K/month channel.</p>
-            <div class="w-metrics">
-              <div class="w-met"><div class="w-met__v">$200K/mo</div><div class="w-met__l">Revenue</div></div>
-              <div class="w-met"><div class="w-met__v">6.1x</div><div class="w-met__l">ROAS</div></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="w-card reveal d1">
-          <div class="w-card__img" style="background:linear-gradient(135deg,#1a0a0a,#1a1005,#051a1a)">
-            <div class="w-card__num">05</div>
-            <div style="position:relative;z-index:1;text-align:center;padding:28px">
-              <div style="font-size:48px;margin-bottom:10px">&#128187;</div>
-              <div style="font-family:'Space Grotesk',sans-serif;font-size:19px;font-weight:700;opacity:.8">SaaS Startup</div>
-            </div>
-          </div>
-          <div class="w-card__content">
-            <span class="w-tag">Web Design + Brand</span>
-            <h3 class="w-card__t">SaaS Startup Launch</h3>
-            <p class="w-card__d">End-to-end brand identity, marketing site, and paid acquisition setup. Went from zero to 1,200 signups in 90 days.</p>
-            <div class="w-metrics">
-              <div class="w-met"><div class="w-met__v">1,200</div><div class="w-met__l">Signups</div></div>
-              <div class="w-met"><div class="w-met__v">$0 → $40K</div><div class="w-met__l">MRR</div></div>
-            </div>
-          </div>
-        </div>
       </div>
 
       <div style="text-align:center;margin-top:44px" class="reveal">
@@ -997,9 +1023,43 @@
       <div class="sh">
         <div class="pill">What We Build</div>
         <h2 class="sh__t reveal">The Features That Make<br>Your Site <span class="gt">Stand Out</span></h2>
-        <p class="sh__s reveal d1">Every website we build can be equipped with these premium capabilities — tailored to your business.</p>
+        <p class="sh__s reveal d1">Every website we build can be equipped with these premium capabilities, tailored to your business.</p>
       </div>
       <div class="bento">
+        <!-- FULL-WIDTH HERO FEATURE: Stunning Websites -->
+        <div class="b reveal" style="grid-column:1/-1;background:linear-gradient(135deg,rgba(124,58,237,.15),rgba(6,182,212,.08));border-color:rgba(124,58,237,.35);position:relative;overflow:hidden;padding:48px;">
+          <div style="position:absolute;top:-60px;right:-60px;width:280px;height:280px;background:radial-gradient(circle,rgba(124,58,237,.25),transparent 70%);pointer-events:none;"></div>
+          <div style="position:absolute;bottom:-40px;left:30%;width:200px;height:200px;background:radial-gradient(circle,rgba(6,182,212,.15),transparent 70%);pointer-events:none;"></div>
+          <div style="display:flex;align-items:center;gap:16px;margin-bottom:20px;">
+            <div style="background:linear-gradient(135deg,var(--purple),var(--cyan));border-radius:14px;width:52px;height:52px;display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0;">&#127775;</div>
+            <div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--lavender);background:rgba(124,58,237,.12);border:1px solid rgba(124,58,237,.3);border-radius:100px;padding:5px 14px;">Our Signature Capability</div>
+          </div>
+          <h3 style="font-family:'Space Grotesk',sans-serif;font-size:clamp(28px,4vw,42px);font-weight:800;letter-spacing:-.03em;margin-bottom:14px;line-height:1.1;">We Build <span class="gt">Websites That Stop People Mid-Scroll</span></h3>
+          <p style="font-size:17px;color:var(--g400);max-width:680px;line-height:1.7;margin-bottom:28px;">This website you're on right now? We built it. Every scroll animation, cursor effect, gradient, and transition was crafted to show exactly what your brand could look like. <strong style="color:var(--white);">We don't just build websites. We build digital experiences that convert.</strong></p>
+          <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:32px;">
+            <span class="b__tag" style="background:rgba(124,58,237,.15);border-color:rgba(124,58,237,.4);">Custom Animations</span>
+            <span class="b__tag">Scroll-Triggered Effects</span>
+            <span class="b__tag">Gradient Design Systems</span>
+            <span class="b__tag">Micro-Interactions</span>
+            <span class="b__tag">WebGL / Three.js</span>
+            <span class="b__tag">GSAP Timelines</span>
+            <span class="b__tag">Responsive &amp; Mobile-First</span>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:600px;">
+            <div style="background:rgba(255,255,255,.04);border:1px solid var(--borderS);border-radius:12px;padding:16px;text-align:center;">
+              <div style="font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:800;background:linear-gradient(135deg,#fff,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">100%</div>
+              <div style="font-size:12px;color:var(--g400);margin-top:4px;">Custom Built</div>
+            </div>
+            <div style="background:rgba(255,255,255,.04);border:1px solid var(--borderS);border-radius:12px;padding:16px;text-align:center;">
+              <div style="font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:800;background:linear-gradient(135deg,#fff,#22d3ee);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">95+</div>
+              <div style="font-size:12px;color:var(--g400);margin-top:4px;">PageSpeed Score</div>
+            </div>
+            <div style="background:rgba(255,255,255,.04);border:1px solid var(--borderS);border-radius:12px;padding:16px;text-align:center;">
+              <div style="font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:800;background:linear-gradient(135deg,#fbbf24,#f59e0b);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">0</div>
+              <div style="font-size:12px;color:var(--g400);margin-top:4px;">Templates Used</div>
+            </div>
+          </div>
+        </div>
         <div class="b b1 reveal">
           <span class="b__ico">&#128247;</span>
           <h3 class="b__t">Animated Interactions</h3>
@@ -1020,7 +1080,7 @@
         <div class="b b2 reveal d1">
           <span class="b__ico">&#128200;</span>
           <h3 class="b__t">Live Analytics Dashboard</h3>
-          <p class="b__d">Embedded analytics panels showing real-time traffic, conversions, and revenue — right inside your site admin.</p>
+          <p class="b__d">Embedded analytics panels showing real-time traffic, conversions, and revenue right inside your site admin.</p>
           <div class="mini-ui">
             <div class="mini-bar">
               <div class="mini-dot" style="background:#ff5f57"></div>
@@ -1064,7 +1124,7 @@
         <div class="b b4 reveal d1">
           <span class="b__ico">&#129302;</span>
           <h3 class="b__t">AI Chatbots</h3>
-          <p class="b__d">24/7 AI-powered chat that qualifies leads, answers FAQs, and books appointments — while you sleep.</p>
+          <p class="b__d">24/7 AI-powered chat that qualifies leads, answers FAQs, and books appointments while you sleep.</p>
           <div class="b__tags">
             <span class="b__tag">Lead Capture</span>
             <span class="b__tag">GPT-Powered</span>
@@ -1073,7 +1133,7 @@
         <div class="b b5 reveal d2">
           <span class="b__ico">&#127760;</span>
           <h3 class="b__t">3D &amp; Video Hero Sections</h3>
-          <p class="b__d">Immersive hero experiences — 3D product views, background video, and parallax depth effects.</p>
+          <p class="b__d">Immersive hero experiences with 3D product views, background video, and parallax depth effects.</p>
           <div class="b__tags">
             <span class="b__tag">Three.js</span>
             <span class="b__tag">GSAP</span>
@@ -1083,7 +1143,7 @@
         <div class="b b6 reveal">
           <span class="b__ico">&#128722;</span>
           <h3 class="b__t">E-Commerce &amp; Sales Channels</h3>
-          <p class="b__d">Full Shopify builds, WooCommerce, custom storefronts — with TikTok Shop and Meta Shop integrations built in.</p>
+          <p class="b__d">Full Shopify builds, WooCommerce, custom storefronts with TikTok Shop and Meta Shop integrations built in.</p>
           <div class="b__tags">
             <span class="b__tag">Shopify</span>
             <span class="b__tag">WooCommerce</span>
@@ -1112,14 +1172,16 @@
       <div class="sh" style="text-align:center">
         <div class="pill">The Team</div>
         <h2 class="sh__t reveal">Built by Two Operators Who<br><span class="gt">Actually Get Results</span></h2>
-        <p class="sh__s reveal d1" style="margin:0 auto">Not account managers — actual specialists who've been in the trenches and know how to win.</p>
+        <p class="sh__s reveal d1" style="margin:0 auto">Not account managers. <strong>Actual specialists</strong> who have been in the trenches and know how to win.</p>
       </div>
       <div class="team__g">
         <div class="t-card reveal">
-          <div class="t-avatar">B</div>
+          <div class="t-avatar">
+            <img src="brandon.jpg" alt="Brandon" style="object-position: center 28%;" />
+          </div>
           <div class="t-name">Brandon</div>
           <div class="t-role">Entrepreneur &amp; Marketing Specialist</div>
-          <p class="t-bio">6 years building and scaling brands online. Brandon leads client strategy, creative direction, and performance marketing — with a track record of turning ad spend into outsized returns.</p>
+          <p class="t-bio">6 years building and scaling brands online. Brandon leads client strategy, creative direction, and performance marketing with a track record of turning ad spend into <strong>outsized returns</strong>.</p>
           <div class="t-badges">
             <span class="t-badge">Meta Ads</span>
             <span class="t-badge">TikTok Shop</span>
@@ -1127,10 +1189,12 @@
           </div>
         </div>
         <div class="t-card reveal d2">
-          <div class="t-avatar">D</div>
+          <div class="t-avatar">
+            <img src="darsh.jpg" alt="Darsh" style="object-position: center 8%;" />
+          </div>
           <div class="t-name">Darsh</div>
           <div class="t-role">Enterprise Technology Integration</div>
-          <p class="t-bio">A professional in enterprise technology integration, Darsh architects the digital infrastructure — custom web builds, automation systems, and AI tools that make businesses run smarter and look world-class.</p>
+          <p class="t-bio">A professional in enterprise technology integration, Darsh architects the digital infrastructure: custom web builds, automation systems, and AI tools that make businesses <strong>run smarter and look world-class</strong>.</p>
           <div class="t-badges">
             <span class="t-badge">Web Development</span>
             <span class="t-badge">AI Automation</span>
@@ -1225,14 +1289,14 @@
     <div class="wrap">
       <div class="cta-box reveal">
         <h2 class="cta-box__t">Ready to Make Your Brand<br><span class="gt">Impossible to Ignore?</span></h2>
-        <p class="cta-box__s">Book a free 30-minute consultation or request a full website + marketing audit. Zero pressure, massive value.</p>
+        <p class="cta-box__s">Book a free 30-minute consultation or request a full website and marketing service. Zero pressure, massive value.</p>
         <div class="cta-box__btns">
-          <a href="mailto:hello@nexusagency.co" class="btn btn-p">
+          <button onclick="openCal()" class="btn btn-p">
             Book a Consultation
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
-          <a href="mailto:hello@nexusagency.co?subject=Audit Request" class="btn btn-o">
-            Request a Website + Marketing Audit
+          </button>
+          <a href="mailto:hello@nexusagency.co?subject=Service Request" class="btn btn-o">
+            Request a Service
           </a>
         </div>
         <p class="cta-note">&#128373; Free. No commitment. Just a conversation.</p>
@@ -1246,7 +1310,6 @@
       <div class="footer__g">
         <div class="footer__brand">
           <div class="logo">
-            <div class="logo-icon">N</div>
             <span class="gt">Nexus</span>
           </div>
           <p>We build cutting-edge websites and run performance marketing that makes your brand impossible to ignore.</p>
@@ -1275,7 +1338,7 @@
           <ul class="footer__ul">
             <li><a href="mailto:hello@nexusagency.co">hello@nexusagency.co</a></li>
             <li><a href="#cta">Book a Call</a></li>
-            <li><a href="#cta">Request Audit</a></li>
+            <li><a href="#cta">Request Service</a></li>
           </ul>
         </div>
       </div>
@@ -1415,27 +1478,39 @@
     revEls.forEach(el => io.observe(el));
 
     /* ================================================
-       COUNTER ANIMATION
+       COUNTER ANIMATION — re-triggers every time in view
     ================================================ */
     const ctrs = document.querySelectorAll('.ctr');
+    const activeCounters = new Map();
     const cio = new IntersectionObserver(entries => {
       entries.forEach(e => {
-        if (!e.isIntersecting) return;
         const el = e.target;
-        const to = parseFloat(el.dataset.to);
-        const prefix = el.dataset.prefix || '';
-        const suffix = el.dataset.suffix || '';
-        const dur = 1800;
-        const start = performance.now();
-        function tick(now) {
-          const p = Math.min((now - start) / dur, 1);
-          const ease = 1 - Math.pow(1 - p, 3);
-          const val = ease * to;
-          el.textContent = prefix + (Number.isInteger(to) ? Math.round(val) : val.toFixed(1)) + suffix;
-          if (p < 1) requestAnimationFrame(tick);
+        if (e.isIntersecting) {
+          // Cancel any running animation for this element
+          if (activeCounters.has(el)) activeCounters.get(el).cancelled = true;
+          const state = { cancelled: false };
+          activeCounters.set(el, state);
+          const to = parseFloat(el.dataset.to);
+          const prefix = el.dataset.prefix || '';
+          const suffix = el.dataset.suffix || '';
+          const dur = 1800;
+          const start = performance.now();
+          function tick(now) {
+            if (state.cancelled) return;
+            const p = Math.min((now - start) / dur, 1);
+            const ease = 1 - Math.pow(1 - p, 3);
+            const val = ease * to;
+            el.textContent = prefix + (Number.isInteger(to) ? Math.round(val) : val.toFixed(1)) + suffix;
+            if (p < 1) requestAnimationFrame(tick);
+          }
+          requestAnimationFrame(tick);
+        } else {
+          // Reset to 0 when out of view so it re-animates next time
+          const to = parseFloat(el.dataset.to);
+          const prefix = el.dataset.prefix || '';
+          const suffix = el.dataset.suffix || '';
+          el.textContent = prefix + (Number.isInteger(to) ? '0' : '0.0') + suffix;
         }
-        requestAnimationFrame(tick);
-        cio.unobserve(el);
       });
     }, { threshold: 0.5 });
     ctrs.forEach(c => cio.observe(c));
@@ -1461,10 +1536,12 @@
     }
 
     function goTo(idx) {
-      const pages = Math.ceil(cards.length / perView());
+      const pv = perView();
+      const pages = Math.ceil(cards.length / pv);
       cur = Math.max(0, Math.min(idx, pages - 1));
+      // Each "page" shifts by (cardWidth + gap) * cardsPerPage
       const cardW = cards[0].offsetWidth + 22;
-      track.style.transform = `translateX(-${cur * perView() * cardW}px)`;
+      track.style.transform = `translateX(-${cur * pv * cardW}px)`;
       dotsC.querySelectorAll('.testi__dot').forEach((d, i) => d.classList.toggle('on', i === cur));
     }
 
@@ -1515,17 +1592,42 @@
     }
 
     /* ================================================
-       MAGNETIC BUTTONS (subtle)
+       MAGNETIC BUTTONS (desktop only)
     ================================================ */
-    document.querySelectorAll('.btn').forEach(btn => {
-      btn.addEventListener('mousemove', e => {
-        const r = btn.getBoundingClientRect();
-        const dx = e.clientX - (r.left + r.width / 2);
-        const dy = e.clientY - (r.top + r.height / 2);
-        btn.style.transform = `translate(${dx * 0.12}px, ${dy * 0.18}px)`;
+    if (window.matchMedia('(hover: hover)').matches) {
+      document.querySelectorAll('.btn').forEach(btn => {
+        btn.addEventListener('mousemove', e => {
+          const r = btn.getBoundingClientRect();
+          const dx = e.clientX - (r.left + r.width / 2);
+          const dy = e.clientY - (r.top + r.height / 2);
+          btn.style.transform = `translate(${dx * 0.12}px, ${dy * 0.18}px)`;
+        });
+        btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
       });
-      btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
-    });
+
+      /* ================================================
+         3D CARD TILT ON HOVER
+      ================================================ */
+      document.querySelectorAll('.svc-card, .t-card, .w-card, .b').forEach(card => {
+        card.addEventListener('mousemove', e => {
+          const r = card.getBoundingClientRect();
+          const x = (e.clientX - r.left) / r.width  - 0.5;
+          const y = (e.clientY - r.top)  / r.height - 0.5;
+          card.style.transform = `perspective(900px) rotateY(${x * 6}deg) rotateX(${-y * 6}deg) translateY(-4px)`;
+        });
+        card.addEventListener('mouseleave', () => { card.style.transform = ''; });
+      });
+    }
+
+    /* ================================================
+       CUSTOM CURSOR — desktop only guard
+    ================================================ */
+    if (!window.matchMedia('(hover: none), (pointer: coarse)').matches) {
+      const dot2 = document.getElementById('cDot');
+      const ring2 = document.getElementById('cRing');
+      if (dot2) dot2.style.display = 'block';
+      if (ring2) ring2.style.display = 'block';
+    }
 
     /* ================================================
        SMOOTH ANCHOR SCROLL
@@ -1541,6 +1643,65 @@
         }
       });
     });
+
+    /* ================================================
+       PARALLAX HERO CONTENT ON MOUSE MOVE
+    ================================================ */
+    if (window.matchMedia('(hover: hover)').matches) {
+      const heroContent = document.querySelector('.hero__c');
+      document.getElementById('hero').addEventListener('mousemove', e => {
+        const cx = window.innerWidth / 2;
+        const cy = window.innerHeight / 2;
+        const dx = (e.clientX - cx) / cx;
+        const dy = (e.clientY - cy) / cy;
+        if (heroContent) heroContent.style.transform = `translate(${dx * 8}px, ${dy * 6}px)`;
+      });
+      document.getElementById('hero').addEventListener('mouseleave', () => {
+        if (heroContent) heroContent.style.transform = '';
+      });
+    }
+
+    /* ================================================
+       CALENDLY BOOKING POPUP
+       Replace the URL below with your actual Calendly link
+       after creating a free account at calendly.com
+       It syncs with Google Calendar automatically.
+    ================================================ */
+    function openCal() {
+      if (typeof Calendly !== 'undefined') {
+        Calendly.initPopupWidget({
+          url: 'https://calendly.com/YOUR_USERNAME/consultation'
+        });
+      } else {
+        // Fallback: open email if Calendly hasn't loaded
+        window.location.href = 'mailto:hello@nexusagency.co?subject=Consultation Request';
+      }
+    }
+
+    /* ================================================
+       SPARKLE / STAR TRAIL ON CURSOR (desktop)
+    ================================================ */
+    if (window.matchMedia('(hover: hover)').matches) {
+      let lastSparkle = 0;
+      document.addEventListener('mousemove', e => {
+        const now = Date.now();
+        if (now - lastSparkle < 60) return;
+        lastSparkle = now;
+        const s = document.createElement('div');
+        s.style.cssText = `
+          position:fixed;left:${e.clientX}px;top:${e.clientY}px;
+          width:5px;height:5px;border-radius:50%;pointer-events:none;z-index:9990;
+          background:${Math.random() > 0.5 ? '#a78bfa' : '#22d3ee'};
+          transform:translate(-50%,-50%);
+          animation:sparkle .6s ease forwards;
+        `;
+        document.body.appendChild(s);
+        setTimeout(() => s.remove(), 700);
+      });
+      const sparkleCSS = document.createElement('style');
+      sparkleCSS.textContent = `@keyframes sparkle{0%{opacity:.8;transform:translate(-50%,-50%) scale(1)}100%{opacity:0;transform:translate(-50%,-50%) scale(0) translateY(-12px)}}`;
+      document.head.appendChild(sparkleCSS);
+    }
   </script>
 </body>
 </html>

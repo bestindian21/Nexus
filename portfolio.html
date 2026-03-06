@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Nexus Agency Portfolio — Real results from real clients across web design, Meta ads, and TikTok marketing." />
+  <title>Our Work | Nexus Agency</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="mobile.css" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #04040d;
+      --bg2:      #07071a;
+      --bg3:      #0b0b22;
+      --purple:   #7c3aed;
+      --violet:   #8b5cf6;
+      --lavender: #a78bfa;
+      --indigo:   #6366f1;
+      --cyan:     #06b6d4;
+      --cyan2:    #22d3ee;
+      --gold:     #f59e0b;
+      --white:    #f8fafc;
+      --g400:     #94a3b8;
+      --g500:     #64748b;
+      --g600:     #475569;
+      --border:   rgba(139,92,246,.13);
+      --borderS:  rgba(255,255,255,.055);
+      --r:        16px;
+      --rL:       24px;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg); color: var(--white);
+      font-family: 'Inter', sans-serif; line-height: 1.6;
+      overflow-x: hidden; cursor: none;
+    }
+    h1,h2,h3,h4 { font-family: 'Space Grotesk', sans-serif; line-height: 1.1; letter-spacing: -.025em; }
+    a { text-decoration: none; color: inherit; }
+
+    @media (hover: none), (pointer: coarse) {
+      body { cursor: auto !important; }
+      .c-dot, .c-ring { display: none !important; }
+    }
+
+    /* Cursor */
+    .c-dot { width: 8px; height: 8px; background: var(--cyan2); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 10000; transform: translate(-50%,-50%); }
+    .c-ring { width: 38px; height: 38px; border: 1.5px solid rgba(139,92,246,.5); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: width .25s, height .25s, border-color .25s; }
+    body.ch .c-ring { width: 58px; height: 58px; border-color: var(--cyan2); }
+
+    /* Scroll progress */
+    .sp { position: fixed; top: 0; left: 0; height: 2px; background: linear-gradient(90deg, var(--purple), var(--cyan)); z-index: 10001; width: 0%; }
+
+    /* Gradient text */
+    .gt { background: linear-gradient(135deg, #fff 0%, #a78bfa 45%, #22d3ee 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+    /* Wrap */
+    .wrap { max-width: 1200px; margin: 0 auto; padding: 0 28px; }
+
+    /* Pill */
+    .pill { display: inline-flex; align-items: center; gap: 8px; background: rgba(124,58,237,.1); border: 1px solid rgba(124,58,237,.28); border-radius: 100px; padding: 6px 18px; font-size: 11.5px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--lavender); margin-bottom: 22px; }
+    .pill::before { content: ''; width: 6px; height: 6px; background: var(--cyan2); border-radius: 50%; animation: blink 2s infinite; }
+    @keyframes blink { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(.75)} }
+
+    /* Reveal */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.on { opacity: 1; transform: none; }
+    .reveal.d1 { transition-delay: .1s; }
+    .reveal.d2 { transition-delay: .2s; }
+    .reveal.d3 { transition-delay: .3s; }
+
+    /* Buttons */
+    .btn { display: inline-flex; align-items: center; gap: 10px; padding: 13px 28px; border-radius: 100px; font-weight: 600; font-size: 15px; border: none; position: relative; overflow: hidden; transition: transform .25s, box-shadow .25s; font-family: inherit; cursor: none; }
+    .btn::after { content: ''; position: absolute; inset: 0; background: rgba(255,255,255,.1); opacity: 0; transition: opacity .2s; }
+    .btn:hover::after { opacity: 1; }
+    .btn svg { width: 17px; height: 17px; transition: transform .25s; }
+    .btn:hover svg { transform: translateX(3px); }
+    .btn-p { background: linear-gradient(135deg, #7c3aed, #6366f1); color: #fff; box-shadow: 0 4px 24px rgba(124,58,237,.42); }
+    .btn-p:hover { transform: translateY(-2px); box-shadow: 0 10px 40px rgba(124,58,237,.6); }
+    .btn-o { background: transparent; color: var(--white); border: 1px solid rgba(255,255,255,.18); backdrop-filter: blur(10px); }
+    .btn-o:hover { transform: translateY(-2px); border-color: var(--cyan2); color: var(--cyan2); }
+
+    /* ---- NAV ---- */
+    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 900; padding: 22px 0; transition: padding .3s, background .3s; }
+    .nav.stuck { padding: 12px 0; background: rgba(4,4,13,.85); backdrop-filter: blur(22px); border-bottom: 1px solid var(--borderS); }
+    .nav__i { display: flex; align-items: center; justify-content: space-between; }
+    .logo { font-family: 'Space Grotesk', sans-serif; font-weight: 800; font-size: 28px; letter-spacing: -.05em; }
+    .nav__links { display: flex; gap: 4px; list-style: none; }
+    .nav__links a { padding: 8px 15px; font-size: 14px; font-weight: 500; color: var(--g400); border-radius: 8px; transition: color .2s, background .2s; }
+    .nav__links a:hover, .nav__links a.active { color: #fff; background: rgba(255,255,255,.06); }
+    .nav__cta { display: flex; gap: 10px; }
+    .nav__tog { display: none; flex-direction: column; gap: 5px; background: none; border: none; padding: 6px; cursor: none; }
+    .nav__tog span { display: block; width: 22px; height: 2px; background: #fff; border-radius: 2px; transition: all .3s; }
+
+    /* Mobile menu */
+    .mob-menu { display: none; position: fixed; inset: 0; z-index: 800; background: rgba(4,4,13,.97); backdrop-filter: blur(20px); flex-direction: column; align-items: center; justify-content: center; gap: 24px; padding: 100px 28px 40px; }
+    .mob-menu.open { display: flex; }
+    .mob-menu a { font-family: 'Space Grotesk', sans-serif; font-size: 26px; font-weight: 700; color: var(--g400); transition: color .2s; }
+    .mob-menu a:hover { color: #fff; }
+    .mob-menu .mob-ctabtn { display: flex; flex-direction: column; gap: 12px; margin-top: 16px; width: 100%; max-width: 300px; }
+    .mob-menu .btn { width: 100%; justify-content: center; }
+
+    /* ---- PAGE HERO ---- */
+    .page-hero {
+      padding: 140px 0 80px;
+      position: relative; overflow: hidden;
+      text-align: center;
+    }
+    .page-hero::before {
+      content: ''; position: absolute; top: -120px; left: 50%; transform: translateX(-50%);
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(124,58,237,.15), transparent 65%);
+      pointer-events: none;
+    }
+    .page-hero h1 { font-size: clamp(44px, 7vw, 80px); font-weight: 800; letter-spacing: -.04em; margin-bottom: 18px; position: relative; }
+    .page-hero p { font-size: 18px; color: var(--g400); max-width: 520px; margin: 0 auto; line-height: 1.7; position: relative; }
+
+    /* ---- FILTER TABS ---- */
+    .filter-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin: 52px 0 44px; }
+    .filter-tab {
+      padding: 8px 20px; border-radius: 100px; font-size: 13px; font-weight: 600;
+      background: rgba(255,255,255,.05); border: 1px solid var(--borderS);
+      color: var(--g400); cursor: none; transition: all .2s;
+    }
+    .filter-tab:hover, .filter-tab.on { background: rgba(124,58,237,.15); border-color: rgba(124,58,237,.4); color: var(--lavender); }
+
+    /* ---- CASE STUDY CARDS ---- */
+    .cases { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+    .case-card {
+      background: var(--bg2); border: 1px solid var(--borderS);
+      border-radius: var(--rL); overflow: hidden;
+      transition: transform .4s, border-color .4s, box-shadow .4s;
+    }
+    .case-card:hover { transform: translateY(-6px); border-color: var(--border); box-shadow: 0 28px 60px rgba(0,0,0,.5); }
+
+    /* ---- WORK IN PROGRESS ---- */
+    .case-card.wip { position: relative; }
+    .case-card.wip:hover { transform: none; box-shadow: none; }
+    .case-card.wip .case-content,
+    .case-card.wip .case-img { filter: blur(3px); opacity: .45; user-select: none; pointer-events: none; }
+    .wip-overlay {
+      position: absolute; inset: 0; z-index: 10;
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px;
+      background: rgba(4,4,13,.55);
+      backdrop-filter: blur(1px);
+      border-radius: var(--rL);
+    }
+    /* diagonal stripe texture */
+    .wip-overlay::before {
+      content: ''; position: absolute; inset: 0; border-radius: var(--rL);
+      background-image: repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent 18px,
+        rgba(124,58,237,.07) 18px,
+        rgba(124,58,237,.07) 20px
+      );
+      pointer-events: none;
+    }
+    .wip-badge {
+      position: relative; z-index: 1;
+      display: flex; align-items: center; gap: 10px;
+      background: rgba(10,10,28,.85);
+      border: 1px solid rgba(124,58,237,.5);
+      border-radius: 100px; padding: 10px 22px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 13px; font-weight: 700; letter-spacing: .06em;
+      text-transform: uppercase; color: var(--lavender);
+      box-shadow: 0 0 28px rgba(124,58,237,.25);
+    }
+    .wip-pulse {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--gold); flex-shrink: 0;
+      animation: wipPulse 1.6s ease-in-out infinite;
+    }
+    @keyframes wipPulse {
+      0%,100% { opacity: 1; box-shadow: 0 0 0 0 rgba(245,158,11,.5); }
+      50%      { opacity: .6; box-shadow: 0 0 0 6px rgba(245,158,11,0); }
+    }
+    .wip-sub {
+      position: relative; z-index: 1;
+      font-size: 12px; color: var(--g500); letter-spacing: .04em;
+    }
+    .case-card--large { grid-column: 1 / -1; display: grid; grid-template-columns: 1.2fr 1fr; }
+
+    .case-img {
+      height: 280px; position: relative; overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .case-card--large .case-img { height: 100%; min-height: 340px; }
+
+    .case-img__inner { position: relative; z-index: 1; text-align: center; padding: 32px; }
+    .case-img__emoji { font-size: 56px; margin-bottom: 14px; display: block; filter: drop-shadow(0 4px 24px rgba(0,0,0,.4)); }
+    .case-img__label { font-family: 'Space Grotesk', sans-serif; font-size: 18px; font-weight: 700; opacity: .85; }
+    .case-img__sub { font-size: 13px; color: var(--g400); margin-top: 6px; }
+
+    .case-content { padding: 32px; }
+    .case-tag { display: inline-block; background: rgba(124,58,237,.14); border: 1px solid rgba(124,58,237,.28); border-radius: 100px; padding: 4px 12px; font-size: 11px; font-weight: 600; color: var(--lavender); letter-spacing: .05em; text-transform: uppercase; margin-bottom: 14px; }
+    .case-title { font-size: 24px; font-weight: 700; margin-bottom: 10px; }
+    .case-desc { font-size: 14.5px; color: var(--g400); line-height: 1.7; margin-bottom: 24px; }
+
+    /* Metrics bar */
+    .case-metrics { display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 24px; padding: 20px; background: rgba(255,255,255,.03); border: 1px solid var(--borderS); border-radius: 12px; }
+    .c-met { display: flex; flex-direction: column; gap: 3px; }
+    .c-met__v { font-family: 'Space Grotesk', sans-serif; font-size: 24px; font-weight: 800; color: var(--cyan2); }
+    .c-met__l { font-size: 11.5px; color: var(--g500); text-transform: uppercase; letter-spacing: .05em; }
+
+    /* Service tags */
+    .case-services { display: flex; flex-wrap: wrap; gap: 8px; }
+    .case-svc { background: rgba(139,92,246,.1); border: 1px solid rgba(139,92,246,.2); border-radius: 100px; padding: 4px 12px; font-size: 12px; color: var(--lavender); }
+
+    /* ---- PROCESS TIMELINE ---- */
+    .timeline { margin-top: 100px; padding-top: 80px; border-top: 1px solid var(--borderS); }
+    .timeline__g { display: flex; gap: 0; position: relative; margin-top: 52px; }
+    .timeline__g::before { content: ''; position: absolute; top: 28px; left: 28px; right: 28px; height: 1px; background: linear-gradient(90deg, var(--purple), var(--cyan)); opacity: .2; }
+    .tl-step { flex: 1; text-align: center; padding: 0 12px; position: relative; }
+    .tl-dot { width: 56px; height: 56px; background: var(--bg2); border: 2px solid var(--border); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 18px; font-family: 'Space Grotesk', sans-serif; font-size: 18px; font-weight: 700; color: var(--lavender); position: relative; z-index: 2; transition: border-color .3s, background .3s; }
+    .tl-step:hover .tl-dot { border-color: var(--purple); background: rgba(124,58,237,.12); }
+    .tl-t { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+    .tl-d { font-size: 13px; color: var(--g400); line-height: 1.6; }
+
+    /* ---- CTA BANNER ---- */
+    .page-cta { padding: 100px 0; }
+    .page-cta__box {
+      background: linear-gradient(135deg, rgba(124,58,237,.14), rgba(6,182,212,.07));
+      border: 1px solid rgba(124,58,237,.28); border-radius: 28px;
+      padding: 72px 52px; text-align: center; position: relative; overflow: hidden;
+    }
+    .page-cta__box::before { content: ''; position: absolute; top: -80px; left: 50%; transform: translateX(-50%); width: 400px; height: 400px; background: radial-gradient(circle, rgba(124,58,237,.18), transparent 65%); pointer-events: none; }
+    .page-cta__t { font-size: clamp(30px, 4vw, 48px); font-weight: 800; margin-bottom: 16px; position: relative; }
+    .page-cta__s { font-size: 17px; color: var(--g400); max-width: 440px; margin: 0 auto 40px; line-height: 1.7; position: relative; }
+    .page-cta__btns { display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: wrap; position: relative; }
+
+    /* ---- FOOTER ---- */
+    .footer { padding: 48px 0 32px; border-top: 1px solid var(--borderS); }
+    .footer__inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+    .footer__links { display: flex; gap: 24px; }
+    .footer__links a { font-size: 14px; color: var(--g400); transition: color .2s; }
+    .footer__links a:hover { color: #fff; }
+    .footer__copy { font-size: 13px; color: var(--g500); }
+
+    /* ---- RESPONSIVE ---- */
+    @media (max-width: 768px) {
+      .nav__links, .nav__cta { display: none; }
+      .nav__tog { display: flex; }
+      .cases { grid-template-columns: 1fr; }
+      .case-card--large { grid-column: 1; display: block; }
+      .case-card--large .case-img { min-height: 220px; }
+      .timeline__g { flex-direction: column; gap: 28px; }
+      .timeline__g::before { display: none; }
+      .page-cta__box { padding: 48px 24px; }
+      .page-cta__btns { flex-direction: column; }
+      .page-cta__btns .btn { width: 100%; justify-content: center; }
+      .footer__inner { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <div class="c-dot" id="cDot"></div>
+  <div class="c-ring" id="cRing"></div>
+  <div class="sp" id="sp"></div>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <div class="wrap">
+      <div class="nav__i">
+        <a href="index.html" class="logo gt">Nexus</a>
+        <ul class="nav__links">
+          <li><a href="index.html#services">Services</a></li>
+          <li><a href="portfolio.html" class="active">Work</a></li>
+          <li><a href="index.html#features">Features</a></li>
+          <li><a href="index.html#team">Team</a></li>
+          <li><a href="index.html#testimonials">Testimonials</a></li>
+        </ul>
+        <div class="nav__cta">
+          <a href="index.html#cta" class="btn btn-o">Request Service</a>
+          <button onclick="openCal()" class="btn btn-p">
+            Book a Call
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+        <button class="nav__tog" id="navTog">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mob-menu" id="mobMenu">
+    <a href="index.html#services" class="mob-link">Services</a>
+    <a href="portfolio.html" class="mob-link">Work</a>
+    <a href="index.html#features" class="mob-link">Features</a>
+    <a href="index.html#team" class="mob-link">Team</a>
+    <div class="mob-ctabtn">
+      <a href="index.html#cta" class="btn btn-o mob-link">Request Service</a>
+      <button onclick="openCal()" class="btn btn-p mob-link">Book a Consultation</button>
+    </div>
+  </div>
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <div class="wrap">
+      <div class="pill">Portfolio</div>
+      <h1>Work That <span class="gt">Delivers Results</span></h1>
+      <p>Real campaigns, real clients, real numbers. No fluff — just what happened when we got to work.</p>
+    </div>
+  </div>
+
+  <!-- CASE STUDIES -->
+  <section style="padding: 0 0 80px;">
+    <div class="wrap">
+
+      <!-- Filter tabs -->
+      <div class="filter-tabs">
+        <button class="filter-tab on" data-filter="all">All Work</button>
+        <button class="filter-tab" data-filter="web">Web Design</button>
+        <button class="filter-tab" data-filter="meta">Meta Ads</button>
+        <button class="filter-tab" data-filter="tiktok">TikTok Shop</button>
+        <button class="filter-tab" data-filter="brand">Branding</button>
+      </div>
+
+      <div class="cases">
+
+        <!-- Case 1 — Large featured -->
+        <div class="case-card case-card--large reveal" data-tags="web tiktok">
+          <div class="case-img" style="background:#f0f4f8 url('Sales.jpg') center center / 100% auto no-repeat;"></div>
+          <div class="case-content">
+            <span class="case-tag">E-Commerce + TikTok Shop + Affiliate + Organic</span>
+            <h2 class="case-title">Clothing Brand Revenue Overhaul For Deladoe</h2>
+            <p class="case-desc">Complete Shopify build paired with TikTok Shop, affiliate programs, and organic content strategy. Full-funnel execution that scaled Deladoe to over $1.82M in gross sales across 86K+ fulfilled orders.</p>
+            <div class="case-metrics">
+              <div class="c-met"><div class="c-met__v">+340%</div><div class="c-met__l">Revenue Growth</div></div>
+              <div class="c-met"><div class="c-met__v">5.2x</div><div class="c-met__l">ROAS</div></div>
+              <div class="c-met"><div class="c-met__v">2.1M</div><div class="c-met__l">Impressions</div></div>
+              <div class="c-met"><div class="c-met__v">60 Days</div><div class="c-met__l">To Positive ROI</div></div>
+            </div>
+            <div class="case-services">
+              <span class="case-svc">Shopify Development</span>
+              <span class="case-svc">TikTok Shop</span>
+              <span class="case-svc">Affiliate Marketing</span>
+              <span class="case-svc">Organic Content</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Case 2 -->
+        <div class="case-card wip reveal d1" data-tags="web tiktok">
+          <div class="wip-overlay">
+            <div class="wip-badge"><span class="wip-pulse"></span>Case Study Coming Soon</div>
+            <div class="wip-sub">Full breakdown dropping shortly</div>
+          </div>
+          <div class="case-img" style="background:linear-gradient(135deg,#0d2b1f,#0a1a2e,#1a0d3a)">
+            <div class="case-img__inner">
+              <span class="case-img__emoji">&#127869;</span>
+              <div class="case-img__label">Restaurant Chain</div>
+              <div class="case-img__sub">Web + TikTok Local Growth</div>
+            </div>
+          </div>
+          <div class="case-content">
+            <span class="case-tag">Web + TikTok</span>
+            <h2 class="case-title">Restaurant Chain Goes Digital</h2>
+            <p class="case-desc">Built an online ordering platform and launched TikTok campaigns that created local virality. Online orders exploded. They had to hire more staff to keep up.</p>
+            <div class="case-metrics">
+              <div class="c-met"><div class="c-met__v">+180%</div><div class="c-met__l">Online Orders</div></div>
+              <div class="c-met"><div class="c-met__v">4.2x</div><div class="c-met__l">ROAS</div></div>
+            </div>
+            <div class="case-services">
+              <span class="case-svc">Web Development</span>
+              <span class="case-svc">TikTok Ads</span>
+              <span class="case-svc">Online Ordering</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Case 3 -->
+        <div class="case-card wip reveal d2" data-tags="web meta brand">
+          <div class="wip-overlay">
+            <div class="wip-badge"><span class="wip-pulse"></span>Case Study Coming Soon</div>
+            <div class="wip-sub">Full breakdown dropping shortly</div>
+          </div>
+          <div class="case-img" style="background:linear-gradient(135deg,#1a1205,#2a0d1a,#050d2a)">
+            <div class="case-img__inner">
+              <span class="case-img__emoji">&#127968;</span>
+              <div class="case-img__label">Real Estate Agency</div>
+              <div class="case-img__sub">Rebrand + Lead Generation</div>
+            </div>
+          </div>
+          <div class="case-content">
+            <span class="case-tag">Web + Lead Gen</span>
+            <h2 class="case-title">Real Estate Agency Rebrand</h2>
+            <p class="case-desc">Brand-new website with IDX integration and Meta lead campaigns that tripled qualified inbound inquiries within 60 days. Clients trusted them before picking up the phone.</p>
+            <div class="case-metrics">
+              <div class="c-met"><div class="c-met__v">3x</div><div class="c-met__l">Leads</div></div>
+              <div class="c-met"><div class="c-met__v">$280K</div><div class="c-met__l">Pipeline Added</div></div>
+            </div>
+            <div class="case-services">
+              <span class="case-svc">Custom Website</span>
+              <span class="case-svc">Meta Lead Ads</span>
+              <span class="case-svc">Brand Identity</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Case 4 -->
+        <div class="case-card wip reveal" data-tags="tiktok meta">
+          <div class="wip-overlay">
+            <div class="wip-badge"><span class="wip-pulse"></span>Case Study Coming Soon</div>
+            <div class="wip-sub">Full breakdown dropping shortly</div>
+          </div>
+          <div class="case-img" style="background:linear-gradient(135deg,#0a1a08,#0c1a2e,#1a0a2e)">
+            <div class="case-img__inner">
+              <span class="case-img__emoji">&#128170;</span>
+              <div class="case-img__label">Fitness Brand</div>
+              <div class="case-img__sub">TikTok Shop + Meta Scale</div>
+            </div>
+          </div>
+          <div class="case-content">
+            <span class="case-tag">TikTok Shop + Meta</span>
+            <h2 class="case-title">Fitness Brand TikTok Explosion</h2>
+            <p class="case-desc">Creative-led TikTok strategy plus Meta retargeting turned a struggling supplement brand into a $200K per month channel. Tested fast, scaled what worked.</p>
+            <div class="case-metrics">
+              <div class="c-met"><div class="c-met__v">$200K/mo</div><div class="c-met__l">Revenue</div></div>
+              <div class="c-met"><div class="c-met__v">6.1x</div><div class="c-met__l">ROAS</div></div>
+            </div>
+            <div class="case-services">
+              <span class="case-svc">TikTok Shop</span>
+              <span class="case-svc">Meta Ads</span>
+              <span class="case-svc">Creative Strategy</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Case 5 -->
+        <div class="case-card wip reveal d1" data-tags="web brand">
+          <div class="wip-overlay">
+            <div class="wip-badge"><span class="wip-pulse"></span>Case Study Coming Soon</div>
+            <div class="wip-sub">Full breakdown dropping shortly</div>
+          </div>
+          <div class="case-img" style="background:linear-gradient(135deg,#1a0a0a,#1a1005,#051a1a)">
+            <div class="case-img__inner">
+              <span class="case-img__emoji">&#128187;</span>
+              <div class="case-img__label">SaaS Startup</div>
+              <div class="case-img__sub">0 to Launch</div>
+            </div>
+          </div>
+          <div class="case-content">
+            <span class="case-tag">Web + Brand + Ads</span>
+            <h2 class="case-title">SaaS Startup Launch</h2>
+            <p class="case-desc">End-to-end brand identity, marketing site, and paid acquisition setup. Went from zero to 1,200 signups and $40K MRR in 90 days.</p>
+            <div class="case-metrics">
+              <div class="c-met"><div class="c-met__v">1,200</div><div class="c-met__l">Signups</div></div>
+              <div class="c-met"><div class="c-met__v">$40K</div><div class="c-met__l">MRR at 90 Days</div></div>
+            </div>
+            <div class="case-services">
+              <span class="case-svc">Brand Identity</span>
+              <span class="case-svc">Marketing Site</span>
+              <span class="case-svc">Meta Ads</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Process Timeline -->
+      <div class="timeline reveal">
+        <div class="pill">How Every Project Runs</div>
+        <h2 style="font-size:clamp(30px,4vw,46px);font-weight:800;margin-bottom:8px;">Consistent Process. <span class="gt">Consistent Results.</span></h2>
+        <div class="timeline__g">
+          <div class="tl-step">
+            <div class="tl-dot">01</div>
+            <div class="tl-t">Discovery</div>
+            <div class="tl-d">Deep dive into your business, goals, and gaps.</div>
+          </div>
+          <div class="tl-step">
+            <div class="tl-dot">02</div>
+            <div class="tl-t">Strategy</div>
+            <div class="tl-d">Custom roadmap with clear timelines and KPIs.</div>
+          </div>
+          <div class="tl-step">
+            <div class="tl-dot">03</div>
+            <div class="tl-t">Build & Launch</div>
+            <div class="tl-d">We execute fast without cutting corners.</div>
+          </div>
+          <div class="tl-step">
+            <div class="tl-dot">04</div>
+            <div class="tl-t">Optimize & Scale</div>
+            <div class="tl-d">We iterate on data until results compound.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="page-cta">
+    <div class="wrap">
+      <div class="page-cta__box reveal">
+        <h2 class="page-cta__t">Want Results Like These<br><span class="gt">for Your Brand?</span></h2>
+        <p class="page-cta__s">Book a free strategy call and we will show you exactly what we would do for your business.</p>
+        <div class="page-cta__btns">
+          <button onclick="openCal()" class="btn btn-p">
+            Book a Strategy Call
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+          <a href="index.html#cta" class="btn btn-o">Request a Service</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer__inner">
+        <a href="index.html" class="logo gt" style="font-size:22px;">Nexus</a>
+        <div class="footer__links">
+          <a href="index.html#services">Services</a>
+          <a href="portfolio.html">Work</a>
+          <a href="index.html#team">Team</a>
+          <a href="index.html#cta">Contact</a>
+        </div>
+        <span class="footer__copy">&copy; 2026 Nexus Agency</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Calendly -->
+  <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+  <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+
+  <script>
+    /* Cursor */
+    const dot = document.getElementById('cDot');
+    const ring = document.getElementById('cRing');
+    let mx=0,my=0,rx=0,ry=0;
+    if (window.matchMedia('(hover:hover)').matches) {
+      document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; dot.style.left=mx+'px'; dot.style.top=my+'px'; });
+      function lc(){ rx+=(mx-rx)*.14; ry+=(my-ry)*.14; ring.style.left=rx+'px'; ring.style.top=ry+'px'; requestAnimationFrame(lc); }
+      lc();
+      document.querySelectorAll('a,button,.case-card,.filter-tab').forEach(el=>{
+        el.addEventListener('mouseenter',()=>document.body.classList.add('ch'));
+        el.addEventListener('mouseleave',()=>document.body.classList.remove('ch'));
+      });
+    }
+
+    /* Scroll progress */
+    const spEl = document.getElementById('sp');
+    window.addEventListener('scroll', () => {
+      const s = document.documentElement.scrollTop;
+      const h = document.documentElement.scrollHeight - window.innerHeight;
+      spEl.style.width = (s / h * 100) + '%';
+    }, { passive: true });
+
+    /* Nav sticky */
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => nav.classList.toggle('stuck', window.scrollY > 40), { passive: true });
+
+    /* Mobile menu */
+    const tog = document.getElementById('navTog');
+    const mob = document.getElementById('mobMenu');
+    tog.addEventListener('click', () => {
+      mob.classList.toggle('open');
+      const sp = tog.querySelectorAll('span');
+      if (mob.classList.contains('open')) {
+        sp[0].style.transform='rotate(45deg) translate(5px,5px)';
+        sp[1].style.opacity='0';
+        sp[2].style.transform='rotate(-45deg) translate(5px,-5px)';
+      } else { sp.forEach(s=>{s.style.transform='';s.style.opacity='';}); }
+    });
+    document.querySelectorAll('.mob-link').forEach(l => l.addEventListener('click', () => {
+      mob.classList.remove('open');
+      tog.querySelectorAll('span').forEach(s=>{s.style.transform='';s.style.opacity='';});
+    }));
+
+    /* Reveal on scroll */
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    /* Filter tabs */
+    const tabs = document.querySelectorAll('.filter-tab');
+    const caseCards = document.querySelectorAll('.case-card');
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('on'));
+        tab.classList.add('on');
+        const f = tab.dataset.filter;
+        caseCards.forEach(card => {
+          const tags = card.dataset.tags || '';
+          const show = f === 'all' || tags.includes(f);
+          card.style.opacity = show ? '1' : '0.25';
+          card.style.transform = show ? '' : 'scale(0.97)';
+          card.style.transition = 'opacity .3s, transform .3s';
+          card.style.pointerEvents = show ? '' : 'none';
+        });
+      });
+    });
+
+    /* Card tilt */
+    if (window.matchMedia('(hover:hover)').matches) {
+      caseCards.forEach(card => {
+        card.addEventListener('mousemove', e => {
+          const r = card.getBoundingClientRect();
+          const x = (e.clientX - r.left) / r.width  - 0.5;
+          const y = (e.clientY - r.top)  / r.height - 0.5;
+          card.style.transform = `perspective(900px) rotateY(${x*5}deg) rotateX(${-y*5}deg) translateY(-5px)`;
+        });
+        card.addEventListener('mouseleave', () => { card.style.transform = ''; });
+      });
+    }
+
+    /* Calendly */
+    function openCal() {
+      if (typeof Calendly !== 'undefined') {
+        Calendly.initPopupWidget({ url: 'https://calendly.com/YOUR_USERNAME/consultation' });
+      } else {
+        window.location.href = 'mailto:hello@nexusagency.co?subject=Consultation Request';
+      }
+    }
+
+    /* Smooth anchors */
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const id = a.getAttribute('href').slice(1);
+        if (!id) return;
+        const t = document.getElementById(id);
+        if (t) { e.preventDefault(); window.scrollTo({ top: t.offsetTop - 80, behavior: 'smooth' }); }
+      });
+    });
+  </script>
+</body>
+</html>
