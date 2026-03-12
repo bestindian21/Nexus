@@ -199,7 +199,7 @@
     .logo {
       display: flex; align-items: center;
       font-family: 'Space Grotesk', sans-serif;
-      font-weight: 800; font-size: 28px; letter-spacing: -.05em;
+      font-weight: 800; font-size: 36px; letter-spacing: -.05em;
     }
     .logo-icon { display: none; }
     .nav__links { display: flex; align-items: center; gap: 4px; list-style: none; }
@@ -407,13 +407,69 @@
     .proc-step { text-align: center; }
     .proc-step__n {
       width: 62px; height: 62px;
-      background: var(--bg2); border: 1px solid var(--border);
+      background: var(--bg2); border: 2px solid var(--border);
       border-radius: 50%; display: flex; align-items: center; justify-content: center;
       margin: 0 auto 22px; font-family: 'Space Grotesk', sans-serif;
       font-size: 20px; font-weight: 700; color: var(--lavender); position: relative; z-index: 2;
+      transition: box-shadow .5s ease, border-color .5s ease, color .5s ease, transform .5s ease;
+    }
+    .proc-step__n.active {
+      border-color: transparent;
+      background: linear-gradient(var(--bg2), var(--bg2)) padding-box,
+                  linear-gradient(135deg, #7c3aed, #22d3ee) border-box;
+      color: #fff;
+      box-shadow: 0 0 18px rgba(124,58,237,.55), 0 0 40px rgba(6,182,212,.2);
+      transform: scale(1.12);
+      animation: procPulse 1.6s ease-in-out infinite;
+    }
+    @keyframes procPulse {
+      0%, 100% { box-shadow: 0 0 18px rgba(124,58,237,.55), 0 0 40px rgba(6,182,212,.2); }
+      50%       { box-shadow: 0 0 28px rgba(124,58,237,.85), 0 0 60px rgba(6,182,212,.35); }
     }
     .proc-step__t { font-size: 17px; font-weight: 700; margin-bottom: 9px; }
     .proc-step__d { font-size: 14px; color: var(--g400); line-height: 1.65; }
+
+    /* ---- NEXUS STANDARD MANIFESTO ---- */
+    .ns-label {
+      font-family: 'Space Grotesk', sans-serif; font-size: clamp(13px,1.2vw,15px);
+      font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--g400);
+      margin-bottom: 36px; opacity: 0; transform: translateY(14px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+    .ns-label.ns-on { opacity: 1; transform: none; }
+    .ns-word {
+      font-family: 'Space Grotesk', sans-serif; font-size: clamp(36px,6vw,88px);
+      font-weight: 800; letter-spacing: -.03em; color: var(--g500);
+      position: relative; display: inline-block;
+      opacity: 0; transform: translateY(22px);
+      transition: opacity .45s ease, transform .45s ease;
+    }
+    .ns-word.ns-on { opacity: 1; transform: none; }
+    .ns-word__strike {
+      position: absolute; left: -2px; right: -2px; top: 52%; height: 5px;
+      background: linear-gradient(90deg, #7c3aed, #22d3ee);
+      border-radius: 3px; transform: scaleX(0); transform-origin: left center;
+      transition: transform .45s cubic-bezier(.4,0,.2,1); margin-top: -2px;
+      box-shadow: 0 0 10px rgba(124,58,237,.6);
+    }
+    .ns-word.ns-struck .ns-word__strike { transform: scaleX(1); }
+    .ns-divider-line {
+      height: 4px; width: min(600px,90%);
+      background: linear-gradient(90deg,transparent,rgba(124,58,237,.4),rgba(6,182,212,.4),transparent);
+      margin: 16px 0; border-radius: 4px;
+      transform: scaleX(0); transform-origin: center;
+      transition: transform .65s cubic-bezier(.4,0,.2,1);
+    }
+    .ns-divider-line.ns-on { transform: scaleX(1); }
+    .ns-result {
+      font-family: 'Space Grotesk', sans-serif; font-size: clamp(42px,7vw,100px);
+      font-weight: 900; letter-spacing: -.04em; line-height: 1;
+      background: linear-gradient(135deg,#fff 0%,#a78bfa 45%,#22d3ee 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      opacity: 0; transform: scale(.88);
+      transition: opacity .7s ease, transform .7s cubic-bezier(.175,.885,.32,1.275);
+    }
+    .ns-result.ns-on { opacity: 1; transform: scale(1); }
 
     /* ================================================
        WORK / PORTFOLIO
@@ -717,11 +773,10 @@
           <span class="gt">Nexus</span>
         </a>
         <ul class="nav__links">
-          <li><a href="#services">Services</a></li>
           <li><a href="portfolio.html">Work</a></li>
-          <li><a href="#features">Features</a></li>
-          <li><a href="#team">Team</a></li>
-          <li><a href="#testimonials">Testimonials</a></li>
+          <li><a href="features.html">Features</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="about.html#testimonials">Testimonials</a></li>
         </ul>
         <div class="nav__cta">
           <a href="#cta" class="btn btn-o">Request Service</a>
@@ -739,11 +794,10 @@
 
   <!-- Mobile Menu -->
   <div class="mob-menu" id="mobMenu">
-    <a href="#services" class="mob-link">Services</a>
-    <a href="#work" class="mob-link">Work</a>
-    <a href="#features" class="mob-link">Features</a>
-    <a href="#team" class="mob-link">Team</a>
-    <a href="#testimonials" class="mob-link">Testimonials</a>
+    <a href="portfolio.html" class="mob-link">Work</a>
+    <a href="features.html" class="mob-link">Features</a>
+    <a href="about.html" class="mob-link">About</a>
+    <a href="about.html#testimonials" class="mob-link">Testimonials</a>
     <div class="mob-ctabtn">
       <a href="#cta" class="btn btn-o mob-link">Request Service</a>
       <button onclick="openCal()" class="btn btn-p mob-link">Book a Consultation</button>
@@ -782,14 +836,14 @@
     </div>
     <!-- Floating badges -->
     <div class="hero__float hf1">
-      <div class="hf__icon">&#128176;</div>
+      <div class="hf__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
       <div>
         <div class="hf__label">Revenue Generated</div>
         <div class="hf__val">$2M+</div>
       </div>
     </div>
     <div class="hero__float hf2">
-      <div class="hf__icon">&#128200;</div>
+      <div class="hf__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
       <div>
         <div class="hf__label">Average ROAS</div>
         <div class="hf__val">4.8x</div>
@@ -851,52 +905,52 @@
   <!-- ================================ SERVICES ================================ -->
   <section class="services" id="services">
     <div class="wrap">
-      <div class="sh">
-        <div class="pill">What We Do</div>
-        <h2 class="sh__t reveal">Everything Your Brand Needs<br>to <span class="gt">Win Online</span></h2>
-        <p class="sh__s reveal d1">Three core pillars, one integrated strategy. <strong>Built to convert, scale, and dominate</strong> your market.</p>
+      <div class="sh reveal">
+        <div class="pill">Our Services</div>
+        <h2 class="sh__t">Everything Your Brand Needs<br>to <span class="gt">Win Online</span></h2>
+        <p class="sh__s">Three core pillars, one integrated strategy. Built to convert, scale, and dominate your market.</p>
       </div>
       <div class="svc__g">
-        <!-- Service 1 -->
         <div class="svc-card reveal">
           <span class="svc-card__num">01</span>
-          <div class="svc-card__ico">&#127760;</div>
+          <div class="svc-card__ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/><polyline points="7 8 10 11 7 14"/><line x1="13" y1="14" x2="17" y2="14"/></svg></div>
           <h3 class="svc-card__t">Web Design &amp; Development</h3>
-          <p class="svc-card__d">High-performance, mobile-first websites and landing pages engineered to convert. Built fast. Built to close.</p>
+          <p class="svc-card__d"><strong class="gt">High-converting websites</strong> built from scratch with <strong class="gt">premium animations</strong>, booking systems, and AI integrations. Not templates. <strong class="gt">Custom experiences</strong> that make you stand out.</p>
           <ul class="svc-card__ul">
-            <li>Custom design, no templates</li>
-            <li>Desktop &amp; mobile-first</li>
-            <li>E-commerce &amp; sales channels</li>
-            <li>Lightning-fast load times</li>
-            <li>Booking systems &amp; CRM integrations</li>
+            <li>Custom design &amp; development</li>
+            <li>GSAP animations &amp; interactions</li>
+            <li>Booking &amp; scheduling systems</li>
+            <li>AI chatbot integration</li>
+            <li>Mobile-first &amp; blazing fast</li>
+            <li>SEO-optimized from day one</li>
           </ul>
         </div>
-        <!-- Service 2 -->
         <div class="svc-card reveal d1">
           <span class="svc-card__num">02</span>
-          <div class="svc-card__ico">&#10024;</div>
+          <div class="svc-card__ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12l4 6-10 13L2 9z"/><line x1="2" y1="9" x2="22" y2="9"/></svg></div>
           <h3 class="svc-card__t">Online Presence &amp; Brand Polish</h3>
-          <p class="svc-card__d">We audit, refine, and upgrade your brand's digital footprint so your <strong>credibility matches your ambition</strong>.</p>
+          <p class="svc-card__d">Your brand is your <strong class="gt">first impression</strong>. It needs to <strong class="gt">stop people mid-scroll</strong>. We sharpen your visual identity, messaging, and positioning to make your brand <strong class="gt">impossible to forget</strong>.</p>
           <ul class="svc-card__ul">
-            <li>Brand messaging &amp; voice</li>
-            <li>SEO-ready foundations</li>
-            <li>Credibility &amp; trust signals</li>
-            <li>Google Business &amp; listings</li>
-            <li>Reputation management</li>
+            <li>Logo &amp; visual identity refresh</li>
+            <li>Brand messaging &amp; tone of voice</li>
+            <li>Color system &amp; typography</li>
+            <li>Social media templates</li>
+            <li>Brand guidelines document</li>
+            <li>Competitor positioning audit</li>
           </ul>
         </div>
-        <!-- Service 3 -->
         <div class="svc-card reveal d2">
           <span class="svc-card__num">03</span>
-          <div class="svc-card__ico">&#128293;</div>
+          <div class="svc-card__ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/></svg></div>
           <h3 class="svc-card__t">Performance Marketing</h3>
-          <p class="svc-card__d">Meta &amp; TikTok ad campaigns designed around <strong>real outcomes</strong>. More revenue, not just more clicks.</p>
+          <p class="svc-card__d"><strong class="gt">Meta Ads</strong>, <strong class="gt">TikTok Shop</strong>, and <strong class="gt">AI-powered automation</strong> that turns ad spend into <strong class="gt">measurable revenue</strong>. We manage the full funnel from creative to conversion to scale.</p>
           <ul class="svc-card__ul">
-            <li>Meta (Facebook &amp; Instagram) Ads</li>
-            <li>TikTok Shop &amp; TikTok Ads</li>
-            <li>Creative strategy &amp; direction</li>
-            <li>Campaign build, optimize &amp; report</li>
-            <li>Full-funnel audience targeting</li>
+            <li>Meta &amp; Instagram ad campaigns</li>
+            <li>TikTok Shop setup &amp; management</li>
+            <li>Creative strategy &amp; ad copy</li>
+            <li>AI automation &amp; workflows</li>
+            <li>Full-funnel analytics &amp; reporting</li>
+            <li>Continuous testing &amp; optimization</li>
           </ul>
         </div>
       </div>
@@ -906,10 +960,10 @@
   <!-- ================================ PROCESS ================================ -->
   <section class="process" id="process">
     <div class="wrap">
-      <div class="sh" style="text-align:center">
-        <div class="pill">How It Works</div>
-        <h2 class="sh__t reveal">From First Call to Full <span class="gt">Launch</span></h2>
-        <p class="sh__s reveal d1" style="margin:0 auto">A focused, fast process that gets results without the agency runaround.</p>
+      <div class="sh reveal" style="text-align:center">
+        <div class="pill">How We Work</div>
+        <h2 class="sh__t">From First Call to Full <span class="gt">Launch</span></h2>
+        <p class="sh__s" style="margin:0 auto">A focused, fast process that gets results without the agency runaround.</p>
       </div>
       <div class="proc__g">
         <div class="proc-step reveal">
@@ -936,350 +990,58 @@
     </div>
   </section>
 
-  <!-- ================================ WORK ================================ -->
-  <section class="work" id="work">
+  <!-- ================================ THE NEXUS DIFFERENCE ================================ -->
+  <section style="padding:0 0 110px;">
     <div class="wrap">
-      <div class="sh">
-        <div class="pill">Our Work</div>
-        <h2 class="sh__t reveal">Results That <span class="gt">Speak for Themselves</span></h2>
-        <p class="sh__s reveal d1">Real clients, real numbers. Here's what happens when strategy meets execution.</p>
+      <div class="sh reveal" style="text-align:center;margin-bottom:52px;">
+        <div class="pill">The Nexus Difference</div>
+        <h2 class="sh__t">Hands-On. Every Step.<br><span class="gt">No Handoffs. Ever.</span></h2>
+        <p class="sh__s" style="margin:0 auto">Most agencies assign your project to a junior team member. We don't. You get <strong class="gt">direct access to the specialists</strong> executing your brand from kickoff to launch.</p>
       </div>
-      <div class="work__g">
-        <!-- Featured card -->
-        <div class="w-card w-card--feat reveal">
-          <div class="w-card__img sales-img" style="background:#f0f4f8 url('Sales.jpg') center top / 85% auto no-repeat;"></div>
-          <div class="w-card__content">
-            <span class="w-tag">E-Commerce + TikTok Shop + Affiliate + Organic</span>
-            <h3 class="w-card__t">Clothing Brand Revenue Overhaul For Deladoe</h3>
-            <p class="w-card__d">Complete Shopify build paired with TikTok Shop, affiliate programs, and organic content strategy. Full-funnel execution that scaled Deladoe to over $1.82M in gross sales across 86K+ orders.</p>
-            <div class="w-metrics">
-              <div class="w-met"><div class="w-met__v">+340%</div><div class="w-met__l">Revenue</div></div>
-              <div class="w-met"><div class="w-met__v">5.2x</div><div class="w-met__l">ROAS</div></div>
-              <div class="w-met"><div class="w-met__v">2.1M</div><div class="w-met__l">Impressions</div></div>
-            </div>
-          </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;" class="reveal d1">
+        <div style="background:var(--bg2);border:1px solid var(--borderS);border-radius:var(--rL);padding:36px;position:relative;overflow:hidden;">
+          <div style="position:absolute;top:-40px;right:-40px;width:160px;height:160px;background:radial-gradient(circle,rgba(124,58,237,.15),transparent 70%);pointer-events:none;"></div>
+          <div style="width:52px;height:52px;background:linear-gradient(135deg,rgba(124,58,237,.25),rgba(6,182,212,.15));border:1px solid rgba(124,58,237,.4);border-radius:14px;display:flex;align-items:center;justify-content:center;margin-bottom:18px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
+          <h3 style="font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700;margin-bottom:12px;">You Tell Us Exactly What You Want</h3>
+          <p style="font-size:15px;color:var(--g400);line-height:1.7;">We start every engagement by deeply understanding <strong class="gt">your vision</strong>. Not pitching you a template. Your goals, your audience, your brand voice. We build around that, not around what's easiest for us.</p>
         </div>
-
-        <div class="w-card wip reveal d1">
-          <div class="wip-overlay">
-            <div class="wip-badge"><span class="wip-pulse"></span>Case Study Coming Soon</div>
-            <div class="wip-sub">Full breakdown dropping shortly</div>
-          </div>
-          <div class="w-card__img" style="background:linear-gradient(135deg,#0d2b1f,#0a1a2e,#1a0d3a)">
-            <div class="w-card__num">02</div>
-            <div style="position:relative;z-index:1;text-align:center;padding:28px">
-              <div style="font-size:48px;margin-bottom:10px">&#127869;</div>
-              <div style="font-family:'Space Grotesk',sans-serif;font-size:19px;font-weight:700;opacity:.8">Restaurant Chain</div>
-            </div>
-          </div>
-          <div class="w-card__content">
-            <span class="w-tag">Web + TikTok Shop</span>
-            <h3 class="w-card__t">Restaurant Chain Goes Digital</h3>
-            <p class="w-card__d">Built an online ordering site and launched TikTok campaigns that drove local virality and online orders through the roof.</p>
-            <div class="w-metrics">
-              <div class="w-met"><div class="w-met__v">+180%</div><div class="w-met__l">Online Orders</div></div>
-              <div class="w-met"><div class="w-met__v">4.2x</div><div class="w-met__l">ROAS</div></div>
-            </div>
-          </div>
+        <div style="background:var(--bg2);border:1px solid var(--borderS);border-radius:var(--rL);padding:36px;position:relative;overflow:hidden;">
+          <div style="position:absolute;top:-40px;right:-40px;width:160px;height:160px;background:radial-gradient(circle,rgba(6,182,212,.12),transparent 70%);pointer-events:none;"></div>
+          <div style="width:52px;height:52px;background:linear-gradient(135deg,rgba(6,182,212,.2),rgba(124,58,237,.15));border:1px solid rgba(6,182,212,.35);border-radius:14px;display:flex;align-items:center;justify-content:center;margin-bottom:18px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+          <h3 style="font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700;margin-bottom:12px;">Constant Communication. Zero Guessing.</h3>
+          <p style="font-size:15px;color:var(--g400);line-height:1.7;">You're never left wondering what's happening. We update you at every milestone, share previews before anything goes live, and move fast on feedback. No ticket systems. Just direct access.</p>
         </div>
-
-        <div class="w-card wip reveal d2">
-          <div class="wip-overlay">
-            <div class="wip-badge"><span class="wip-pulse"></span>Case Study Coming Soon</div>
-            <div class="wip-sub">Full breakdown dropping shortly</div>
-          </div>
-          <div class="w-card__img" style="background:linear-gradient(135deg,#1a1205,#2a0d1a,#050d2a)">
-            <div class="w-card__num">03</div>
-            <div style="position:relative;z-index:1;text-align:center;padding:28px">
-              <div style="font-size:48px;margin-bottom:10px">&#127968;</div>
-              <div style="font-family:'Space Grotesk',sans-serif;font-size:19px;font-weight:700;opacity:.8">Real Estate Agency</div>
-            </div>
-          </div>
-          <div class="w-card__content">
-            <span class="w-tag">Web Design + Lead Gen</span>
-            <h3 class="w-card__t">Real Estate Agency Rebrand</h3>
-            <p class="w-card__d">Brand-new website with IDX integration and Meta lead campaigns that tripled qualified inbound inquiries within 60 days.</p>
-            <div class="w-metrics">
-              <div class="w-met"><div class="w-met__v">3x</div><div class="w-met__l">Leads</div></div>
-              <div class="w-met"><div class="w-met__v">$280K</div><div class="w-met__l">Pipeline Added</div></div>
-            </div>
-          </div>
+        <div style="background:var(--bg2);border:1px solid var(--borderS);border-radius:var(--rL);padding:36px;position:relative;overflow:hidden;">
+          <div style="position:absolute;top:-40px;right:-40px;width:160px;height:160px;background:radial-gradient(circle,rgba(124,58,237,.12),transparent 70%);pointer-events:none;"></div>
+          <div style="width:52px;height:52px;background:linear-gradient(135deg,rgba(124,58,237,.25),rgba(6,182,212,.15));border:1px solid rgba(124,58,237,.4);border-radius:14px;display:flex;align-items:center;justify-content:center;margin-bottom:18px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+          <h3 style="font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700;margin-bottom:12px;">Fast Iterations. Real Revisions.</h3>
+          <p style="font-size:15px;color:var(--g400);line-height:1.7;">Got feedback? We implement it <strong class="gt">fast</strong>. We don't drag you through a 3-week revision cycle. We're agile, responsive, and relentless about getting it exactly right before anything ships.</p>
         </div>
-
-      </div>
-
-      <div style="text-align:center;margin-top:44px" class="reveal">
-        <a href="#cta" class="btn btn-g">
-          Discuss Your Project
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================================ FEATURES ================================ -->
-  <section class="features" id="features">
-    <div class="wrap">
-      <div class="sh">
-        <div class="pill">What We Build</div>
-        <h2 class="sh__t reveal">The Features That Make<br>Your Site <span class="gt">Stand Out</span></h2>
-        <p class="sh__s reveal d1">Every website we build can be equipped with these premium capabilities, tailored to your business.</p>
-      </div>
-      <div class="bento">
-        <!-- FULL-WIDTH HERO FEATURE: Stunning Websites -->
-        <div class="b reveal" style="grid-column:1/-1;background:linear-gradient(135deg,rgba(124,58,237,.15),rgba(6,182,212,.08));border-color:rgba(124,58,237,.35);position:relative;overflow:hidden;padding:48px;">
-          <div style="position:absolute;top:-60px;right:-60px;width:280px;height:280px;background:radial-gradient(circle,rgba(124,58,237,.25),transparent 70%);pointer-events:none;"></div>
-          <div style="position:absolute;bottom:-40px;left:30%;width:200px;height:200px;background:radial-gradient(circle,rgba(6,182,212,.15),transparent 70%);pointer-events:none;"></div>
-          <div style="display:flex;align-items:center;gap:16px;margin-bottom:20px;">
-            <div style="background:linear-gradient(135deg,var(--purple),var(--cyan));border-radius:14px;width:52px;height:52px;display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0;">&#127775;</div>
-            <div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--lavender);background:rgba(124,58,237,.12);border:1px solid rgba(124,58,237,.3);border-radius:100px;padding:5px 14px;">Our Signature Capability</div>
-          </div>
-          <h3 style="font-family:'Space Grotesk',sans-serif;font-size:clamp(28px,4vw,42px);font-weight:800;letter-spacing:-.03em;margin-bottom:14px;line-height:1.1;">We Build <span class="gt">Websites That Stop People Mid-Scroll</span></h3>
-          <p style="font-size:17px;color:var(--g400);max-width:680px;line-height:1.7;margin-bottom:28px;">This website you're on right now? We built it. Every scroll animation, cursor effect, gradient, and transition was crafted to show exactly what your brand could look like. <strong style="color:var(--white);">We don't just build websites. We build digital experiences that convert.</strong></p>
-          <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:32px;">
-            <span class="b__tag" style="background:rgba(124,58,237,.15);border-color:rgba(124,58,237,.4);">Custom Animations</span>
-            <span class="b__tag">Scroll-Triggered Effects</span>
-            <span class="b__tag">Gradient Design Systems</span>
-            <span class="b__tag">Micro-Interactions</span>
-            <span class="b__tag">WebGL / Three.js</span>
-            <span class="b__tag">GSAP Timelines</span>
-            <span class="b__tag">Responsive &amp; Mobile-First</span>
-          </div>
-          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:600px;">
-            <div style="background:rgba(255,255,255,.04);border:1px solid var(--borderS);border-radius:12px;padding:16px;text-align:center;">
-              <div style="font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:800;background:linear-gradient(135deg,#fff,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">100%</div>
-              <div style="font-size:12px;color:var(--g400);margin-top:4px;">Custom Built</div>
-            </div>
-            <div style="background:rgba(255,255,255,.04);border:1px solid var(--borderS);border-radius:12px;padding:16px;text-align:center;">
-              <div style="font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:800;background:linear-gradient(135deg,#fff,#22d3ee);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">95+</div>
-              <div style="font-size:12px;color:var(--g400);margin-top:4px;">PageSpeed Score</div>
-            </div>
-            <div style="background:rgba(255,255,255,.04);border:1px solid var(--borderS);border-radius:12px;padding:16px;text-align:center;">
-              <div style="font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:800;background:linear-gradient(135deg,#fbbf24,#f59e0b);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">0</div>
-              <div style="font-size:12px;color:var(--g400);margin-top:4px;">Templates Used</div>
-            </div>
-          </div>
-        </div>
-        <div class="b b1 reveal">
-          <span class="b__ico">&#128247;</span>
-          <h3 class="b__t">Animated Interactions</h3>
-          <p class="b__d">Smooth scroll animations, hover effects, and transitions that make your site feel alive and premium.</p>
-          <div class="mini-ui">
-            <div class="mini-bar">
-              <div class="mini-dot" style="background:#ff5f57"></div>
-              <div class="mini-dot" style="background:#ffbd2e"></div>
-              <div class="mini-dot" style="background:#28c840"></div>
-            </div>
-            <div class="mini-content">
-              <div class="mini-row" style="width:70%;background:linear-gradient(90deg,rgba(124,58,237,.4),rgba(6,182,212,.3))"></div>
-              <div class="mini-row" style="width:50%"></div>
-              <div class="mini-row" style="width:85%;background:rgba(139,92,246,.2)"></div>
-            </div>
-          </div>
-        </div>
-        <div class="b b2 reveal d1">
-          <span class="b__ico">&#128200;</span>
-          <h3 class="b__t">Live Analytics Dashboard</h3>
-          <p class="b__d">Embedded analytics panels showing real-time traffic, conversions, and revenue right inside your site admin.</p>
-          <div class="mini-ui">
-            <div class="mini-bar">
-              <div class="mini-dot" style="background:#ff5f57"></div>
-              <div class="mini-dot" style="background:#ffbd2e"></div>
-              <div class="mini-dot" style="background:#28c840"></div>
-            </div>
-            <div class="mini-content" style="display:flex;gap:16px">
-              <div style="flex:1">
-                <div class="mini-row" style="width:60%"></div>
-                <div class="mini-chart">
-                  <div class="mini-bar2" style="height:30%"></div>
-                  <div class="mini-bar2" style="height:55%"></div>
-                  <div class="mini-bar2" style="height:40%"></div>
-                  <div class="mini-bar2" style="height:80%"></div>
-                  <div class="mini-bar2" style="height:65%"></div>
-                  <div class="mini-bar2" style="height:90%"></div>
-                  <div class="mini-bar2" style="height:70%"></div>
-                </div>
-              </div>
-              <div style="flex:1">
-                <div class="mini-row" style="width:80%"></div>
-                <div class="mini-row" style="width:50%;margin-top:8px"></div>
-                <div style="margin-top:8px;display:flex;gap:6px">
-                  <div style="height:7px;flex:2;background:linear-gradient(90deg,var(--purple),var(--cyan2));border-radius:4px;opacity:.6"></div>
-                  <div style="height:7px;flex:1;background:rgba(255,255,255,.1);border-radius:4px"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="b b3 reveal">
-          <span class="b__ico">&#128717;</span>
-          <h3 class="b__t">Online Booking Systems</h3>
-          <p class="b__d">Integrated scheduling, appointment booking, and intake forms synced to your calendar.</p>
-          <div class="b__tags">
-            <span class="b__tag">Calendly</span>
-            <span class="b__tag">Custom</span>
-            <span class="b__tag">SMS Reminders</span>
-          </div>
-        </div>
-        <div class="b b4 reveal d1">
-          <span class="b__ico">&#129302;</span>
-          <h3 class="b__t">AI Chatbots</h3>
-          <p class="b__d">24/7 AI-powered chat that qualifies leads, answers FAQs, and books appointments while you sleep.</p>
-          <div class="b__tags">
-            <span class="b__tag">Lead Capture</span>
-            <span class="b__tag">GPT-Powered</span>
-          </div>
-        </div>
-        <div class="b b5 reveal d2">
-          <span class="b__ico">&#127760;</span>
-          <h3 class="b__t">3D &amp; Video Hero Sections</h3>
-          <p class="b__d">Immersive hero experiences with 3D product views, background video, and parallax depth effects.</p>
-          <div class="b__tags">
-            <span class="b__tag">Three.js</span>
-            <span class="b__tag">GSAP</span>
-            <span class="b__tag">WebGL</span>
-          </div>
-        </div>
-        <div class="b b6 reveal">
-          <span class="b__ico">&#128722;</span>
-          <h3 class="b__t">E-Commerce &amp; Sales Channels</h3>
-          <p class="b__d">Full Shopify builds, WooCommerce, custom storefronts with TikTok Shop and Meta Shop integrations built in.</p>
-          <div class="b__tags">
-            <span class="b__tag">Shopify</span>
-            <span class="b__tag">WooCommerce</span>
-            <span class="b__tag">TikTok Shop</span>
-            <span class="b__tag">Meta Shop</span>
-          </div>
-        </div>
-        <div class="b b7 reveal d1">
-          <span class="b__ico">&#9889;</span>
-          <h3 class="b__t">Speed &amp; Performance Optimization</h3>
-          <p class="b__d">Core Web Vitals tuned for 90+ scores. Fast sites rank higher, convert more, and keep users engaged.</p>
-          <div class="b__tags">
-            <span class="b__tag">PageSpeed 95+</span>
-            <span class="b__tag">CDN</span>
-            <span class="b__tag">Lazy Loading</span>
-            <span class="b__tag">SEO Ready</span>
-          </div>
+        <div style="background:var(--bg2);border:1px solid var(--borderS);border-radius:var(--rL);padding:36px;position:relative;overflow:hidden;">
+          <div style="position:absolute;top:-40px;right:-40px;width:160px;height:160px;background:radial-gradient(circle,rgba(6,182,212,.1),transparent 70%);pointer-events:none;"></div>
+          <div style="width:52px;height:52px;background:linear-gradient(135deg,rgba(6,182,212,.2),rgba(124,58,237,.15));border:1px solid rgba(6,182,212,.35);border-radius:14px;display:flex;align-items:center;justify-content:center;margin-bottom:18px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
+          <h3 style="font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700;margin-bottom:12px;">Results You Can Actually Measure</h3>
+          <p style="font-size:15px;color:var(--g400);line-height:1.7;">We don't celebrate "impressions." We celebrate <strong class="gt">revenue, leads, and growth</strong>. Every deliverable is tied to a real business outcome. We track it so you always know what your investment is returning.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ================================ TEAM ================================ -->
-  <section class="team" id="team">
-    <div class="wrap">
-      <div class="sh" style="text-align:center">
-        <div class="pill">The Team</div>
-        <h2 class="sh__t reveal">Built by Two Operators Who<br><span class="gt">Actually Get Results</span></h2>
-        <p class="sh__s reveal d1" style="margin:0 auto">Not account managers. <strong>Actual specialists</strong> who have been in the trenches and know how to win.</p>
-      </div>
-      <div class="team__g">
-        <div class="t-card reveal">
-          <div class="t-avatar">
-            <img src="brandon.jpg" alt="Brandon" style="object-position: center 28%;" />
+  <!-- ================================ MANIFESTO ================================ -->
+  <section id="nexus-standard" style="padding:100px 0;overflow:hidden;position:relative;">
+    <div style="position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 50%,rgba(124,58,237,.07),transparent);pointer-events:none;"></div>
+    <div class="wrap" style="text-align:center;position:relative;">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:0;">
+        <p class="ns-label">The Nexus Standard</p>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
+          <div style="display:flex;align-items:center;gap:20px;flex-wrap:wrap;justify-content:center;">
+            <span class="ns-word">Retainers.<span class="ns-word__strike"></span></span>
+            <span class="ns-word">Rev Share.<span class="ns-word__strike"></span></span>
+            <span class="ns-word">BS.<span class="ns-word__strike"></span></span>
           </div>
-          <div class="t-name">Brandon</div>
-          <div class="t-role">Entrepreneur &amp; Marketing Specialist</div>
-          <p class="t-bio">6 years building and scaling brands online. Brandon leads client strategy, creative direction, and performance marketing with a track record of turning ad spend into <strong>outsized returns</strong>.</p>
-          <div class="t-badges">
-            <span class="t-badge">Meta Ads</span>
-            <span class="t-badge">TikTok Shop</span>
-            <span class="t-badge">Growth Strategy</span>
-          </div>
+          <div class="ns-divider-line"></div>
+          <div class="ns-result">Only Results.</div>
         </div>
-        <div class="t-card reveal d2">
-          <div class="t-avatar">
-            <img src="darsh.jpg" alt="Darsh" style="object-position: center 8%;" />
-          </div>
-          <div class="t-name">Darsh</div>
-          <div class="t-role">Enterprise Technology Integration</div>
-          <p class="t-bio">A professional in enterprise technology integration, Darsh architects the digital infrastructure: custom web builds, automation systems, and AI tools that make businesses <strong>run smarter and look world-class</strong>.</p>
-          <div class="t-badges">
-            <span class="t-badge">Web Development</span>
-            <span class="t-badge">AI Automation</span>
-            <span class="t-badge">Systems Architecture</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================================ TESTIMONIALS ================================ -->
-  <section class="testi" id="testimonials">
-    <div class="wrap">
-      <div class="sh">
-        <div class="pill">Client Love</div>
-        <h2 class="sh__t reveal">What Our Clients <span class="gt">Actually Say</span></h2>
-        <p class="sh__s reveal d1">Real feedback from real business owners who saw real results.</p>
-      </div>
-      <div class="testi__sl">
-        <div class="testi__tr" id="testiTrack">
-          <div class="t-card2">
-            <div class="t-stars"><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span></div>
-            <p class="t-txt">"Nexus completely transformed our online presence. The website they built is hands-down the best in our industry. Within 3 months of launching, our inbound leads tripled and our close rate went up because clients actually trusted us before the first call."</p>
-            <div class="t-ath">
-              <div class="t-av">MR</div>
-              <div>
-                <div class="t-n">Marcus R.</div>
-                <div class="t-co">CEO, Meridian Real Estate Group</div>
-              </div>
-            </div>
-          </div>
-          <div class="t-card2">
-            <div class="t-stars"><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span></div>
-            <p class="t-txt">"I was spending $8K/month on Meta ads with another agency and getting nothing. Brandon restructured everything in 2 weeks. First month with Nexus we hit 4.6x ROAS. I genuinely wish I found them sooner."</p>
-            <div class="t-ath">
-              <div class="t-av">SL</div>
-              <div>
-                <div class="t-n">Sophia L.</div>
-                <div class="t-co">Founder, Lumi Skincare</div>
-              </div>
-            </div>
-          </div>
-          <div class="t-card2">
-            <div class="t-stars"><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span></div>
-            <p class="t-txt">"Darsh built us a booking system and website integration that replaced two separate tools we were paying for. The automation alone saved us 15+ hours a week. These guys think beyond just the website."</p>
-            <div class="t-ath">
-              <div class="t-av">JT</div>
-              <div>
-                <div class="t-n">James T.</div>
-                <div class="t-co">Owner, Apex Fitness Studios</div>
-              </div>
-            </div>
-          </div>
-          <div class="t-card2">
-            <div class="t-stars"><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span></div>
-            <p class="t-txt">"Our TikTok Shop went from $0 to $200K/month in under 6 months. Brandon knew exactly what creative hooks would work, tested relentlessly, and scaled what performed. Nexus is the real deal."</p>
-            <div class="t-ath">
-              <div class="t-av">AN</div>
-              <div>
-                <div class="t-n">Ashley N.</div>
-                <div class="t-co">Co-Founder, Vitality Supps</div>
-              </div>
-            </div>
-          </div>
-          <div class="t-card2">
-            <div class="t-stars"><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span></div>
-            <p class="t-txt">"We were a local restaurant with no real online presence. Nexus built our site, set up online ordering, and ran a TikTok campaign that made us go viral locally. We had to hire 4 more staff to keep up with demand."</p>
-            <div class="t-ath">
-              <div class="t-av">KP</div>
-              <div>
-                <div class="t-n">Kenji P.</div>
-                <div class="t-co">Owner, Takumi Ramen</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="testi__nav">
-        <button class="testi__btn" id="testiPrev" aria-label="Previous">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-        </button>
-        <div class="testi__dots" id="testiDots"></div>
-        <button class="testi__btn" id="testiNext" aria-label="Next">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </button>
       </div>
     </div>
   </section>
@@ -1299,7 +1061,7 @@
             Request a Service
           </a>
         </div>
-        <p class="cta-note">&#128373; Free. No commitment. Just a conversation.</p>
+        <p class="cta-note"><svg style="display:inline;vertical-align:middle;margin-right:6px;opacity:.8" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>Free. No commitment. Just a conversation.</p>
       </div>
     </div>
   </section>
@@ -1327,10 +1089,10 @@
         <div>
           <div class="footer__col-t">Company</div>
           <ul class="footer__ul">
-            <li><a href="#team">About Us</a></li>
-            <li><a href="#work">Our Work</a></li>
-            <li><a href="#testimonials">Testimonials</a></li>
-            <li><a href="#features">Features</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="portfolio.html">Our Work</a></li>
+            <li><a href="about.html#testimonials">Testimonials</a></li>
+            <li><a href="features.html">Features</a></li>
           </ul>
         </div>
         <div>
@@ -1516,48 +1278,6 @@
     ctrs.forEach(c => cio.observe(c));
 
     /* ================================================
-       TESTIMONIAL SLIDER
-    ================================================ */
-    const track = document.getElementById('testiTrack');
-    const dotsC = document.getElementById('testiDots');
-    const cards = track.querySelectorAll('.t-card2');
-    let cur = 0;
-    const perView = () => window.innerWidth <= 768 ? 1 : 2;
-
-    function buildDots() {
-      dotsC.innerHTML = '';
-      const pages = Math.ceil(cards.length / perView());
-      for (let i = 0; i < pages; i++) {
-        const d = document.createElement('div');
-        d.className = 'testi__dot' + (i === 0 ? ' on' : '');
-        d.addEventListener('click', () => goTo(i));
-        dotsC.appendChild(d);
-      }
-    }
-
-    function goTo(idx) {
-      const pv = perView();
-      const pages = Math.ceil(cards.length / pv);
-      cur = Math.max(0, Math.min(idx, pages - 1));
-      // Each "page" shifts by (cardWidth + gap) * cardsPerPage
-      const cardW = cards[0].offsetWidth + 22;
-      track.style.transform = `translateX(-${cur * pv * cardW}px)`;
-      dotsC.querySelectorAll('.testi__dot').forEach((d, i) => d.classList.toggle('on', i === cur));
-    }
-
-    document.getElementById('testiPrev').addEventListener('click', () => goTo(cur - 1));
-    document.getElementById('testiNext').addEventListener('click', () => goTo(cur + 1));
-
-    buildDots();
-    window.addEventListener('resize', () => { buildDots(); goTo(0); });
-
-    // Auto-advance
-    setInterval(() => {
-      const pages = Math.ceil(cards.length / perView());
-      goTo(cur + 1 < pages ? cur + 1 : 0);
-    }, 5000);
-
-    /* ================================================
        GSAP SCROLL ANIMATIONS (if GSAP loaded)
     ================================================ */
     if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
@@ -1581,14 +1301,7 @@
         });
       });
 
-      // Stagger bento cards
-      gsap.utils.toArray('.b').forEach((card, i) => {
-        gsap.fromTo(card, { y: 30, opacity: 0 }, {
-          y: 0, opacity: 1,
-          scrollTrigger: { trigger: card, start: 'top 90%', once: true },
-          duration: 0.6, delay: i * 0.08, ease: 'power2.out'
-        });
-      });
+
     }
 
     /* ================================================
@@ -1702,6 +1415,80 @@
       sparkleCSS.textContent = `@keyframes sparkle{0%{opacity:.8;transform:translate(-50%,-50%) scale(1)}100%{opacity:0;transform:translate(-50%,-50%) scale(0) translateY(-12px)}}`;
       document.head.appendChild(sparkleCSS);
     }
+
+    /* ================================================
+       NEXUS STANDARD MANIFESTO ANIMATION
+    ================================================ */
+    (function () {
+      const section = document.getElementById('nexus-standard');
+      if (!section) return;
+      const label   = section.querySelector('.ns-label');
+      const words   = section.querySelectorAll('.ns-word');
+      const divider = section.querySelector('.ns-divider-line');
+      const result  = section.querySelector('.ns-result');
+      let timers = [];
+
+      function reset() {
+        timers.forEach(clearTimeout);
+        timers = [];
+        label.classList.remove('ns-on');
+        words.forEach(w => w.classList.remove('ns-on', 'ns-struck'));
+        divider.classList.remove('ns-on');
+        result.classList.remove('ns-on');
+      }
+
+      function play() {
+        reset();
+        timers.push(setTimeout(() => label.classList.add('ns-on'), 100));
+        words.forEach((w, i) => {
+          timers.push(setTimeout(() => w.classList.add('ns-on'),    420 + i * 280));
+          timers.push(setTimeout(() => w.classList.add('ns-struck'), 720 + i * 280));
+        });
+        timers.push(setTimeout(() => divider.classList.add('ns-on'), 1550));
+        timers.push(setTimeout(() => result.classList.add('ns-on'),  1850));
+      }
+
+      new IntersectionObserver(entries => {
+        entries[0].isIntersecting ? play() : reset();
+      }, { threshold: 0.3 }).observe(section);
+    })();
+
+    /* ================================================
+       PROCESS STEP NUMBER SEQUENCER
+    ================================================ */
+    (function () {
+      const steps = document.querySelectorAll('.proc-step__n');
+      if (!steps.length) return;
+      let current = -1;
+      let timer = null;
+
+      function activate(i) {
+        steps.forEach((s, idx) => s.classList.toggle('active', idx === i));
+      }
+
+      function start() {
+        if (timer) return;
+        current = 0;
+        activate(current);
+        timer = setInterval(() => {
+          current = (current + 1) % steps.length;
+          activate(current);
+        }, 1600);
+      }
+
+      function stop() {
+        clearInterval(timer);
+        timer = null;
+        steps.forEach(s => s.classList.remove('active'));
+      }
+
+      const obs = new IntersectionObserver(entries => {
+        entries.forEach(e => e.isIntersecting ? start() : stop());
+      }, { threshold: 0.25 });
+
+      const section = document.getElementById('process');
+      if (section) obs.observe(section);
+    })();
   </script>
 </body>
 </html>

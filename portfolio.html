@@ -90,7 +90,7 @@
     .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 900; padding: 22px 0; transition: padding .3s, background .3s; }
     .nav.stuck { padding: 12px 0; background: rgba(4,4,13,.85); backdrop-filter: blur(22px); border-bottom: 1px solid var(--borderS); }
     .nav__i { display: flex; align-items: center; justify-content: space-between; }
-    .logo { font-family: 'Space Grotesk', sans-serif; font-weight: 800; font-size: 28px; letter-spacing: -.05em; }
+    .logo { font-family: 'Space Grotesk', sans-serif; font-weight: 800; font-size: 36px; letter-spacing: -.05em; }
     .nav__links { display: flex; gap: 4px; list-style: none; }
     .nav__links a { padding: 8px 15px; font-size: 14px; font-weight: 500; color: var(--g400); border-radius: 8px; transition: color .2s, background .2s; }
     .nav__links a:hover, .nav__links a.active { color: #fff; background: rgba(255,255,255,.06); }
@@ -129,6 +129,50 @@
       color: var(--g400); cursor: none; transition: all .2s;
     }
     .filter-tab:hover, .filter-tab.on { background: rgba(124,58,237,.15); border-color: rgba(124,58,237,.4); color: var(--lavender); }
+
+    /* ---- DELADOE LIVE DASHBOARD ---- */
+    .deladoe-dash {
+      background: linear-gradient(160deg,#06040f,#0a0618,#04040d) !important;
+      border-right: 1px solid var(--borderS);
+      overflow-y: auto; overflow-x: hidden;
+      padding: 20px;
+      display: flex; flex-direction: column; gap: 12px;
+      scrollbar-width: thin; scrollbar-color: rgba(124,58,237,.3) transparent;
+      background-image: none !important;
+    }
+    .dd-hdr { display: flex; justify-content: space-between; align-items: flex-start; }
+    .dd-title { font-family: 'Space Grotesk',sans-serif; font-size: 13px; font-weight: 700; color: var(--white); }
+    .dd-sub { font-size: 10px; color: var(--g400); margin-top: 2px; }
+    .dd-live { display: flex; align-items: center; gap: 5px; font-size: 10px; color: #22d3ee; font-weight: 600; letter-spacing: .04em; }
+    .dd-live-dot { width: 6px; height: 6px; background: #22d3ee; border-radius: 50%; animation: anPulse 1.5s ease-in-out infinite; }
+    .dd-kpis { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
+    .dd-kpi { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.07); border-radius: 9px; padding: 10px 12px; }
+    .dd-kpi__l { font-size: 9px; color: var(--g400); text-transform: uppercase; letter-spacing: .07em; margin-bottom: 3px; }
+    .dd-kpi__v { font-family: 'Space Grotesk',sans-serif; font-size: 17px; font-weight: 700; color: var(--white); line-height: 1; }
+    .dd-kpi__d { font-size: 10px; margin-top: 4px; }
+    .dd-kpi__d.up { color: #34d399; } .dd-kpi__d.dn { color: #f87171; }
+    .dd-chart-box { background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.07); border-radius: 9px; padding: 12px 12px 6px; }
+    .dd-chart-hdr { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
+    .dd-chart-big { font-family: 'Space Grotesk',sans-serif; font-size: 18px; font-weight: 700; color: var(--white); }
+    .dd-chart-tag { font-size: 10px; color: #34d399; margin-top: 2px; }
+    .dd-svg { width: 100%; height: 78px; display: block; overflow: visible; }
+    .dd-bottom { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
+    .dd-box { background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.07); border-radius: 9px; padding: 10px 12px; }
+    .dd-box-t { font-size: 9px; color: var(--g400); text-transform: uppercase; letter-spacing: .07em; margin-bottom: 7px; font-weight: 600; }
+    .dd-row { display: flex; justify-content: space-between; align-items: center; font-size: 10px; padding: 3px 0; border-bottom: 1px solid rgba(255,255,255,.04); color: var(--g400); }
+    .dd-row:last-child { border-bottom: none; }
+    .dd-row.hi { color: var(--white); font-weight: 600; }
+    .dd-row.total { color: var(--white); font-weight: 700; background: rgba(124,58,237,.08); margin: 3px -4px -4px; padding: 5px 4px; border-radius: 0 0 7px 7px; border: none; }
+    .dd-row .up { color: #34d399; } .dd-row .dn { color: #f87171; }
+    .dd-ch { position: relative; display: flex; align-items: center; gap: 6px; margin-bottom: 5px; min-height: 20px; }
+    .dd-ch__bg { position: absolute; left: 0; top: 0; bottom: 0; background: rgba(124,58,237,.12); border-radius: 4px; width: 0; transition: width 1.2s cubic-bezier(.4,0,.2,1); }
+    .dd-ch__l { font-size: 10px; color: var(--g400); position: relative; z-index: 1; flex: 1; padding-left: 4px; white-space: nowrap; }
+    .dd-ch__v { font-size: 10px; color: var(--white); font-weight: 600; position: relative; z-index: 1; }
+    .dd-sep { height: 1px; background: rgba(255,255,255,.06); margin: 6px 0; }
+    .dd-aov { display: flex; justify-content: space-between; align-items: center; }
+    .dd-aov__l { font-size: 10px; color: var(--g400); }
+    .dd-aov__v { font-size: 12px; color: var(--white); font-weight: 700; }
+    .dd-aov__v .up { font-size: 9px; color: #34d399; }
 
     /* ---- CASE STUDY CARDS ---- */
     .cases { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
@@ -272,11 +316,10 @@
       <div class="nav__i">
         <a href="index.html" class="logo gt">Nexus</a>
         <ul class="nav__links">
-          <li><a href="index.html#services">Services</a></li>
           <li><a href="portfolio.html" class="active">Work</a></li>
-          <li><a href="index.html#features">Features</a></li>
-          <li><a href="index.html#team">Team</a></li>
-          <li><a href="index.html#testimonials">Testimonials</a></li>
+          <li><a href="features.html">Features</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="about.html#testimonials">Testimonials</a></li>
         </ul>
         <div class="nav__cta">
           <a href="index.html#cta" class="btn btn-o">Request Service</a>
@@ -294,10 +337,9 @@
 
   <!-- Mobile Menu -->
   <div class="mob-menu" id="mobMenu">
-    <a href="index.html#services" class="mob-link">Services</a>
     <a href="portfolio.html" class="mob-link">Work</a>
-    <a href="index.html#features" class="mob-link">Features</a>
-    <a href="index.html#team" class="mob-link">Team</a>
+    <a href="features.html" class="mob-link">Features</a>
+    <a href="about.html" class="mob-link">About</a>
     <div class="mob-ctabtn">
       <a href="index.html#cta" class="btn btn-o mob-link">Request Service</a>
       <button onclick="openCal()" class="btn btn-p mob-link">Book a Consultation</button>
@@ -330,7 +372,105 @@
 
         <!-- Case 1 — Large featured -->
         <div class="case-card case-card--large reveal" data-tags="web tiktok">
-          <div class="case-img sales-img" style="background:#f0f4f8 url('Sales.jpg') center center / 100% auto no-repeat;"></div>
+          <div class="case-img deladoe-dash" id="deladoe-dash">
+            <!-- Header -->
+            <div class="dd-hdr">
+              <div style="display:flex;align-items:center;gap:8px;">
+                <!-- Shopify logo -->
+                <svg width="22" height="22" viewBox="0 0 109.5 124.5" xmlns="http://www.w3.org/2000/svg"><path d="M74.7 14.8s-.4 0-1 .2c-.1-.3-.3-.7-.5-1.1-1.5-2.9-3.8-4.4-6.4-4.4-.2 0-.4 0-.6.1-.1-.1-.2-.2-.3-.3-1.2-1.3-2.7-1.9-4.5-1.8-3.5.1-7 2.6-9.8 7-2 3.1-3.5 6.9-3.9 9.9-4 1.2-6.8 2.1-6.9 2.1-2 .6-2.1.7-2.4 2.6C38.2 30.5 28 107 28 107l57.5 9.9V14.5c-.5.1-10.3.2-10.8.3zm-8.4 2.6c-2.3.7-4.9 1.5-7.4 2.3.7-2.8 2.1-5.5 3.8-7.3 1.5 1.3 2.9 3 3.6 5zm-6.5-7.1c1.1 0 2.1.3 2.9.8C61 12.8 59.7 15 58.4 18c-2.3.7-4.5 1.4-6.6 2.1 1.1-5.3 4.5-9.8 8-9.8zm-3 65.9c.2 3.3 8.9 4 9.4 11.7.4 6.1-3.2 10.2-8.4 10.5-6.3.4-9.7-3.3-9.7-3.3l1.3-5.6s3.4 2.6 6.2 2.4c1.8-.1 2.4-1.6 2.3-2.6-.3-4.3-7.4-4-7.8-11.1-.4-5.9 3.5-11.9 12.1-12.5 3.3-.2 5 .6 5 .6l-1.9 7.3s-2.2-.9-4.8-.7c-3.8.2-3.8 2.7-3.7 3.3zm14.4-38.5c0-.3 0-.6-.1-.8-1.1-5.7-7.6-7.6-7.6-7.6l-.3 8.4c2.4.7 5.2 1.7 8 3z" fill="#95BF47"/><path d="M86.3 116.9l23.2-5.8S99.2 24.5 99.1 23.7c-.1-.8-.7-1.3-1.3-1.3-.6 0-11.1-.2-11.1-.2s-5.9-5.7-8.2-7.9v102.6z" fill="#5E8E3E"/><path d="M63 9.1c-3.5.1-7 2.6-9.8 7-2 3.1-3.5 6.9-3.9 9.9-4 1.2-6.8 2.1-6.9 2.1-2 .6-2.1.7-2.4 2.6C38.2 30.5 28 107 28 107l57.5 9.9V14.5s-10.3.2-10.8.3l-1.3-.2c-.5-2.7-3.4-5.5-10.4-5.5z" fill="#95BF47"/></svg>
+                <div>
+                  <div class="dd-title">Deladoe Store Analytics</div>
+                  <div class="dd-sub">Shopify · Jan 2021 – Mar 2026</div>
+                </div>
+              </div>
+              <div class="dd-live"><span class="dd-live-dot"></span>Real Data</div>
+            </div>
+            <!-- 4 KPI tiles -->
+            <div class="dd-kpis">
+              <div class="dd-kpi">
+                <div class="dd-kpi__l">Gross Sales</div>
+                <div class="dd-kpi__v" id="dd-gross">$0</div>
+                <div class="dd-kpi__d up">↑ 2,500%</div>
+              </div>
+              <div class="dd-kpi">
+                <div class="dd-kpi__l">Return Customer Rate</div>
+                <div class="dd-kpi__v" id="dd-rcr">0%</div>
+                <div class="dd-kpi__d up">↑ 38%</div>
+              </div>
+              <div class="dd-kpi">
+                <div class="dd-kpi__l">Orders Fulfilled</div>
+                <div class="dd-kpi__v" id="dd-fulfilled">0</div>
+                <div class="dd-kpi__d up">↑ 143%</div>
+              </div>
+              <div class="dd-kpi">
+                <div class="dd-kpi__l">Total Orders</div>
+                <div class="dd-kpi__v" id="dd-orders">0</div>
+                <div class="dd-kpi__d up">↑ 148%</div>
+              </div>
+            </div>
+            <!-- Line chart -->
+            <div class="dd-chart-box">
+              <div class="dd-chart-hdr">
+                <div>
+                  <div class="dd-chart-big" id="dd-total">$0</div>
+                  <div class="dd-chart-tag">↑ 3,000% · Total Sales Over Time</div>
+                </div>
+              </div>
+              <svg class="dd-svg" viewBox="0 0 400 72" preserveAspectRatio="none">
+                <defs>
+                  <linearGradient id="ddFill" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="rgba(124,58,237,0.35)"/>
+                    <stop offset="100%" stop-color="rgba(124,58,237,0)"/>
+                  </linearGradient>
+                  <linearGradient id="ddStroke" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#7c3aed"/>
+                    <stop offset="100%" stop-color="#22d3ee"/>
+                  </linearGradient>
+                </defs>
+                <!-- Y gridlines -->
+                <line x1="0" y1="12" x2="400" y2="12" stroke="rgba(255,255,255,.05)" stroke-width="1"/>
+                <line x1="0" y1="36" x2="400" y2="36" stroke="rgba(255,255,255,.05)" stroke-width="1"/>
+                <line x1="0" y1="60" x2="400" y2="60" stroke="rgba(255,255,255,.05)" stroke-width="1"/>
+                <!-- Area fill -->
+                <path id="dd-area" d="M0,72 L0,44 C40,36 70,16 100,18 C130,20 155,22 185,24 C215,26 250,30 290,32 C330,34 365,32 400,30 L400,72 Z" fill="url(#ddFill)" opacity="0"/>
+                <!-- Line -->
+                <path id="dd-line" d="M0,44 C40,36 70,16 100,18 C130,20 155,22 185,24 C215,26 250,30 290,32 C330,34 365,32 400,30" fill="none" stroke="url(#ddStroke)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="700" stroke-dashoffset="700"/>
+                <!-- X labels -->
+                <text x="2" y="70" font-size="7" fill="rgba(255,255,255,.3)" font-family="sans-serif">2021</text>
+                <text x="94" y="70" font-size="7" fill="rgba(255,255,255,.3)" font-family="sans-serif">2022</text>
+                <text x="188" y="70" font-size="7" fill="rgba(255,255,255,.3)" font-family="sans-serif">2023</text>
+                <text x="282" y="70" font-size="7" fill="rgba(255,255,255,.3)" font-family="sans-serif">2024</text>
+                <text x="370" y="70" font-size="7" fill="rgba(255,255,255,.3)" font-family="sans-serif">2025</text>
+              </svg>
+            </div>
+            <!-- Bottom row -->
+            <div class="dd-bottom">
+              <!-- Sales breakdown -->
+              <div class="dd-box">
+                <div class="dd-box-t">Sales Breakdown</div>
+                <div class="dd-row"><span>Gross Sales</span><span class="up">$1,828,267</span></div>
+                <div class="dd-row"><span>Discounts</span><span class="dn">-$48,407</span></div>
+                <div class="dd-row"><span>Returns</span><span class="dn">-$27,842</span></div>
+                <div class="dd-row hi"><span>Net Sales</span><span>$1,752,017</span></div>
+                <div class="dd-row"><span>Shipping</span><span>$74,458</span></div>
+                <div class="dd-row"><span>Taxes</span><span>$43,172</span></div>
+                <div class="dd-row total"><span>Total Sales</span><span>$1,869,647</span></div>
+              </div>
+              <!-- By channel -->
+              <div class="dd-box">
+                <div class="dd-box-t">By Channel</div>
+                <div class="dd-ch"><div class="dd-ch__bg" data-w="81%"></div><span class="dd-ch__l">Online Store</span><span class="dd-ch__v">$1.5M</span></div>
+                <div class="dd-ch"><div class="dd-ch__bg" data-w="8%"></div><span class="dd-ch__l">Facebook</span><span class="dd-ch__v">$145.3K</span></div>
+                <div class="dd-ch"><div class="dd-ch__bg" data-w="7%"></div><span class="dd-ch__l">Buy Button</span><span class="dd-ch__v">$123.6K</span></div>
+                <div class="dd-ch"><div class="dd-ch__bg" data-w="2%"></div><span class="dd-ch__l">Point of Sale</span><span class="dd-ch__v">$34.2K</span></div>
+                <div class="dd-sep"></div>
+                <div class="dd-aov">
+                  <span class="dd-aov__l">Avg Order Value</span>
+                  <span class="dd-aov__v">$20.17 <span class="up">↑ 1.1K%</span></span>
+                </div>
+              </div>
+            </div>
+          </div>
           <div class="case-content">
             <span class="case-tag">E-Commerce + TikTok Shop + Affiliate + Organic</span>
             <h2 class="case-title">Clothing Brand Revenue Overhaul For Deladoe</h2>
@@ -510,7 +650,7 @@
             Book a Strategy Call
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </button>
-          <a href="index.html#cta" class="btn btn-o">Request a Service</a>
+          <a href="mailto:hello@nexusagency.co?subject=Service Request" class="btn btn-o">Request a Service</a>
         </div>
       </div>
     </div>
@@ -524,7 +664,7 @@
         <div class="footer__links">
           <a href="index.html#services">Services</a>
           <a href="portfolio.html">Work</a>
-          <a href="index.html#team">Team</a>
+          <a href="about.html">About</a>
           <a href="index.html#cta">Contact</a>
         </div>
         <span class="footer__copy">&copy; 2026 Nexus Agency</span>
@@ -636,6 +776,70 @@
         if (t) { e.preventDefault(); window.scrollTo({ top: t.offsetTop - 80, behavior: 'smooth' }); }
       });
     });
+
+    /* ================================================
+       DELADOE DASHBOARD ANIMATION
+    ================================================ */
+    (function () {
+      const dash = document.getElementById('deladoe-dash');
+      if (!dash) return;
+
+      const grossEl     = document.getElementById('dd-gross');
+      const rcrEl       = document.getElementById('dd-rcr');
+      const fulfilledEl = document.getElementById('dd-fulfilled');
+      const ordersEl    = document.getElementById('dd-orders');
+      const totalEl     = document.getElementById('dd-total');
+      const line        = document.getElementById('dd-line');
+      const area        = document.getElementById('dd-area');
+      const chBars      = dash.querySelectorAll('.dd-ch__bg');
+
+      let raf = null;
+
+      function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
+
+      function resetDash() {
+        if (raf) cancelAnimationFrame(raf);
+        grossEl.textContent     = '$0';
+        rcrEl.textContent       = '0%';
+        fulfilledEl.textContent = '0';
+        ordersEl.textContent    = '0';
+        totalEl.textContent     = '$0';
+        if (line) { line.style.transition = 'none'; line.style.strokeDashoffset = '700'; }
+        if (area) { area.style.transition = 'none'; area.style.opacity = '0'; }
+        chBars.forEach(bar => { bar.style.transition = 'none'; bar.style.width = '0'; });
+      }
+
+      function animateDash() {
+        resetDash();
+        const duration = 1800;
+        const start = performance.now();
+
+        function tick(now) {
+          const p = easeOut(Math.min((now - start) / duration, 1));
+          grossEl.textContent     = '$' + (1.82 * p).toFixed(2) + 'M';
+          rcrEl.textContent       = (20.65 * p).toFixed(2) + '%';
+          fulfilledEl.textContent = (86.1 * p).toFixed(1) + 'K';
+          ordersEl.textContent    = (88.1 * p).toFixed(1) + 'K';
+          totalEl.textContent     = '$' + Math.round(1869647 * p).toLocaleString('en-US');
+          if (p < 1) raf = requestAnimationFrame(tick);
+        }
+        raf = requestAnimationFrame(tick);
+
+        requestAnimationFrame(() => {
+          if (line) { line.style.transition = 'stroke-dashoffset 2s ease'; line.style.strokeDashoffset = '0'; }
+        });
+        setTimeout(() => {
+          if (area) { area.style.transition = 'opacity 1s ease'; area.style.opacity = '0.7'; }
+        }, 600);
+        chBars.forEach((bar, i) => {
+          setTimeout(() => { bar.style.transition = 'width 1s ease'; bar.style.width = bar.dataset.w; }, 400 + i * 120);
+        });
+      }
+
+      new IntersectionObserver(entries => {
+        entries[0].isIntersecting ? animateDash() : resetDash();
+      }, { threshold: 0.2 }).observe(dash);
+    })();
   </script>
 </body>
 </html>
