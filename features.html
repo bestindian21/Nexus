@@ -200,9 +200,9 @@
       font-weight: 800; font-size: 36px; letter-spacing: -.05em;
     }
     .logo-icon { display: none; }
-    .nav__links { display: flex; align-items: center; gap: 4px; list-style: none; }
+    .nav__links { display: flex; align-items: center; gap: 16px; list-style: none; }
     .nav__links a {
-      padding: 8px 15px; font-size: 14px; font-weight: 500;
+      padding: 8px 28px; font-size: 14px; font-weight: 500;
       color: var(--g400); border-radius: 8px; transition: color .2s, background .2s;
     }
     .nav__links a:hover { color: #fff; background: rgba(255,255,255,.06); }
@@ -365,7 +365,6 @@
           <li><a href="portfolio.html">Work</a></li>
           <li><a href="features.html" style="color:#fff;background:rgba(255,255,255,.06);">Features</a></li>
           <li><a href="about.html">About</a></li>
-          <li><a href="about.html#testimonials">Testimonials</a></li>
         </ul>
         <div class="nav__cta">
           <a href="#cta" class="btn btn-o">Request Service</a>
@@ -385,7 +384,6 @@
     <a href="portfolio.html" class="mob-link">Work</a>
     <a href="features.html" class="mob-link">Features</a>
     <a href="about.html" class="mob-link">About</a>
-    <a href="about.html#testimonials" class="mob-link">Testimonials</a>
     <div class="mob-ctabtn">
       <a href="#cta" class="btn btn-o mob-link">Request Service</a>
       <button onclick="openCal()" class="btn btn-p mob-link">Book a Consultation</button>
@@ -561,7 +559,7 @@
             Book a Consultation
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </button>
-          <a href="mailto:hello@nexusagency.co?subject=Service Request" class="btn btn-o">
+          <a href="mailto:contact@nexusagency.us?subject=Service Request" class="btn btn-o">
             Request a Service
           </a>
         </div>
@@ -578,14 +576,14 @@
           <div class="logo">
             <span class="gt">Nexus</span>
           </div>
-          <p>We build cutting-edge websites and run performance marketing that makes your brand impossible to ignore.</p>
+          <p>We build cutting-edge websites and drive organic growth and affiliate marketing that makes your brand impossible to ignore.</p>
         </div>
         <div>
           <div class="footer__col-t">Services</div>
           <ul class="footer__ul">
             <li><a href="index.html#services">Web Design &amp; Development</a></li>
             <li><a href="index.html#services">Brand Polish</a></li>
-            <li><a href="index.html#services">Meta Ads</a></li>
+            <li><a href="index.html#services">Affiliate Marketing</a></li>
             <li><a href="index.html#services">TikTok Shop</a></li>
             <li><a href="index.html#services">AI Automation</a></li>
           </ul>
@@ -595,16 +593,15 @@
           <ul class="footer__ul">
             <li><a href="about.html">About Us</a></li>
             <li><a href="portfolio.html">Our Work</a></li>
-            <li><a href="about.html#testimonials">Testimonials</a></li>
             <li><a href="features.html">Features</a></li>
           </ul>
         </div>
         <div>
           <div class="footer__col-t">Get in Touch</div>
           <ul class="footer__ul">
-            <li><a href="mailto:hello@nexusagency.co">hello@nexusagency.co</a></li>
+            <li><a href="mailto:contact@nexusagency.us">contact@nexusagency.us</a></li>
             <li><a href="#cta">Book a Call</a></li>
-            <li><a href="mailto:hello@nexusagency.co?subject=Service Request">Request Service</a></li>
+            <li><a href="mailto:contact@nexusagency.us?subject=Service Request">Request Service</a></li>
           </ul>
         </div>
       </div>
@@ -774,10 +771,10 @@
     function openCal() {
       if (typeof Calendly !== 'undefined') {
         Calendly.initPopupWidget({
-          url: 'https://calendly.com/YOUR_USERNAME/consultation'
+          url: 'https://calendly.com/book-nexusagency'
         });
       } else {
-        window.location.href = 'mailto:hello@nexusagency.co?subject=Consultation Request';
+        window.location.href = 'mailto:contact@nexusagency.us?subject=Consultation Request';
       }
     }
 

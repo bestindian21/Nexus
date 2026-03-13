@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Nexus Agency Portfolio — Real results from real clients across web design, Meta ads, and TikTok marketing." />
+  <meta name="description" content="Nexus Agency Portfolio — Real results from real clients across web design, TikTok Shop, and organic affiliate marketing." />
   <title>Our Work | Nexus Agency</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -36,6 +36,27 @@
     }
 
     html { scroll-behavior: smooth; }
+
+    /* Blend fade — hero bottom, cta top */
+    .page-hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 120px;
+      background: linear-gradient(to top, var(--bg), transparent);
+      pointer-events: none;
+      z-index: 2;
+    }
+    .page-cta { position: relative; }
+    .page-cta::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 120px;
+      background: linear-gradient(to bottom, var(--bg), transparent);
+      pointer-events: none;
+      z-index: 2;
+    }
     body {
       background: var(--bg); color: var(--white);
       font-family: 'Inter', sans-serif; line-height: 1.6;
@@ -91,8 +112,8 @@
     .nav.stuck { padding: 12px 0; background: rgba(4,4,13,.85); backdrop-filter: blur(22px); border-bottom: 1px solid var(--borderS); }
     .nav__i { display: flex; align-items: center; justify-content: space-between; }
     .logo { font-family: 'Space Grotesk', sans-serif; font-weight: 800; font-size: 36px; letter-spacing: -.05em; }
-    .nav__links { display: flex; gap: 4px; list-style: none; }
-    .nav__links a { padding: 8px 15px; font-size: 14px; font-weight: 500; color: var(--g400); border-radius: 8px; transition: color .2s, background .2s; }
+    .nav__links { display: flex; gap: 16px; list-style: none; }
+    .nav__links a { padding: 8px 28px; font-size: 14px; font-weight: 500; color: var(--g400); border-radius: 8px; transition: color .2s, background .2s; }
     .nav__links a:hover, .nav__links a.active { color: #fff; background: rgba(255,255,255,.06); }
     .nav__cta { display: flex; gap: 10px; }
     .nav__tog { display: none; flex-direction: column; gap: 5px; background: none; border: none; padding: 6px; cursor: none; }
@@ -251,9 +272,9 @@
 
     /* Metrics bar */
     .case-metrics { display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 24px; padding: 20px; background: rgba(255,255,255,.03); border: 1px solid var(--borderS); border-radius: 12px; }
-    .c-met { display: flex; flex-direction: column; gap: 3px; }
-    .c-met__v { font-family: 'Space Grotesk', sans-serif; font-size: 24px; font-weight: 800; color: var(--cyan2); }
-    .c-met__l { font-size: 11.5px; color: var(--g500); text-transform: uppercase; letter-spacing: .05em; }
+    .c-met { display: flex; flex-direction: column; gap: 3px; min-width: 80px; }
+    .c-met__v { font-family: 'Space Grotesk', sans-serif; font-size: 24px; font-weight: 800; color: var(--cyan2); white-space: nowrap; }
+    .c-met__l { font-size: 11.5px; color: var(--g500); text-transform: uppercase; letter-spacing: .05em; white-space: nowrap; }
 
     /* Service tags */
     .case-services { display: flex; flex-wrap: wrap; gap: 8px; }
@@ -270,16 +291,18 @@
     .tl-d { font-size: 13px; color: var(--g400); line-height: 1.6; }
 
     /* ---- CTA BANNER ---- */
-    .page-cta { padding: 100px 0; }
+    .page-cta { padding: 60px 0; }
     .page-cta__box {
-      background: linear-gradient(135deg, rgba(124,58,237,.14), rgba(6,182,212,.07));
-      border: 1px solid rgba(124,58,237,.28); border-radius: 28px;
-      padding: 72px 52px; text-align: center; position: relative; overflow: hidden;
+      background: linear-gradient(135deg, rgba(124,58,237,.1), rgba(6,182,212,.05));
+      border: 1px solid rgba(124,58,237,.2); border-radius: 20px;
+      padding: 40px 40px; text-align: center; position: relative; overflow: hidden;
+      display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap;
     }
-    .page-cta__box::before { content: ''; position: absolute; top: -80px; left: 50%; transform: translateX(-50%); width: 400px; height: 400px; background: radial-gradient(circle, rgba(124,58,237,.18), transparent 65%); pointer-events: none; }
-    .page-cta__t { font-size: clamp(30px, 4vw, 48px); font-weight: 800; margin-bottom: 16px; position: relative; }
-    .page-cta__s { font-size: 17px; color: var(--g400); max-width: 440px; margin: 0 auto 40px; line-height: 1.7; position: relative; }
-    .page-cta__btns { display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: wrap; position: relative; }
+    .page-cta__box::before { content: ''; position: absolute; top: -60px; left: 30%; width: 280px; height: 280px; background: radial-gradient(circle, rgba(124,58,237,.14), transparent 65%); pointer-events: none; }
+    .page-cta__text { text-align: left; position: relative; }
+    .page-cta__t { font-size: clamp(20px, 2.8vw, 30px); font-weight: 800; margin-bottom: 6px; }
+    .page-cta__s { font-size: 14px; color: var(--g400); margin: 0; line-height: 1.6; position: relative; }
+    .page-cta__btns { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; position: relative; flex-shrink: 0; }
 
     /* ---- FOOTER ---- */
     .footer { padding: 48px 0 32px; border-top: 1px solid var(--borderS); }
@@ -298,8 +321,9 @@
       .case-card--large .case-img { min-height: 220px; }
       .timeline__g { flex-direction: column; gap: 28px; }
       .timeline__g::before { display: none; }
-      .page-cta__box { padding: 48px 24px; }
-      .page-cta__btns { flex-direction: column; }
+      .page-cta__box { padding: 32px 24px; flex-direction: column; align-items: flex-start; }
+      .page-cta__text { text-align: left; }
+      .page-cta__btns { flex-direction: column; width: 100%; }
       .page-cta__btns .btn { width: 100%; justify-content: center; }
       .footer__inner { flex-direction: column; align-items: flex-start; }
     }
@@ -319,7 +343,6 @@
           <li><a href="portfolio.html" class="active">Work</a></li>
           <li><a href="features.html">Features</a></li>
           <li><a href="about.html">About</a></li>
-          <li><a href="about.html#testimonials">Testimonials</a></li>
         </ul>
         <div class="nav__cta">
           <a href="index.html#cta" class="btn btn-o">Request Service</a>
@@ -351,9 +374,83 @@
     <div class="wrap">
       <div class="pill">Portfolio</div>
       <h1>Work That <span class="gt">Delivers Results</span></h1>
-      <p>Real campaigns, real clients, real numbers. No fluff — just what happened when we got to work.</p>
+      <p>Real campaigns, real clients, <strong class="gt">real numbers</strong>. No fluff. Just what happened when we got to work.</p>
     </div>
   </div>
+
+  <!-- THIS SITE MARQUEE -->
+  <style>
+    .tsb {
+      padding: 0 0 56px;
+      overflow: hidden;
+    }
+    .tsb-track {
+      display: flex;
+      width: max-content;
+      animation: tsb-scroll 22s linear infinite;
+    }
+    .tsb-track:hover { animation-play-state: paused; }
+    @keyframes tsb-scroll {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .tsb-item {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 0 36px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(20px, 2.8vw, 32px);
+      font-weight: 800;
+      letter-spacing: -.02em;
+      white-space: nowrap;
+      color: var(--white);
+    }
+    .tsb-item .tsb-hl {
+      background: linear-gradient(90deg, #a78bfa, #22d3ee, #a78bfa);
+      background-size: 200% 100%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: tsb-shimmer 2.5s linear infinite;
+    }
+    @keyframes tsb-shimmer {
+      0%   { background-position: 100% 0%; }
+      100% { background-position: -100% 0%; }
+    }
+    .tsb-sep {
+      width: 6px; height: 6px;
+      background: var(--g500);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+  </style>
+
+  <div class="tsb">
+    <div class="tsb-track" id="tsbTrack">
+      <!-- filled by JS -->
+    </div>
+  </div>
+
+  <script>
+    (function(){
+      const items = [
+        { plain: "You\u2019re looking at our work", hl: "right now" },
+        { plain: "Every animation on this page", hl: "built by us" },
+        { plain: "No templates. No shortcuts.", hl: "Just craft" },
+        { plain: "This is what we can do", hl: "for your brand" },
+      ];
+      const track = document.getElementById('tsbTrack');
+      function render() {
+        items.forEach(item => {
+          const div = document.createElement('div');
+          div.className = 'tsb-item';
+          div.innerHTML = item.plain + ' <span class="tsb-hl">' + item.hl + '</span><span class="tsb-sep"></span>';
+          track.appendChild(div);
+        });
+      }
+      render(); render(); // duplicate for seamless loop
+    })();
+  </script>
 
   <!-- CASE STUDIES -->
   <section style="padding: 0 0 80px;">
@@ -363,7 +460,7 @@
       <div class="filter-tabs">
         <button class="filter-tab on" data-filter="all">All Work</button>
         <button class="filter-tab" data-filter="web">Web Design</button>
-        <button class="filter-tab" data-filter="meta">Meta Ads</button>
+        <button class="filter-tab" data-filter="organic">Organic &amp; Affiliate</button>
         <button class="filter-tab" data-filter="tiktok">TikTok Shop</button>
         <button class="filter-tab" data-filter="brand">Branding</button>
       </div>
@@ -474,7 +571,7 @@
           <div class="case-content">
             <span class="case-tag">E-Commerce + TikTok Shop + Affiliate + Organic</span>
             <h2 class="case-title">Clothing Brand Revenue Overhaul For Deladoe</h2>
-            <p class="case-desc">Complete Shopify build paired with TikTok Shop, affiliate programs, and organic content strategy. Full-funnel execution that scaled Deladoe to over $1.82M in gross sales across 86K+ fulfilled orders.</p>
+            <p class="case-desc">Complete Shopify build paired with <strong class="gt">TikTok Shop</strong>, affiliate programs, and organic content strategy. Full-funnel execution that scaled Deladoe to over <strong class="gt">$1.82M in gross sales</strong> across <strong class="gt">86K+ fulfilled orders</strong>.</p>
             <div class="case-metrics">
               <div class="c-met"><div class="c-met__v">+340%</div><div class="c-met__l">Revenue Growth</div></div>
               <div class="c-met"><div class="c-met__v">5.2x</div><div class="c-met__l">ROAS</div></div>
@@ -506,7 +603,7 @@
           <div class="case-content">
             <span class="case-tag">Web + TikTok</span>
             <h2 class="case-title">Restaurant Chain Goes Digital</h2>
-            <p class="case-desc">Built an online ordering platform and launched TikTok campaigns that created local virality. Online orders exploded. They had to hire more staff to keep up.</p>
+            <p class="case-desc">Built an <strong class="gt">online ordering platform</strong> and launched TikTok campaigns that created <strong class="gt">local virality</strong>. Online orders exploded. They had to hire more staff to keep up.</p>
             <div class="case-metrics">
               <div class="c-met"><div class="c-met__v">+180%</div><div class="c-met__l">Online Orders</div></div>
               <div class="c-met"><div class="c-met__v">4.2x</div><div class="c-met__l">ROAS</div></div>
@@ -535,122 +632,724 @@
           <div class="case-content">
             <span class="case-tag">Web + Lead Gen</span>
             <h2 class="case-title">Real Estate Agency Rebrand</h2>
-            <p class="case-desc">Brand-new website with IDX integration and Meta lead campaigns that tripled qualified inbound inquiries within 60 days. Clients trusted them before picking up the phone.</p>
+            <p class="case-desc">Brand new website with IDX integration and <strong class="gt">organic lead generation</strong> that <strong class="gt">tripled qualified inbound inquiries</strong> within 60 days. Clients trusted them before picking up the phone.</p>
             <div class="case-metrics">
               <div class="c-met"><div class="c-met__v">3x</div><div class="c-met__l">Leads</div></div>
               <div class="c-met"><div class="c-met__v">$280K</div><div class="c-met__l">Pipeline Added</div></div>
             </div>
             <div class="case-services">
               <span class="case-svc">Custom Website</span>
-              <span class="case-svc">Meta Lead Ads</span>
+              <span class="case-svc">Organic Lead Gen</span>
               <span class="case-svc">Brand Identity</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Case 4 -->
-        <div class="case-card wip reveal" data-tags="tiktok meta">
-          <div class="wip-overlay">
-            <div class="wip-badge"><span class="wip-pulse"></span>Case Study Coming Soon</div>
-            <div class="wip-sub">Full breakdown dropping shortly</div>
-          </div>
-          <div class="case-img" style="background:linear-gradient(135deg,#0a1a08,#0c1a2e,#1a0a2e)">
-            <div class="case-img__inner">
-              <span class="case-img__emoji">&#128170;</span>
-              <div class="case-img__label">Fitness Brand</div>
-              <div class="case-img__sub">TikTok Shop + Meta Scale</div>
-            </div>
-          </div>
-          <div class="case-content">
-            <span class="case-tag">TikTok Shop + Meta</span>
-            <h2 class="case-title">Fitness Brand TikTok Explosion</h2>
-            <p class="case-desc">Creative-led TikTok strategy plus Meta retargeting turned a struggling supplement brand into a $200K per month channel. Tested fast, scaled what worked.</p>
-            <div class="case-metrics">
-              <div class="c-met"><div class="c-met__v">$200K/mo</div><div class="c-met__l">Revenue</div></div>
-              <div class="c-met"><div class="c-met__v">6.1x</div><div class="c-met__l">ROAS</div></div>
-            </div>
-            <div class="case-services">
-              <span class="case-svc">TikTok Shop</span>
-              <span class="case-svc">Meta Ads</span>
-              <span class="case-svc">Creative Strategy</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Case 5 -->
-        <div class="case-card wip reveal d1" data-tags="web brand">
-          <div class="wip-overlay">
-            <div class="wip-badge"><span class="wip-pulse"></span>Case Study Coming Soon</div>
-            <div class="wip-sub">Full breakdown dropping shortly</div>
-          </div>
-          <div class="case-img" style="background:linear-gradient(135deg,#1a0a0a,#1a1005,#051a1a)">
-            <div class="case-img__inner">
-              <span class="case-img__emoji">&#128187;</span>
-              <div class="case-img__label">SaaS Startup</div>
-              <div class="case-img__sub">0 to Launch</div>
-            </div>
-          </div>
-          <div class="case-content">
-            <span class="case-tag">Web + Brand + Ads</span>
-            <h2 class="case-title">SaaS Startup Launch</h2>
-            <p class="case-desc">End-to-end brand identity, marketing site, and paid acquisition setup. Went from zero to 1,200 signups and $40K MRR in 90 days.</p>
-            <div class="case-metrics">
-              <div class="c-met"><div class="c-met__v">1,200</div><div class="c-met__l">Signups</div></div>
-              <div class="c-met"><div class="c-met__v">$40K</div><div class="c-met__l">MRR at 90 Days</div></div>
-            </div>
-            <div class="case-services">
-              <span class="case-svc">Brand Identity</span>
-              <span class="case-svc">Marketing Site</span>
-              <span class="case-svc">Meta Ads</span>
             </div>
           </div>
         </div>
 
       </div>
 
-      <!-- Process Timeline -->
-      <div class="timeline reveal">
-        <div class="pill">How Every Project Runs</div>
-        <h2 style="font-size:clamp(30px,4vw,46px);font-weight:800;margin-bottom:8px;">Consistent Process. <span class="gt">Consistent Results.</span></h2>
-        <div class="timeline__g">
-          <div class="tl-step">
-            <div class="tl-dot">01</div>
-            <div class="tl-t">Discovery</div>
-            <div class="tl-d">Deep dive into your business, goals, and gaps.</div>
+      <!-- Performance Metrics -->
+      <div class="perf-section" id="perfSection">
+        <div class="perf-header">
+          <div class="pill">By The Numbers</div>
+          <h2 class="perf-h">The standard we hold <span class="gt">every project to.</span></h2>
+        </div>
+        <div class="perf-grid">
+
+          <div class="perf-row" data-pct="94">
+            <div class="perf-row__top">
+              <span class="perf-row__label">Client Retention Rate</span>
+              <span class="perf-row__val gt" data-target="94" data-suffix="%">0%</span>
+            </div>
+            <div class="perf-bar"><div class="perf-bar__track"><div class="perf-bar__fill" style="--w:94%"></div></div><div class="perf-bar__dot" style="--w:94%"></div></div>
           </div>
-          <div class="tl-step">
-            <div class="tl-dot">02</div>
-            <div class="tl-t">Strategy</div>
-            <div class="tl-d">Custom roadmap with clear timelines and KPIs.</div>
+
+          <div class="perf-row" data-pct="100">
+            <div class="perf-row__top">
+              <span class="perf-row__label">Projects Delivered on Time</span>
+              <span class="perf-row__val gt" data-target="100" data-suffix="%">0%</span>
+            </div>
+            <div class="perf-bar"><div class="perf-bar__track"><div class="perf-bar__fill" style="--w:100%"></div></div><div class="perf-bar__dot" style="--w:100%"></div></div>
           </div>
-          <div class="tl-step">
-            <div class="tl-dot">03</div>
-            <div class="tl-t">Build & Launch</div>
-            <div class="tl-d">We execute fast without cutting corners.</div>
+
+          <div class="perf-row" data-pct="86">
+            <div class="perf-row__top">
+              <span class="perf-row__label">Avg. Revenue Growth Per Client</span>
+              <span class="perf-row__val gt" data-target="340" data-suffix="%">0%</span>
+            </div>
+            <div class="perf-bar"><div class="perf-bar__track"><div class="perf-bar__fill" style="--w:86%"></div></div><div class="perf-bar__dot" style="--w:86%"></div></div>
           </div>
-          <div class="tl-step">
-            <div class="tl-dot">04</div>
-            <div class="tl-t">Optimize & Scale</div>
-            <div class="tl-d">We iterate on data until results compound.</div>
+
+          <div class="perf-row" data-pct="75">
+            <div class="perf-row__top">
+              <span class="perf-row__label">Avg. Days to Positive ROI</span>
+              <span class="perf-row__val gt" data-target="30" data-prefix="" data-suffix=" Days">0</span>
+            </div>
+            <div class="perf-bar"><div class="perf-bar__track"><div class="perf-bar__fill" style="--w:75%"></div></div><div class="perf-bar__dot" style="--w:75%"></div></div>
           </div>
+
+          <div class="perf-row" data-pct="96">
+            <div class="perf-row__top">
+              <span class="perf-row__label">Clients Who Refer Others</span>
+              <span class="perf-row__val gt" data-target="8" data-prefix="" data-suffix=" in 10">0</span>
+            </div>
+            <div class="perf-bar"><div class="perf-bar__track"><div class="perf-bar__fill" style="--w:96%"></div></div><div class="perf-bar__dot" style="--w:96%"></div></div>
+          </div>
+
         </div>
       </div>
+
+      <style>
+        .perf-section {
+          margin-top: 80px;
+          padding: 72px 0 20px;
+          border-top: 1px solid var(--borderS);
+          position: relative;
+        }
+        .perf-section::before {
+          content: '';
+          position: absolute;
+          top: 0; left: -40px; right: -40px; bottom: 0;
+          background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(124,58,237,.07), transparent 70%);
+          pointer-events: none;
+        }
+        .perf-header {
+          margin-bottom: 52px;
+          position: relative;
+        }
+        .perf-h {
+          font-size: clamp(28px, 4vw, 48px);
+          font-weight: 800;
+          letter-spacing: -.03em;
+          margin-top: 14px;
+          line-height: 1.1;
+        }
+        .perf-grid {
+          display: flex;
+          flex-direction: column;
+          gap: 36px;
+          position: relative;
+        }
+        .perf-row {
+          opacity: 0;
+          transform: translateX(-18px);
+          transition: opacity .5s ease, transform .5s ease;
+        }
+        .perf-section.in .perf-row { opacity: 1; transform: translateX(0); }
+        .perf-row:nth-child(1) { transition-delay: .05s; }
+        .perf-row:nth-child(2) { transition-delay: .18s; }
+        .perf-row:nth-child(3) { transition-delay: .31s; }
+        .perf-row:nth-child(4) { transition-delay: .44s; }
+        .perf-row:nth-child(5) { transition-delay: .57s; }
+
+        .perf-row__top {
+          display: flex;
+          justify-content: space-between;
+          align-items: baseline;
+          margin-bottom: 12px;
+        }
+        .perf-row__label {
+          font-size: 14px;
+          color: var(--g400);
+          font-weight: 500;
+          letter-spacing: .01em;
+          text-transform: uppercase;
+          font-size: 11px;
+          letter-spacing: .08em;
+        }
+        .perf-row__val {
+          font-family: 'Space Grotesk', sans-serif;
+          font-size: clamp(22px, 3vw, 34px);
+          font-weight: 800;
+          letter-spacing: -.03em;
+          line-height: 1;
+        }
+        .perf-bar {
+          height: 6px;
+          background: rgba(255,255,255,.05);
+          border-radius: 99px;
+          position: relative;
+          overflow: visible;
+        }
+        .perf-bar__track {
+          position: absolute;
+          inset: 0;
+          border-radius: 99px;
+          overflow: hidden;
+        }
+        .perf-bar__fill {
+          height: 100%;
+          width: 0%;
+          border-radius: 99px;
+          background: linear-gradient(90deg, #7c3aed, #a78bfa 40%, #22d3ee);
+          transition: width 2.8s cubic-bezier(.16,1,.3,1);
+          position: relative;
+        }
+        .perf-bar__fill::after {
+          content: '';
+          position: absolute;
+          top: 0; left: 0; right: 0; bottom: 0;
+          background: linear-gradient(90deg, transparent 60%, rgba(255,255,255,.18));
+          border-radius: 99px;
+        }
+        .perf-bar__dot {
+          position: absolute;
+          top: 50%;
+          width: 14px; height: 14px;
+          border-radius: 50%;
+          background: #22d3ee;
+          box-shadow: 0 0 10px #22d3ee, 0 0 24px rgba(34,211,238,.5);
+          transform: translate(-50%, -50%);
+          left: 0%;
+          transition: left 2.8s cubic-bezier(.16,1,.3,1);
+          z-index: 2;
+        }
+        .perf-section.in .perf-bar__fill { width: var(--w); }
+        .perf-section.in .perf-bar__dot  { left: var(--w); }
+
+        .perf-row:nth-child(1) .perf-bar__fill,
+        .perf-row:nth-child(1) .perf-bar__dot { transition-delay: .15s; }
+        .perf-row:nth-child(2) .perf-bar__fill,
+        .perf-row:nth-child(2) .perf-bar__dot { transition-delay: .28s; }
+        .perf-row:nth-child(3) .perf-bar__fill,
+        .perf-row:nth-child(3) .perf-bar__dot { transition-delay: .41s; }
+        .perf-row:nth-child(4) .perf-bar__fill,
+        .perf-row:nth-child(4) .perf-bar__dot { transition-delay: .54s; }
+        .perf-row:nth-child(5) .perf-bar__fill,
+        .perf-row:nth-child(5) .perf-bar__dot { transition-delay: .67s; }
+      </style>
+
+      <script>
+        (function(){
+          const section = document.getElementById('perfSection');
+          const vals = section.querySelectorAll('.perf-row__val');
+          const delays = [.15, .28, .41, .54, .67];
+          let rafIds = [];
+
+          function resetAll() {
+            rafIds.forEach(cancelAnimationFrame);
+            rafIds = [];
+            // disable transitions so bars snap to 0 instantly
+            const fills = section.querySelectorAll('.perf-bar__fill, .perf-bar__dot');
+            fills.forEach(el => el.style.transition = 'none');
+            section.classList.remove('in');
+            vals.forEach(el => {
+              const suffix = el.dataset.suffix || '';
+              const prefix = el.dataset.prefix !== undefined ? el.dataset.prefix : '';
+              el.textContent = prefix + '0' + suffix;
+            });
+            // re-enable transitions after a frame
+            requestAnimationFrame(() => requestAnimationFrame(() => {
+              fills.forEach(el => el.style.transition = '');
+            }));
+          }
+
+          function countUp(el, delayS) {
+            const target = +el.dataset.target;
+            const suffix = el.dataset.suffix || '';
+            const prefix = el.dataset.prefix !== undefined ? el.dataset.prefix : '';
+            const delay = delayS * 1000;
+            const tid = setTimeout(() => {
+              const dur = 2500, start = performance.now();
+              function tick(now) {
+                const p = Math.min((now - start) / dur, 1);
+                const ease = 1 - Math.pow(1 - p, 3);
+                el.textContent = prefix + Math.round(ease * target) + suffix;
+                if (p < 1) { const id = requestAnimationFrame(tick); rafIds.push(id); }
+              }
+              const id = requestAnimationFrame(tick);
+              rafIds.push(id);
+            }, delay);
+          }
+
+          function runIn() {
+            section.classList.add('in');
+            vals.forEach((el, i) => countUp(el, delays[i]));
+          }
+
+          const obs = new IntersectionObserver(entries => {
+            if (entries[0].isIntersecting) {
+              runIn();
+            } else {
+              resetAll();
+            }
+          }, { threshold: 0.15 });
+          obs.observe(section);
+        })();
+      </script>
 
     </div>
   </section>
+
+  <!-- ============================================================
+       BUILT DIFFERENT SHOWCASE
+  ============================================================ -->
+  <section class="bdiff" id="bdiff">
+    <canvas id="bdiffCanvas"></canvas>
+    <div class="wrap bdiff__content">
+
+      <div class="bdiff__head">
+        <div class="pill">Our Edge</div>
+        <h2 class="bdiff__title" id="bdiffTitle">&nbsp;</h2>
+        <p class="bdiff__sub" id="bdiffSub"></p>
+      </div>
+
+      <div class="bdiff__cards">
+
+        <div class="bcard" id="bcard1">
+          <div class="bcard__spin"></div>
+          <div class="bcard__inner">
+            <div class="bcard__top">
+              <span class="bcard__num">01</span>
+              <div class="bcard__mini" id="bcMini1">
+                <div class="bcm-bar" style="--d:0s;--w:92%"></div>
+                <div class="bcm-bar" style="--d:.1s;--w:78%"></div>
+                <div class="bcm-bar" style="--d:.2s;--w:95%"></div>
+                <div class="bcm-bar" style="--d:.3s;--w:60%"></div>
+              </div>
+            </div>
+            <h3 class="bcard__title">Pixel Perfect<br>Engineering.</h3>
+            <p class="bcard__desc">Every site we build is hand-coded from scratch. No page builders, no templates. Pure custom engineering with performance scores to match.</p>
+            <div class="bcard__tags">
+              <span class="bcard__tag">GSAP Animations</span>
+              <span class="bcard__tag">Custom Interactions</span>
+              <span class="bcard__tag">Sub-second Load</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="bcard bcard--mid" id="bcard2">
+          <div class="bcard__spin"></div>
+          <div class="bcard__inner">
+            <div class="bcard__top">
+              <span class="bcard__num">02</span>
+              <div class="bcard__mini" id="bcMini2">
+                <svg class="bcm-chart" viewBox="0 0 80 40" fill="none">
+                  <polyline id="bcChartLine" points="0,38" stroke="url(#bcGrad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                  <defs>
+                    <linearGradient id="bcGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="0%" stop-color="#7c3aed"/>
+                      <stop offset="100%" stop-color="#22d3ee"/>
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </div>
+            </div>
+            <h3 class="bcard__title">Growth That<br>Compounds.</h3>
+            <p class="bcard__desc">TikTok Shop, affiliate programs, and organic content that builds real revenue month over month. No ad spend required.</p>
+            <div class="bcard__tags">
+              <span class="bcard__tag">TikTok Shop</span>
+              <span class="bcard__tag">Affiliate Systems</span>
+              <span class="bcard__tag">Organic Content</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="bcard" id="bcard3">
+          <div class="bcard__spin"></div>
+          <div class="bcard__inner">
+            <div class="bcard__top">
+              <span class="bcard__num">03</span>
+              <div class="bcard__mini" id="bcMini3">
+                <div class="bcm-orbs">
+                  <div class="bcm-orb" style="--c:#7c3aed;--s:28px;--d:0s"></div>
+                  <div class="bcm-orb" style="--c:#22d3ee;--s:20px;--d:.4s"></div>
+                  <div class="bcm-orb" style="--c:#a78bfa;--s:14px;--d:.8s"></div>
+                  <div class="bcm-orb" style="--c:#f59e0b;--s:10px;--d:1.2s"></div>
+                </div>
+              </div>
+            </div>
+            <h3 class="bcard__title">Brands That<br>Command Attention.</h3>
+            <p class="bcard__desc">Visual identity, messaging, and positioning that makes people stop scrolling. First impression done right, every single time.</p>
+            <div class="bcard__tags">
+              <span class="bcard__tag">Visual Identity</span>
+              <span class="bcard__tag">Brand Voice</span>
+              <span class="bcard__tag">Positioning</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <style>
+    /* ---- Section ---- */
+    .bdiff {
+      position: relative;
+      padding: 130px 0 120px;
+      overflow: hidden;
+      background: var(--bg);
+    }
+    #bdiffCanvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      opacity: .55;
+    }
+    .bdiff__content { position: relative; z-index: 2; }
+
+    /* ---- Heading ---- */
+    .bdiff__head { text-align: center; margin-bottom: 80px; }
+    .bdiff__title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(42px, 6.5vw, 86px);
+      font-weight: 800;
+      letter-spacing: -.04em;
+      line-height: 1;
+      margin: 14px 0 20px;
+      min-height: 1.1em;
+    }
+    .bdiff__sub {
+      font-size: 16px;
+      color: var(--g400);
+      max-width: 480px;
+      margin: 0 auto;
+      line-height: 1.7;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity .7s ease 1.8s, transform .7s ease 1.8s;
+    }
+    .bdiff__sub.show { opacity: 1; transform: translateY(0); }
+
+    .sc-char { display: inline; }
+    .sc-dim  { opacity: .25; }
+    .sc-gt {
+      background: linear-gradient(90deg, #a78bfa, #22d3ee);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* ---- Cards grid ---- */
+    .bdiff__cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    /* ---- Individual card ---- */
+    .bcard {
+      position: relative;
+      border-radius: 24px;
+      opacity: 0;
+      transform: translateY(50px) scale(.97);
+      transition: opacity .7s ease, transform .7s cubic-bezier(.16,1,.3,1);
+    }
+    .bcard.show { opacity: 1; transform: translateY(0) scale(1); }
+    .bcard:nth-child(1) { transition-delay: .1s; }
+    .bcard:nth-child(2) { transition-delay: .26s; margin-top: 32px; }
+    .bcard:nth-child(3) { transition-delay: .42s; }
+
+    /* Spinning gradient border */
+    .bcard__spin {
+      position: absolute;
+      inset: -1.5px;
+      border-radius: 25px;
+      background: conic-gradient(from 0deg, #7c3aed 0%, #22d3ee 30%, #a78bfa 60%, #7c3aed 100%);
+      opacity: 0;
+      transition: opacity .4s;
+      z-index: 0;
+    }
+    .bcard__spin::after {
+      content: '';
+      position: absolute;
+      inset: 1.5px;
+      border-radius: 24px;
+      background: #0d0d24;
+    }
+    .bcard:hover .bcard__spin { opacity: 1; animation: spin-border 3s linear infinite; }
+    @keyframes spin-border {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Static border when not hovered */
+    .bcard__inner {
+      position: relative;
+      z-index: 1;
+      background: linear-gradient(145deg, #0d0d24, #080820);
+      border: 1px solid rgba(139,92,246,.18);
+      border-radius: 23px;
+      padding: 32px 28px 28px;
+      transition: border-color .4s;
+    }
+    .bcard:hover .bcard__inner { border-color: transparent; }
+
+    /* Float animations */
+    .bcard:nth-child(1) { animation: bfloat1 6s ease-in-out infinite; }
+    .bcard:nth-child(2) { animation: bfloat2 7.5s ease-in-out infinite; }
+    .bcard:nth-child(3) { animation: bfloat3 5.8s ease-in-out infinite; }
+    @keyframes bfloat1 { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+    @keyframes bfloat2 { 0%,100%{transform:translateY(-5px)} 50%{transform:translateY(9px)} }
+    @keyframes bfloat3 { 0%,100%{transform:translateY(-3px)} 50%{transform:translateY(-13px)} }
+    .bcard.show:nth-child(1) { animation: bfloat1 6s ease-in-out infinite .7s; }
+    .bcard.show:nth-child(2) { animation: bfloat2 7.5s ease-in-out infinite .7s; margin-top: 32px; }
+    .bcard.show:nth-child(3) { animation: bfloat3 5.8s ease-in-out infinite .7s; }
+
+    .bcard__top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 24px;
+    }
+    .bcard__num {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      color: var(--g600);
+      text-transform: uppercase;
+    }
+
+    .bcard__title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -.025em;
+      line-height: 1.2;
+      margin-bottom: 14px;
+    }
+    .bcard__desc {
+      font-size: 13.5px;
+      color: var(--g400);
+      line-height: 1.75;
+    }
+    .bcard__tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: 22px;
+    }
+    .bcard__tag {
+      font-size: 10.5px;
+      font-weight: 600;
+      color: var(--lavender);
+      background: rgba(139,92,246,.1);
+      border: 1px solid rgba(139,92,246,.2);
+      border-radius: 100px;
+      padding: 4px 11px;
+    }
+    .bcard--mid .bcard__tag {
+      color: var(--cyan2);
+      background: rgba(6,182,212,.1);
+      border-color: rgba(6,182,212,.2);
+    }
+
+    /* ---- Mini visuals ---- */
+    .bcard__mini { flex-shrink: 0; }
+
+    /* Card 1: bar chart */
+    .bcm-bar {
+      height: 5px;
+      width: 0;
+      background: linear-gradient(90deg, #7c3aed, #a78bfa);
+      border-radius: 99px;
+      margin-bottom: 5px;
+      transition: width 1s cubic-bezier(.16,1,.3,1) var(--d);
+    }
+    .bcard.show .bcm-bar { width: var(--w); }
+
+    /* Card 2: line chart */
+    .bcm-chart { width: 72px; height: 36px; overflow: visible; }
+
+    /* Card 3: color orbs */
+    .bcm-orbs { display: flex; gap: 6px; align-items: center; }
+    .bcm-orb {
+      width: var(--s);
+      height: var(--s);
+      border-radius: 50%;
+      background: var(--c);
+      box-shadow: 0 0 12px var(--c);
+      animation: orb-pulse 2s ease-in-out infinite var(--d);
+    }
+    @keyframes orb-pulse {
+      0%,100% { transform: scale(1); opacity: .8; }
+      50%      { transform: scale(1.25); opacity: 1; }
+    }
+
+    @media (max-width: 860px) {
+      .bdiff__cards { grid-template-columns: 1fr; }
+      .bcard:nth-child(2) { margin-top: 0; }
+      .bcard { animation: none !important; }
+    }
+  </style>
+
+  <script>
+  (function(){
+    /* ---- Particle canvas ---- */
+    const canvas = document.getElementById('bdiffCanvas');
+    const ctx = canvas.getContext('2d');
+    let W, H, particles = [], mouse = { x: -999, y: -999 };
+    const N = 70, LINK = 130, REPEL = 100;
+
+    function resize() {
+      W = canvas.width  = canvas.offsetWidth;
+      H = canvas.height = canvas.offsetHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    canvas.closest('.bdiff').addEventListener('mousemove', e => {
+      const r = canvas.getBoundingClientRect();
+      mouse.x = e.clientX - r.left;
+      mouse.y = e.clientY - r.top;
+    });
+    canvas.closest('.bdiff').addEventListener('mouseleave', () => { mouse.x = -999; mouse.y = -999; });
+
+    for (let i = 0; i < N; i++) {
+      particles.push({
+        x: Math.random() * (W || 800),
+        y: Math.random() * (H || 600),
+        vx: (Math.random() - .5) * .4,
+        vy: (Math.random() - .5) * .4,
+        r: Math.random() * 1.5 + .5,
+        hue: Math.random() > .5 ? '139,92,246' : '6,182,212'
+      });
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, W, H);
+      // move + repel
+      particles.forEach(p => {
+        const dx = p.x - mouse.x, dy = p.y - mouse.y;
+        const dist = Math.sqrt(dx*dx + dy*dy);
+        if (dist < REPEL) {
+          const force = (REPEL - dist) / REPEL * .8;
+          p.vx += (dx / dist) * force;
+          p.vy += (dy / dist) * force;
+        }
+        p.vx *= .98; p.vy *= .98;
+        p.x += p.vx; p.y += p.vy;
+        if (p.x < 0) p.x = W;
+        if (p.x > W) p.x = 0;
+        if (p.y < 0) p.y = H;
+        if (p.y > H) p.y = 0;
+      });
+      // draw lines
+      for (let i = 0; i < N; i++) {
+        for (let j = i+1; j < N; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const d = Math.sqrt(dx*dx + dy*dy);
+          if (d < LINK) {
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.strokeStyle = `rgba(139,92,246,${(1 - d/LINK) * .35})`;
+            ctx.lineWidth = .8;
+            ctx.stroke();
+          }
+        }
+      }
+      // draw dots
+      particles.forEach(p => {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+        ctx.fillStyle = `rgba(${p.hue},.7)`;
+        ctx.fill();
+      });
+      requestAnimationFrame(draw);
+    }
+    draw();
+
+    /* ---- Text scramble ---- */
+    const CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%&';
+    const titleEl = document.getElementById('bdiffTitle');
+    const subEl   = document.getElementById('bdiffSub');
+    const LINE1 = 'Built ';
+    const LINE2 = 'Different.';
+    const full = LINE1 + LINE2;
+
+    function scrambleTitle() {
+      const dur = 1600;
+      const start = performance.now();
+      function tick(now) {
+        const p = Math.min((now - start) / dur, 1);
+        const resolved = Math.floor(p * full.length);
+        let html = '';
+        for (let i = 0; i < full.length; i++) {
+          if (full[i] === ' ') { html += ' '; continue; }
+          if (i < resolved) {
+            const isGt = i >= LINE1.length;
+            html += `<span class="sc-char${isGt ? ' sc-gt' : ''}">${full[i]}</span>`;
+          } else {
+            html += `<span class="sc-char sc-dim">${CHARS[Math.floor(Math.random() * CHARS.length)]}</span>`;
+          }
+        }
+        titleEl.innerHTML = html;
+        if (p < 1) requestAnimationFrame(tick);
+        else subEl.classList.add('show');
+      }
+      requestAnimationFrame(tick);
+    }
+
+    /* ---- Chart line draw ---- */
+    const chartPts = [[0,38],[12,30],[22,34],[34,18],[46,24],[58,10],[72,6]];
+    function drawChartLine(progress) {
+      const line = document.getElementById('bcChartLine');
+      if (!line) return;
+      const pts = chartPts.slice(0, Math.max(2, Math.round(progress * chartPts.length)));
+      line.setAttribute('points', pts.map(p => p[0]+','+p[1]).join(' '));
+    }
+
+    let chartRaf, chartStart;
+    function animateChart() {
+      chartStart = performance.now();
+      function tick(now) {
+        const p = Math.min((now - chartStart) / 1400, 1);
+        drawChartLine(p);
+        if (p < 1) chartRaf = requestAnimationFrame(tick);
+      }
+      chartRaf = requestAnimationFrame(tick);
+    }
+
+    /* ---- Intersection trigger ---- */
+    const section = document.getElementById('bdiff');
+    const cards = section.querySelectorAll('.bcard');
+
+    function resetBdiff() {
+      titleEl.innerHTML = '&nbsp;';
+      subEl.classList.remove('show');
+      subEl.textContent = '';
+      cards.forEach(c => c.classList.remove('show'));
+      // reset chart line
+      const line = document.getElementById('bcChartLine');
+      if (line) line.setAttribute('points', '0,38');
+      if (chartRaf) cancelAnimationFrame(chartRaf);
+      // reset mini bars instantly (no transition)
+      section.querySelectorAll('.bcm-bar').forEach(b => {
+        b.style.transition = 'none';
+        b.style.width = '0';
+        requestAnimationFrame(() => b.style.transition = '');
+      });
+    }
+
+    new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting) {
+        scrambleTitle();
+        subEl.textContent = 'Three disciplines. One team. Zero compromises. This is what separates us.';
+        cards.forEach(c => c.classList.add('show'));
+        setTimeout(animateChart, 600);
+      } else {
+        resetBdiff();
+      }
+    }, { threshold: 0.2 }).observe(section);
+  })();
+  </script>
 
   <!-- CTA -->
   <section class="page-cta">
     <div class="wrap">
       <div class="page-cta__box reveal">
-        <h2 class="page-cta__t">Want Results Like These<br><span class="gt">for Your Brand?</span></h2>
-        <p class="page-cta__s">Book a free strategy call and we will show you exactly what we would do for your business.</p>
+        <div class="page-cta__text">
+          <h2 class="page-cta__t">Want results like these <span class="gt">for your brand?</span></h2>
+          <p class="page-cta__s">Book a free strategy call and we will show you exactly what we would do.</p>
+        </div>
         <div class="page-cta__btns">
           <button onclick="openCal()" class="btn btn-p">
             Book a Strategy Call
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </button>
-          <a href="mailto:hello@nexusagency.co?subject=Service Request" class="btn btn-o">Request a Service</a>
+          <a href="mailto:contact@nexusagency.us?subject=Service Request" class="btn btn-o">Request a Service</a>
         </div>
       </div>
     </div>
@@ -761,9 +1460,9 @@
     /* Calendly */
     function openCal() {
       if (typeof Calendly !== 'undefined') {
-        Calendly.initPopupWidget({ url: 'https://calendly.com/YOUR_USERNAME/consultation' });
+        Calendly.initPopupWidget({ url: 'https://calendly.com/book-nexusagency' });
       } else {
-        window.location.href = 'mailto:hello@nexusagency.co?subject=Consultation Request';
+        window.location.href = 'mailto:contact@nexusagency.us?subject=Consultation Request';
       }
     }
 
@@ -839,6 +1538,120 @@
       new IntersectionObserver(entries => {
         entries[0].isIntersecting ? animateDash() : resetDash();
       }, { threshold: 0.2 }).observe(dash);
+    })();
+
+    /* ================================================
+       CASE METRIC COUNT-UPS
+    ================================================ */
+    (function(){
+      function parseVal(txt) {
+        txt = txt.trim();
+        let prefix = '', suffix = '', num;
+        // extract leading non-numeric (e.g. + $)
+        const preMatch = txt.match(/^([+$]*)/);
+        prefix = preMatch ? preMatch[1] : '';
+        // extract trailing non-numeric (e.g. % x M K Days /mo)
+        const sufMatch = txt.match(/[\d.]+(.*)$/);
+        suffix = sufMatch ? sufMatch[1] : '';
+        // extract the number
+        const numMatch = txt.match(/([\d,.]+)/);
+        if (!numMatch) return null;
+        num = parseFloat(numMatch[1].replace(/,/g, ''));
+        return { prefix, suffix, num };
+      }
+
+      function countVal(el, dur) {
+        const parsed = parseVal(el.dataset.orig);
+        if (!parsed) return;
+        const { prefix, suffix, num } = parsed;
+        const isFloat = num % 1 !== 0;
+        const dec = isFloat ? (num.toString().split('.')[1] || '').length : 0;
+        const start = performance.now();
+        function tick(now) {
+          const p = Math.min((now - start) / dur, 1);
+          const ease = 1 - Math.pow(1 - p, 3);
+          const cur = ease * num;
+          el.textContent = prefix + (dec ? cur.toFixed(dec) : Math.round(cur).toLocaleString('en-US')) + suffix;
+          if (p < 1) requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+      }
+
+      // Store originals and zero out
+      document.querySelectorAll('.c-met__v').forEach(el => {
+        el.dataset.orig = el.textContent;
+        const p = parseVal(el.textContent);
+        if (p) el.textContent = p.prefix + '0' + p.suffix;
+      });
+
+      // Observe each case card — fire count-up when card enters view
+      document.querySelectorAll('.case-card').forEach(card => {
+        const metrics = card.querySelectorAll('.c-met__v');
+        if (!metrics.length) return;
+        new IntersectionObserver(entries => {
+          if (entries[0].isIntersecting) {
+            metrics.forEach((el, i) => {
+              setTimeout(() => countVal(el, 1200), i * 120);
+            });
+          } else {
+            metrics.forEach(el => {
+              const p = parseVal(el.dataset.orig);
+              if (p) el.textContent = p.prefix + '0' + p.suffix;
+            });
+          }
+        }, { threshold: 0.3 }).observe(card);
+      });
+
+      /* Dashboard breakdown + channel values */
+      const ddBreakdown = [
+        { sel: '.dd-row:nth-child(2) .up',   orig: '$1,828,267', prefix: '$', num: 1828267, dec: 0 },
+        { sel: '.dd-row:nth-child(3) .dn',   orig: '-$48,407',   prefix: '-$', num: 48407,  dec: 0 },
+        { sel: '.dd-row:nth-child(4) .dn',   orig: '-$27,842',   prefix: '-$', num: 27842,  dec: 0 },
+        { sel: '.dd-row.hi span:last-child',  orig: '$1,752,017', prefix: '$', num: 1752017, dec: 0 },
+        { sel: '.dd-row:nth-child(6) span:last-child', orig: '$74,458', prefix: '$', num: 74458, dec: 0 },
+        { sel: '.dd-row:nth-child(7) span:last-child', orig: '$43,172', prefix: '$', num: 43172, dec: 0 },
+        { sel: '.dd-row.total span:last-child', orig: '$1,869,647', prefix: '$', num: 1869647, dec: 0 },
+      ];
+      const ddChannels = [
+        { sel: '.dd-ch:nth-child(2) .dd-ch__v', orig: '$1.5M',   prefix: '$', num: 1.5,  suffix: 'M', dec: 1 },
+        { sel: '.dd-ch:nth-child(3) .dd-ch__v', orig: '$145.3K', prefix: '$', num: 145.3, suffix: 'K', dec: 1 },
+        { sel: '.dd-ch:nth-child(4) .dd-ch__v', orig: '$123.6K', prefix: '$', num: 123.6, suffix: 'K', dec: 1 },
+        { sel: '.dd-ch:nth-child(5) .dd-ch__v', orig: '$34.2K',  prefix: '$', num: 34.2,  suffix: 'K', dec: 1 },
+      ];
+
+      const ddDash = document.getElementById('deladoe-dash');
+      if (ddDash) {
+        // reset to 0 on load
+        [...ddBreakdown, ...ddChannels].forEach(cfg => {
+          const el = ddDash.querySelector(cfg.sel);
+          if (el) el.textContent = cfg.prefix + '0' + (cfg.suffix || '');
+        });
+
+        new IntersectionObserver(entries => {
+          if (!entries[0].isIntersecting) {
+            [...ddBreakdown, ...ddChannels].forEach(cfg => {
+              const el = ddDash.querySelector(cfg.sel);
+              if (el) el.textContent = cfg.prefix + '0' + (cfg.suffix || '');
+            });
+            return;
+          }
+          [...ddBreakdown, ...ddChannels].forEach((cfg, i) => {
+            const el = ddDash.querySelector(cfg.sel);
+            if (!el) return;
+            setTimeout(() => {
+              const dur = 1600, start = performance.now();
+              function tick(now) {
+                const p = Math.min((now - start) / dur, 1);
+                const ease = 1 - Math.pow(1 - p, 3);
+                const cur = ease * cfg.num;
+                el.textContent = cfg.prefix + (cfg.dec ? cur.toFixed(cfg.dec) : Math.round(cur).toLocaleString('en-US')) + (cfg.suffix || '');
+                if (p < 1) requestAnimationFrame(tick);
+              }
+              requestAnimationFrame(tick);
+            }, 300 + i * 80);
+          });
+        }, { threshold: 0.2 }).observe(ddDash);
+      }
     })();
   </script>
 </body>
