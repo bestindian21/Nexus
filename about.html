@@ -275,6 +275,68 @@
     }
 
     /* ================================================
+       DUO SECTION
+    ================================================ */
+    .duo-sec { padding: 0 0 110px; }
+    .duo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 56px; }
+    .duo-card { background: var(--bg2); border: 1px solid var(--borderS); border-radius: 24px; padding: 36px; position: relative; overflow: hidden; }
+    #duoCardB::before { content:''; position:absolute; top:-60px; right:-60px; width:200px; height:200px; border-radius:50%; background:radial-gradient(circle,rgba(124,58,237,.12),transparent 70%); pointer-events:none; }
+    #duoCardD::before { content:''; position:absolute; top:-60px; right:-60px; width:200px; height:200px; border-radius:50%; background:radial-gradient(circle,rgba(6,182,212,.1),transparent 70%); pointer-events:none; }
+    .duo-hdr { display:flex; align-items:center; gap:14px; margin-bottom:28px; }
+    .duo-av { width:48px; height:48px; border-radius:14px; display:flex; align-items:center; justify-content:center; font-family:'Space Grotesk',sans-serif; font-size:20px; font-weight:800; flex-shrink:0; }
+    .duo-av--b { background:linear-gradient(135deg,rgba(124,58,237,.3),rgba(167,139,250,.2)); border:1px solid rgba(124,58,237,.4); color:#a78bfa; }
+    .duo-av--d { background:linear-gradient(135deg,rgba(6,182,212,.25),rgba(34,211,238,.15)); border:1px solid rgba(6,182,212,.4); color:#22d3ee; }
+    .duo-nm { font-family:'Space Grotesk',sans-serif; font-size:17px; font-weight:700; }
+    .duo-rl { font-size:12px; color:var(--g500); margin-top:2px; }
+    .duo-live { margin-left:auto; display:flex; align-items:center; gap:5px; font-size:11px; color:#34d399; font-weight:600; }
+    .duo-live span { width:6px; height:6px; border-radius:50%; background:#34d399; animation:blink 2s infinite; }
+    .duo-stats { display:flex; flex-direction:column; gap:16px; margin-bottom:24px; }
+    .duo-stat__top { display:flex; justify-content:space-between; margin-bottom:6px; font-size:12px; }
+    .duo-stat__lbl { color:var(--g400); }
+    .duo-stat__val { font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:14px; color:var(--white); }
+    .duo-stat__big { font-family:'Space Grotesk',sans-serif; font-size:26px; font-weight:800; line-height:1; margin:4px 0 8px; letter-spacing:-.02em; }
+    .duo-bar-t { height:5px; background:rgba(255,255,255,.07); border-radius:3px; overflow:hidden; }
+    .duo-bar-f { height:100%; width:0%; border-radius:3px; transition:width 1.6s cubic-bezier(.4,0,.2,1); }
+    /* rings row */
+    .duo-rings-row { display:flex; align-items:flex-start; gap:10px; margin-bottom:18px; }
+    .duo-sring-item { display:flex; flex-direction:column; align-items:center; gap:4px; flex-shrink:0; }
+    .duo-sring-wrap { position:relative; width:64px; height:64px; }
+    .duo-sring-wrap svg { transform:rotate(-90deg); }
+    .duo-srbg { fill:none; stroke:rgba(255,255,255,.07); stroke-width:7; }
+    .duo-srfill { fill:none; stroke-width:7; stroke-linecap:round; transition:stroke-dashoffset 1.8s cubic-bezier(.4,0,.2,1); }
+    .duo-sring-inner { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; }
+    .duo-sring-inner span { font-family:'Space Grotesk',sans-serif; font-size:16px; font-weight:800; line-height:1; }
+    .duo-sring-lbl { font-size:8px; text-transform:uppercase; letter-spacing:.06em; color:var(--g500); }
+    /* terminal — fixed height, never resizes */
+    .duo-terminal { flex:1; background:rgba(0,0,0,.35); border:1px solid rgba(255,255,255,.08); border-radius:10px; overflow:hidden; height:90px; display:flex; flex-direction:column; }
+    .duo-term-bar { display:flex; align-items:center; gap:5px; padding:6px 10px; background:rgba(255,255,255,.04); border-bottom:1px solid rgba(255,255,255,.06); flex-shrink:0; }
+    .duo-term-dot { width:7px; height:7px; border-radius:50%; flex-shrink:0; }
+    .duo-term-body { padding:7px 10px; font-family:'SF Mono','Fira Code','Courier New',monospace; font-size:9.5px; line-height:1.75; color:var(--g400); overflow:hidden; flex:1; }
+    .duo-term-body .t-cmd { color:#22d3ee; }
+    .duo-term-body .t-ok  { color:#34d399; }
+    .duo-term-body .t-dim { color:var(--g600); font-style:italic; }
+    /* tech stack bars */
+    .duo-stack { margin-bottom:18px; }
+    .duo-stack-hdr { font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--g500); margin-bottom:10px; }
+    .duo-stack-row { display:flex; align-items:center; gap:8px; margin-bottom:8px; }
+    .duo-stack-lbl { font-size:10px; color:var(--g400); width:145px; flex-shrink:0; white-space:nowrap; }
+    .duo-stack-track { flex:1; height:5px; background:rgba(255,255,255,.07); border-radius:3px; overflow:hidden; }
+    .duo-stack-fill { height:100%; width:0%; border-radius:3px; transition:width 1.5s cubic-bezier(.4,0,.2,1); }
+    .duo-stack-pct { font-family:'Space Grotesk',sans-serif; font-size:10px; font-weight:700; color:var(--g400); width:28px; text-align:right; flex-shrink:0; }
+    .duo-analytics { margin-bottom:20px; padding:16px; background:rgba(255,255,255,.02); border:1px solid rgba(255,255,255,.06); border-radius:14px; }
+    .duo-an-hdr { display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; }
+    .duo-an-title { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--g500); }
+    .duo-an-live { display:flex; align-items:center; gap:5px; font-size:10px; color:#a78bfa; font-weight:600; }
+    .duo-an-live span { width:5px; height:5px; border-radius:50%; background:#a78bfa; animation:blink 2s infinite; }
+    .duo-an-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
+    .duo-an-cell { text-align:center; padding:10px 6px; background:rgba(124,58,237,.06); border:1px solid rgba(124,58,237,.12); border-radius:10px; }
+    .duo-an-val { font-family:'Space Grotesk',sans-serif; font-size:15px; font-weight:800; line-height:1; margin-bottom:4px; }
+    .duo-an-lbl { font-size:9px; color:var(--g500); line-height:1.3; }
+    .duo-chips { display:flex; flex-wrap:wrap; gap:6px; }
+    .duo-chips span { font-size:10px; padding:4px 10px; border-radius:20px; background:rgba(124,58,237,.1); border:1px solid rgba(124,58,237,.25); color:var(--g400); font-weight:500; }
+    @media (max-width:768px) { .duo-grid { grid-template-columns:1fr; } }
+
+    /* ================================================
        TESTIMONIALS
     ================================================ */
     .testi { padding: 110px 0; background: linear-gradient(180deg, transparent, rgba(124,58,237,.025), transparent); }
@@ -289,6 +351,12 @@
       transition: border-color .3s, transform .3s;
     }
     .t-card2:hover { border-color: rgba(124,58,237,.3); transform: translateY(-3px); }
+    .t-card2--cs { border-style: dashed; border-color: rgba(139,92,246,.18); background: rgba(124,58,237,.03); cursor: default; }
+    .t-card2--cs:hover { border-color: rgba(139,92,246,.28); transform: none; }
+    .t-cs-inner { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; min-height: 180px; gap: 14px; text-align: center; }
+    .t-cs-icon { width: 56px; height: 56px; border-radius: 16px; background: linear-gradient(135deg,rgba(124,58,237,.15),rgba(6,182,212,.08)); border: 1px solid rgba(124,58,237,.25); display: flex; align-items: center; justify-content: center; color: var(--lavender); }
+    .t-cs-label { font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 700; color: var(--lavender); letter-spacing: .01em; }
+    .t-cs-sub { font-size: 13px; color: var(--g500); line-height: 1.6; max-width: 200px; }
     .t-card2::before {
       content: '\201C'; position: absolute; top: 16px; right: 22px;
       font-size: 72px; font-family: 'Space Grotesk', sans-serif; font-weight: 800;
@@ -327,27 +395,18 @@
     /* ================================================
        CTA
     ================================================ */
-    .cta-section { padding: 110px 0; }
+    .cta-section { padding: 60px 0; }
     .cta-box {
-      background: linear-gradient(135deg, rgba(124,58,237,.14), rgba(6,182,212,.07));
-      border: 1px solid rgba(124,58,237,.28);
-      border-radius: 32px; padding: 88px 60px; text-align: center; position: relative; overflow: hidden;
+      background: linear-gradient(135deg, rgba(124,58,237,.1), rgba(6,182,212,.05));
+      border: 1px solid rgba(124,58,237,.2); border-radius: 20px;
+      padding: 40px 40px; position: relative; overflow: hidden;
+      display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap;
     }
-    .cta-box::before {
-      content: ''; position: absolute; top: -120px; left: 50%; transform: translateX(-50%);
-      width: 480px; height: 480px;
-      background: radial-gradient(circle, rgba(124,58,237,.18), transparent 65%);
-      pointer-events: none;
-    }
-    .cta-box::after {
-      content: ''; position: absolute; bottom: -100px; right: -100px;
-      width: 340px; height: 340px;
-      background: radial-gradient(circle, rgba(6,182,212,.1), transparent 65%);
-      pointer-events: none;
-    }
-    .cta-box__t { font-size: clamp(36px, 5vw, 58px); font-weight: 800; margin-bottom: 18px; position: relative; z-index: 1; }
-    .cta-box__s { font-size: 18px; color: var(--g400); max-width: 500px; margin: 0 auto 48px; line-height: 1.7; position: relative; z-index: 1; }
-    .cta-box__btns { display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: wrap; position: relative; z-index: 1; }
+    .cta-box::before { content: ''; position: absolute; top: -60px; left: 30%; width: 280px; height: 280px; background: radial-gradient(circle, rgba(124,58,237,.14), transparent 65%); pointer-events: none; }
+    .cta-box__text { text-align: left; position: relative; }
+    .cta-box__t { font-size: clamp(20px, 2.8vw, 30px); font-weight: 800; margin-bottom: 6px; }
+    .cta-box__s { font-size: 14px; color: var(--g400); margin: 0; line-height: 1.6; position: relative; }
+    .cta-box__btns { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; position: relative; flex-shrink: 0; }
     .cta-note { font-size: 13px; color: var(--g500); margin-top: 18px; position: relative; z-index: 1; }
 
     /* ================================================
@@ -378,7 +437,7 @@
       .nav__tog { display: flex; }
       .team__g,.footer__g { grid-template-columns: 1fr; }
       .t-card2 { min-width: calc(100% - 12px); }
-      .cta-box { padding: 52px 24px; }
+      .cta-box { padding: 32px 24px; flex-direction: column; align-items: flex-start; }
       .footer__g { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 480px) {
@@ -454,7 +513,7 @@
     <div class="wrap">
       <div class="pill">About Nexus</div>
       <h1>Two Operators.<br>One <span class="gt">Relentless Standard.</span></h1>
-      <p>We don't sell retainers. We build systems, run campaigns, and deliver outcomes that change the trajectory of your business.</p>
+      <p>We don't sell retainers. We <strong class="gt">build systems</strong>, run campaigns, and deliver <strong class="gt">outcomes that change the trajectory</strong> of your business.</p>
     </div>
   </section>
 
@@ -465,24 +524,24 @@
         <div>
           <div class="pill">Who We Are</div>
           <h2 style="font-family:'Space Grotesk',sans-serif;font-size:clamp(32px,4vw,48px);font-weight:800;letter-spacing:-.03em;margin-bottom:20px;line-height:1.1;">Not an Agency.<br><span class="gt">A Growth Partner.</span></h2>
-          <p style="font-size:16px;color:var(--g400);line-height:1.8;margin-bottom:18px;">Nexus isn't a bloated agency with account managers passing your project around. It's two specialists — Brandon and Darsh — who operate at the intersection of <strong style="color:var(--white);">design, technology, and organic growth.</strong></p>
-          <p style="font-size:16px;color:var(--g400);line-height:1.8;">We take a limited number of clients intentionally. When you work with Nexus, you work <em style="color:var(--lavender);">directly</em> with the people executing on your brand — not a junior account manager reading a brief.</p>
+          <p style="font-size:16px;color:var(--g400);line-height:1.8;margin-bottom:18px;">Nexus isn't a bloated agency with account managers passing your project around. It's two specialists, Brandon and Darsh, who operate at the intersection of <strong class="gt">design, technology, and organic growth.</strong></p>
+          <p style="font-size:16px;color:var(--g400);line-height:1.8;">We take a <strong class="gt">limited number of clients</strong> intentionally. When you work with Nexus, you work <strong class="gt">directly</strong> with the people executing on your brand. Not a junior account manager reading a brief.</p>
         </div>
         <div class="stats-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
           <div style="background:var(--bg2);border:1px solid var(--borderS);border-radius:20px;padding:28px 24px;text-align:center;">
-            <div style="font-family:'Space Grotesk',sans-serif;font-size:44px;font-weight:800;background:linear-gradient(135deg,#fff,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1;margin-bottom:8px;">$2M+</div>
+            <div id="statRev" style="font-family:'Space Grotesk',sans-serif;font-size:44px;font-weight:800;background:linear-gradient(135deg,#fff,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1;margin-bottom:8px;">$0M+</div>
             <div style="font-size:13px;color:var(--g400);">Revenue Generated</div>
           </div>
           <div style="background:var(--bg2);border:1px solid var(--borderS);border-radius:20px;padding:28px 24px;text-align:center;">
-            <div style="font-family:'Space Grotesk',sans-serif;font-size:44px;font-weight:800;background:linear-gradient(135deg,#fff,#22d3ee);-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1;margin-bottom:8px;">15+</div>
+            <div id="statBrands" style="font-family:'Space Grotesk',sans-serif;font-size:44px;font-weight:800;background:linear-gradient(135deg,#fff,#22d3ee);-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1;margin-bottom:8px;">0+</div>
             <div style="font-size:13px;color:var(--g400);">Brands Transformed</div>
           </div>
           <div style="background:var(--bg2);border:1px solid var(--borderS);border-radius:20px;padding:28px 24px;text-align:center;">
-            <div style="font-family:'Space Grotesk',sans-serif;font-size:44px;font-weight:800;background:linear-gradient(135deg,#fbbf24,#f59e0b);-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1;margin-bottom:8px;">6 Yrs</div>
+            <div id="statYrs" style="font-family:'Space Grotesk',sans-serif;font-size:44px;font-weight:800;background:linear-gradient(135deg,#fbbf24,#f59e0b);-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1;margin-bottom:8px;">0 Yrs</div>
             <div style="font-size:13px;color:var(--g400);">Combined Experience</div>
           </div>
           <div style="background:var(--bg2);border:1px solid var(--borderS);border-radius:20px;padding:28px 24px;text-align:center;">
-            <div style="font-family:'Space Grotesk',sans-serif;font-size:44px;font-weight:800;background:linear-gradient(135deg,#fff,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1;margin-bottom:8px;">4.8x</div>
+            <div id="statRoas" style="font-family:'Space Grotesk',sans-serif;font-size:44px;font-weight:800;background:linear-gradient(135deg,#fff,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1;margin-bottom:8px;">0x</div>
             <div style="font-size:13px;color:var(--g400);">Avg. ROAS Delivered</div>
           </div>
         </div>
@@ -496,20 +555,26 @@
       <div style="max-width:760px;margin:0 auto;text-align:center;">
         <div class="pill">Our Mission</div>
         <h2 class="reveal" style="font-family:'Space Grotesk',sans-serif;font-size:clamp(34px,5vw,54px);font-weight:800;letter-spacing:-.035em;margin-bottom:24px;line-height:1.1;">To Give Every Brand We Work With an <span class="gt">Unfair Advantage Online</span></h2>
-        <p class="reveal d1" style="font-size:18px;color:var(--g400);line-height:1.8;margin-bottom:48px;">We build the digital infrastructure that lets ambitious businesses compete — and win — against bigger players. A website that closes. Ads that convert. A brand that commands trust before the first call even happens.</p>
+        <p class="reveal d1" style="font-size:18px;color:var(--g400);line-height:1.8;margin-bottom:48px;">We build the <strong class="gt">digital infrastructure</strong> that lets ambitious businesses compete and win against bigger players. A website that closes. Ads that convert. A brand that <strong class="gt">commands trust</strong> before the first call even happens.</p>
         <div class="reveal d2 mission-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;">
           <div style="background:var(--bg2);border:1px solid var(--borderS);border-radius:20px;padding:32px 24px;">
-            <div style="font-size:32px;margin-bottom:14px;">&#127760;</div>
+            <div style="width:52px;height:52px;background:linear-gradient(135deg,rgba(124,58,237,.25),rgba(6,182,212,.15));border:1px solid rgba(124,58,237,.4);border-radius:14px;display:flex;align-items:center;justify-content:center;margin-bottom:18px;">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/></svg>
+            </div>
             <h3 style="font-family:'Space Grotesk',sans-serif;font-size:17px;font-weight:700;margin-bottom:10px;">Build for Impact</h3>
             <p style="font-size:14px;color:var(--g400);line-height:1.7;">Every line of code, every ad, every design decision is made with one question: does this drive results?</p>
           </div>
           <div style="background:var(--bg2);border:1px solid var(--borderS);border-radius:20px;padding:32px 24px;">
-            <div style="font-size:32px;margin-bottom:14px;">&#128293;</div>
+            <div style="width:52px;height:52px;background:linear-gradient(135deg,rgba(124,58,237,.25),rgba(6,182,212,.15));border:1px solid rgba(124,58,237,.4);border-radius:14px;display:flex;align-items:center;justify-content:center;margin-bottom:18px;">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            </div>
             <h3 style="font-family:'Space Grotesk',sans-serif;font-size:17px;font-weight:700;margin-bottom:10px;">Move Fast</h3>
             <p style="font-size:14px;color:var(--g400);line-height:1.7;">No 6-month timelines. No agency bloat. We move with urgency because every day your brand isn't optimized is revenue left behind.</p>
           </div>
           <div style="background:var(--bg2);border:1px solid var(--borderS);border-radius:20px;padding:32px 24px;">
-            <div style="font-size:32px;margin-bottom:14px;">&#128176;</div>
+            <div style="width:52px;height:52px;background:linear-gradient(135deg,rgba(124,58,237,.25),rgba(6,182,212,.15));border:1px solid rgba(124,58,237,.4);border-radius:14px;display:flex;align-items:center;justify-content:center;margin-bottom:18px;">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+            </div>
             <h3 style="font-family:'Space Grotesk',sans-serif;font-size:17px;font-weight:700;margin-bottom:10px;">Own the Results</h3>
             <p style="font-size:14px;color:var(--g400);line-height:1.7;">We don't hide behind vanity metrics. You get clear reporting, real numbers, and a team that stands behind every outcome we deliver.</p>
           </div>
@@ -529,16 +594,22 @@
           <h2 style="font-family:'Space Grotesk',sans-serif;font-size:clamp(30px,4vw,46px);font-weight:800;letter-spacing:-.03em;margin-bottom:24px;line-height:1.15;">Delivering Results That<br><span class="gt">Speak for Themselves</span></h2>
           <div style="display:flex;flex-direction:column;gap:18px;">
             <div style="display:flex;align-items:flex-start;gap:16px;">
-              <div style="width:28px;height:28px;background:linear-gradient(135deg,var(--purple),var(--cyan));border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;margin-top:2px;">&#10003;</div>
-              <p style="font-size:16px;color:var(--g400);line-height:1.7;margin:0;"><strong style="color:var(--white);">We only take clients we can genuinely help.</strong> If we don't think we can move the needle for your business, we'll tell you straight — and point you in the right direction.</p>
+              <div style="width:28px;height:28px;background:linear-gradient(135deg,var(--purple),var(--cyan));border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              <p style="font-size:16px;color:var(--g400);line-height:1.7;margin:0;"><strong class="gt">We only take clients we can genuinely help.</strong> If we don't think we can move the needle for your business, we'll tell you straight and point you in the right direction.</p>
             </div>
             <div style="display:flex;align-items:flex-start;gap:16px;">
-              <div style="width:28px;height:28px;background:linear-gradient(135deg,var(--purple),var(--cyan));border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;margin-top:2px;">&#10003;</div>
-              <p style="font-size:16px;color:var(--g400);line-height:1.7;margin:0;"><strong style="color:var(--white);">No fluff reports, no vanity metrics.</strong> You get dashboards and breakdowns that show exactly what we did, what it cost, and what it returned.</p>
+              <div style="width:28px;height:28px;background:linear-gradient(135deg,var(--purple),var(--cyan));border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              <p style="font-size:16px;color:var(--g400);line-height:1.7;margin:0;"><strong class="gt">No fluff reports, no vanity metrics.</strong> You get dashboards and breakdowns that show exactly what we did, what it cost, and what it returned.</p>
             </div>
             <div style="display:flex;align-items:flex-start;gap:16px;">
-              <div style="width:28px;height:28px;background:linear-gradient(135deg,var(--purple),var(--cyan));border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;margin-top:2px;">&#10003;</div>
-              <p style="font-size:16px;color:var(--g400);line-height:1.7;margin:0;"><strong style="color:var(--white);">If we build it, it works.</strong> If we run ads, they convert. We've staked our reputation on the results in our portfolio — and we intend to keep it that way.</p>
+              <div style="width:28px;height:28px;background:linear-gradient(135deg,var(--purple),var(--cyan));border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              <p style="font-size:16px;color:var(--g400);line-height:1.7;margin:0;"><strong class="gt">If we build it, it works.</strong> If we run ads, they convert. We've staked our reputation on the results in our portfolio and we intend to keep it that way.</p>
             </div>
           </div>
         </div>
@@ -552,7 +623,7 @@
       <div class="sh reveal" style="text-align:center;">
         <div class="pill">Meet the Team</div>
         <h2 class="sh__t">The People Behind<br><span class="gt">Every Result We Deliver</span></h2>
-        <p class="sh__s" style="margin:0 auto;">You work directly with us. No handoffs, no account managers. Just two specialists fully committed to your growth.</p>
+        <p class="sh__s" style="margin:0 auto;">You work <strong class="gt">directly</strong> with us. No handoffs, no account managers. Just <strong class="gt">two specialists</strong> fully committed to your growth.</p>
       </div>
       <div class="team__g">
 
@@ -563,7 +634,7 @@
           </div>
           <div class="t-name">Brandon</div>
           <div class="t-role">Co-Founder &amp; Marketing Lead</div>
-          <p class="t-bio">Organic growth and affiliate marketing specialist with a track record of scaling e-commerce brands to 7 figures. Brandon has generated over $2M in revenue through TikTok Shop, affiliate programs, and content-driven strategies across multiple industries.</p>
+          <p class="t-bio">Organic growth and affiliate marketing specialist with a track record of scaling e-commerce brands to <strong class="gt">7 figures</strong>. Brandon has generated over <strong class="gt">$2M in revenue</strong> through TikTok Shop, affiliate programs, and content-driven strategies across multiple industries.</p>
           <div class="t-badges">
             <span class="t-badge">Affiliate Marketing</span>
             <span class="t-badge">TikTok Shop</span>
@@ -579,12 +650,195 @@
           </div>
           <div class="t-name">Darsh</div>
           <div class="t-role">Co-Founder &amp; Web Lead</div>
-          <p class="t-bio">Full-stack developer and designer who has built high-converting websites for brands across fashion, fitness, SaaS, and real estate. Darsh specializes in premium animations, AI integrations, and conversion-optimized experiences that actually move the needle.</p>
+          <p class="t-bio">Full-stack developer and designer who has built <strong class="gt">high-converting websites</strong> for brands across fashion, fitness, SaaS, and real estate. Darsh specializes in <strong class="gt">premium animations</strong>, AI integrations, and conversion-optimized experiences that actually <strong class="gt">move the needle</strong>.</p>
           <div class="t-badges">
             <span class="t-badge">Web Development</span>
             <span class="t-badge">UI/UX Design</span>
             <span class="t-badge">AI Integration</span>
             <span class="t-badge">Brand Identity</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================ DUO SECTION ================================ -->
+  <section class="duo-sec">
+    <div class="wrap">
+      <div class="sh reveal" style="text-align:center;">
+        <div class="pill">The Specialists</div>
+        <h2 class="sh__t">Different Weapons.<br><span class="gt">One Mission.</span></h2>
+        <p class="sh__s" style="margin:0 auto;">Brandon owns the growth. Darsh owns the build. Together they cover every angle your brand needs to win.</p>
+      </div>
+      <div class="duo-grid">
+
+        <!-- Brandon -->
+        <div class="duo-card reveal" id="duoCardB">
+          <div class="duo-hdr">
+            <div class="duo-av duo-av--b">B</div>
+            <div>
+              <div class="duo-nm">Brandon</div>
+              <div class="duo-rl">Growth &amp; Marketing Lead</div>
+            </div>
+            <div class="duo-live"><span></span> Live</div>
+          </div>
+          <div class="duo-stats">
+            <div>
+              <div class="duo-stat__top">
+                <span class="duo-stat__lbl">Revenue Generated</span>
+              </div>
+              <div id="dRevVal" class="duo-stat__big" style="background:linear-gradient(135deg,#a78bfa,#7c3aed);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">$0</div>
+              <div class="duo-bar-t"><div class="duo-bar-f" id="dRevBar" style="background:linear-gradient(90deg,#a78bfa,#7c3aed);"></div></div>
+            </div>
+            <div>
+              <div class="duo-stat__top">
+                <span class="duo-stat__lbl">Average ROAS</span>
+              </div>
+              <div id="dRoasVal" class="duo-stat__big" style="background:linear-gradient(135deg,#22d3ee,#06b6d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">0x</div>
+              <div class="duo-bar-t"><div class="duo-bar-f" id="dRoasBar" style="background:linear-gradient(90deg,#22d3ee,#06b6d4);"></div></div>
+            </div>
+            <div>
+              <div class="duo-stat__top">
+                <span class="duo-stat__lbl">Brands Scaled</span>
+              </div>
+              <div id="dBrandVal" class="duo-stat__big" style="background:linear-gradient(135deg,#34d399,#059669);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">0</div>
+              <div class="duo-bar-t"><div class="duo-bar-f" id="dBrandBar" style="background:linear-gradient(90deg,#34d399,#059669);"></div></div>
+            </div>
+          </div>
+          <!-- Marketing analytics grid -->
+          <div class="duo-analytics">
+            <div class="duo-an-hdr">
+              <span class="duo-an-title">Marketing Analytics</span>
+              <span class="duo-an-live"><span></span> Aggregate</span>
+            </div>
+            <div class="duo-an-grid">
+              <div class="duo-an-cell">
+                <div class="duo-an-val" id="daTikTok" style="background:linear-gradient(135deg,#a78bfa,#22d3ee);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">0</div>
+                <div class="duo-an-lbl">TikTok Views</div>
+              </div>
+              <div class="duo-an-cell">
+                <div class="duo-an-val" id="daAffiliate" style="background:linear-gradient(135deg,#34d399,#06b6d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">$0</div>
+                <div class="duo-an-lbl">Affiliate Revenue</div>
+              </div>
+              <div class="duo-an-cell">
+                <div class="duo-an-val" id="daCampaigns" style="background:linear-gradient(135deg,#f59e0b,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">0</div>
+                <div class="duo-an-lbl">Campaigns Run</div>
+              </div>
+              <div class="duo-an-cell">
+                <div class="duo-an-val" id="daCreators" style="background:linear-gradient(135deg,#22d3ee,#34d399);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">0</div>
+                <div class="duo-an-lbl">Creators Activated</div>
+              </div>
+              <div class="duo-an-cell">
+                <div class="duo-an-val" id="daConv" style="background:linear-gradient(135deg,#a78bfa,#f59e0b);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">0%</div>
+                <div class="duo-an-lbl">Avg. Conv. Rate</div>
+              </div>
+              <div class="duo-an-cell">
+                <div class="duo-an-val" id="daOrders" style="background:linear-gradient(135deg,#7c3aed,#22d3ee);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">0</div>
+                <div class="duo-an-lbl">Orders Attributed</div>
+              </div>
+            </div>
+          </div>
+          <div class="duo-chips">
+            <span>TikTok Shop</span>
+            <span>Affiliate Programs</span>
+            <span>Organic Growth</span>
+            <span>Meta Ads</span>
+            <span>Content Strategy</span>
+          </div>
+        </div>
+
+        <!-- Darsh -->
+        <div class="duo-card reveal d1" id="duoCardD">
+          <div class="duo-hdr">
+            <div class="duo-av duo-av--d">D</div>
+            <div>
+              <div class="duo-nm">Darsh</div>
+              <div class="duo-rl">Web &amp; Technology Lead</div>
+            </div>
+            <div class="duo-live"><span></span> Live</div>
+          </div>
+          <!-- 3 score rings -->
+          <div class="duo-rings-row">
+            <div class="duo-sring-item">
+              <div class="duo-sring-wrap">
+                <svg width="64" height="64" viewBox="0 0 64 64"><circle class="duo-srbg" cx="32" cy="32" r="26"/><circle class="duo-srfill" cx="32" cy="32" r="26" id="drPerf" stroke="#a78bfa" stroke-dasharray="163.4" stroke-dashoffset="163.4"/></svg>
+                <div class="duo-sring-inner"><span id="drPerfN" style="color:#a78bfa;">0</span></div>
+              </div>
+              <div class="duo-sring-lbl">Perf</div>
+            </div>
+            <div class="duo-sring-item">
+              <div class="duo-sring-wrap">
+                <svg width="64" height="64" viewBox="0 0 64 64"><circle class="duo-srbg" cx="32" cy="32" r="26"/><circle class="duo-srfill" cx="32" cy="32" r="26" id="drSEO" stroke="#22d3ee" stroke-dasharray="163.4" stroke-dashoffset="163.4"/></svg>
+                <div class="duo-sring-inner"><span id="drSEON" style="color:#22d3ee;">0</span></div>
+              </div>
+              <div class="duo-sring-lbl">SEO</div>
+            </div>
+            <div class="duo-sring-item">
+              <div class="duo-sring-wrap">
+                <svg width="64" height="64" viewBox="0 0 64 64"><circle class="duo-srbg" cx="32" cy="32" r="26"/><circle class="duo-srfill" cx="32" cy="32" r="26" id="drA11y" stroke="#34d399" stroke-dasharray="163.4" stroke-dashoffset="163.4"/></svg>
+                <div class="duo-sring-inner"><span id="drA11yN" style="color:#34d399;">0</span></div>
+              </div>
+              <div class="duo-sring-lbl">A11y</div>
+            </div>
+            <!-- Terminal fills remaining width -->
+            <div class="duo-terminal">
+              <div class="duo-term-bar">
+                <span class="duo-term-dot" style="background:#ff5f57;"></span>
+                <span class="duo-term-dot" style="background:#febc2e;"></span>
+                <span class="duo-term-dot" style="background:#28c840;"></span>
+                <span style="font-size:9px;color:var(--g500);margin-left:6px;">nexus-build</span>
+              </div>
+              <div class="duo-term-body" id="duoTermBody"></div>
+            </div>
+          </div>
+          <!-- Tech stack bars -->
+          <div class="duo-stack">
+            <div class="duo-stack-hdr">Tech Stack Proficiency</div>
+            <div class="duo-stack-row"><span class="duo-stack-lbl">JavaScript / GSAP</span><div class="duo-stack-track"><div class="duo-stack-fill" id="stk1" data-w="96" style="background:linear-gradient(90deg,#a78bfa,#22d3ee);"></div></div><span class="duo-stack-pct" id="stk1p">0%</span></div>
+            <div class="duo-stack-row"><span class="duo-stack-lbl">UI / UX Design</span><div class="duo-stack-track"><div class="duo-stack-fill" id="stk2" data-w="93" style="background:linear-gradient(90deg,#22d3ee,#34d399);"></div></div><span class="duo-stack-pct" id="stk2p">0%</span></div>
+            <div class="duo-stack-row"><span class="duo-stack-lbl">AI Integration</span><div class="duo-stack-track"><div class="duo-stack-fill" id="stk3" data-w="89" style="background:linear-gradient(90deg,#f59e0b,#a78bfa);"></div></div><span class="duo-stack-pct" id="stk3p">0%</span></div>
+            <div class="duo-stack-row"><span class="duo-stack-lbl">SEO Architecture</span><div class="duo-stack-track"><div class="duo-stack-fill" id="stk4" data-w="91" style="background:linear-gradient(90deg,#34d399,#22d3ee);"></div></div><span class="duo-stack-pct" id="stk4p">0%</span></div>
+          </div>
+          <!-- Tech metrics grid -->
+          <div class="duo-analytics" style="border-color:rgba(6,182,212,.15);background:rgba(6,182,212,.02);">
+            <div class="duo-an-hdr">
+              <span class="duo-an-title">Dev Analytics</span>
+              <span class="duo-an-live" style="color:#22d3ee;"><span style="background:#22d3ee;"></span> Running</span>
+            </div>
+            <div class="duo-an-grid">
+              <div class="duo-an-cell" style="background:rgba(6,182,212,.06);border-color:rgba(6,182,212,.15);">
+                <div class="duo-an-val" id="dtSites" style="background:linear-gradient(135deg,#a78bfa,#22d3ee);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">0</div>
+                <div class="duo-an-lbl">Sites Shipped</div>
+              </div>
+              <div class="duo-an-cell" style="background:rgba(6,182,212,.06);border-color:rgba(6,182,212,.15);">
+                <div class="duo-an-val" id="dtAnim" style="background:linear-gradient(135deg,#22d3ee,#34d399);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">0</div>
+                <div class="duo-an-lbl">Animations Built</div>
+              </div>
+              <div class="duo-an-cell" style="background:rgba(6,182,212,.06);border-color:rgba(6,182,212,.15);">
+                <div class="duo-an-val" id="dtAI" style="background:linear-gradient(135deg,#f59e0b,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">0</div>
+                <div class="duo-an-lbl">AI Integrations</div>
+              </div>
+              <div class="duo-an-cell" style="background:rgba(6,182,212,.06);border-color:rgba(6,182,212,.15);">
+                <div class="duo-an-val" id="dtLoad" style="background:linear-gradient(135deg,#34d399,#22d3ee);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">0s</div>
+                <div class="duo-an-lbl">Avg Load Time</div>
+              </div>
+              <div class="duo-an-cell" style="background:rgba(6,182,212,.06);border-color:rgba(6,182,212,.15);">
+                <div class="duo-an-val" id="dtInteg" style="background:linear-gradient(135deg,#7c3aed,#22d3ee);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">0</div>
+                <div class="duo-an-lbl">Integrations</div>
+              </div>
+              <div class="duo-an-cell" style="background:rgba(6,182,212,.06);border-color:rgba(6,182,212,.15);">
+                <div class="duo-an-val" id="dtSat" style="background:linear-gradient(135deg,#34d399,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">0%</div>
+                <div class="duo-an-lbl">Client Satisfaction</div>
+              </div>
+            </div>
+          </div>
+          <div class="duo-chips">
+            <span>Web Development</span>
+            <span>GSAP Animations</span>
+            <span>AI Integration</span>
+            <span>UI/UX Design</span>
+            <span>SEO Architecture</span>
           </div>
         </div>
 
@@ -598,7 +852,7 @@
       <div class="sh reveal" style="text-align:center;">
         <div class="pill">Social Proof</div>
         <h2 class="sh__t">What Our <span class="gt">Clients Say</span></h2>
-        <p class="sh__s" style="margin:0 auto;">Real results, real clients, real words — no stock photos, no made-up metrics.</p>
+        <p class="sh__s" style="margin:0 auto;"><strong class="gt">Real results</strong>, real clients, real words. No stock photos, no made-up metrics.</p>
       </div>
 
       <div class="testi__sl" id="testiSl">
@@ -609,7 +863,7 @@
             <div class="t-stars">
               <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span>
             </div>
-            <p class="t-txt">"Brandon and Darsh took our clothing brand from $200K to over $1.8M in gross sales in under a year. The TikTok Shop strategy alone changed our entire business. These guys are the real deal — not just talk."</p>
+            <p class="t-txt">"Brandon and Darsh took our clothing brand from <strong class="gt">$200K to over $1.8M</strong> in gross sales in under a year. The TikTok Shop strategy alone changed our entire business. These guys are <strong class="gt">the real deal</strong>. Not just talk."</p>
             <div class="t-ath">
               <div class="t-av">JM</div>
               <div>
@@ -624,58 +878,46 @@
             <div class="t-stars">
               <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span>
             </div>
-            <p class="t-txt">"The website Darsh built for us is genuinely one of the best in our industry. Clients comment on it constantly. We went from embarrassed to show our URL to using it as a sales tool. Completely transformed how we present ourselves."</p>
+            <p class="t-txt">"Nexus came in and built entirely <strong class="gt">new revenue streams</strong> for us across TikTok, Meta, and YouTube that we simply didn't have before. Our e-commerce went from <strong class="gt">$2,000 a month to over $50,000 a month</strong> and it keeps growing month on month. Brandon and Darsh don't just run campaigns, they build systems that compound."</p>
             <div class="t-ath">
-              <div class="t-av">SR</div>
+              <div class="t-av">CV</div>
               <div>
-                <div class="t-n">Sarah R.</div>
-                <div class="t-co">CEO, Coastal Realty Group</div>
+                <div class="t-n">Cavet L.</div>
+                <div class="t-co">President of Marketing, Nori Media Group</div>
               </div>
             </div>
           </div>
 
-          <!-- Testimonial 3 -->
-          <div class="t-card2">
-            <div class="t-stars">
-              <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span>
-            </div>
-            <p class="t-txt">"I was skeptical going in — we had burned money with agencies before. Nexus built out our TikTok Shop and affiliate program from scratch. Revenue started compounding within weeks. They test fast, cut what does not work, and double down on what does. Refreshing."</p>
-            <div class="t-ath">
-              <div class="t-av">DK</div>
-              <div>
-                <div class="t-n">David K.</div>
-                <div class="t-co">Owner, KineticFit Supplements</div>
+          <!-- Testimonial 3 — Coming Soon -->
+          <div class="t-card2 t-card2--cs">
+            <div class="t-cs-inner">
+              <div class="t-cs-icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
               </div>
+              <div class="t-cs-label">More Reviews Coming Soon</div>
+              <p class="t-cs-sub">We're collecting testimonials from our newest clients. Check back soon.</p>
             </div>
           </div>
 
-          <!-- Testimonial 4 -->
-          <div class="t-card2">
-            <div class="t-stars">
-              <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span>
-            </div>
-            <p class="t-txt">"We launched our SaaS with Nexus handling everything — brand, website, and paid acquisition. Went from zero to 1,200 signups in 90 days. The AI chatbot they built qualifies leads overnight. Worth every penny and then some."</p>
-            <div class="t-ath">
-              <div class="t-av">AL</div>
-              <div>
-                <div class="t-n">Amir L.</div>
-                <div class="t-co">Co-Founder, Flowstack SaaS</div>
+          <!-- Testimonial 4 — Coming Soon -->
+          <div class="t-card2 t-card2--cs">
+            <div class="t-cs-inner">
+              <div class="t-cs-icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
               </div>
+              <div class="t-cs-label">More Reviews Coming Soon</div>
+              <p class="t-cs-sub">We're collecting testimonials from our newest clients. Check back soon.</p>
             </div>
           </div>
 
-          <!-- Testimonial 5 -->
-          <div class="t-card2">
-            <div class="t-stars">
-              <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span>
-            </div>
-            <p class="t-txt">"Our restaurant's online orders jumped 180% in two months. They built us a clean ordering site and the TikTok content brought in locals who had never heard of us. We had to hire two more staff just to handle the volume. Incredible ROI."</p>
-            <div class="t-ath">
-              <div class="t-av">MC</div>
-              <div>
-                <div class="t-n">Maria C.</div>
-                <div class="t-co">Owner, Cantina del Sol</div>
+          <!-- Testimonial 5 — Coming Soon -->
+          <div class="t-card2 t-card2--cs">
+            <div class="t-cs-inner">
+              <div class="t-cs-icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
               </div>
+              <div class="t-cs-label">More Reviews Coming Soon</div>
+              <p class="t-cs-sub">We're collecting testimonials from our newest clients. Check back soon.</p>
             </div>
           </div>
 
@@ -699,18 +941,17 @@
   <section class="cta-section" id="cta">
     <div class="wrap">
       <div class="cta-box reveal">
-        <h2 class="cta-box__t">Ready to Make Your Brand<br><span class="gt">Impossible to Ignore?</span></h2>
-        <p class="cta-box__s">Book a free 30-minute consultation or request a full website and marketing service. Zero pressure, massive value.</p>
+        <div class="cta-box__text">
+          <h2 class="cta-box__t">Ready to make your brand <span class="gt">impossible to ignore?</span></h2>
+          <p class="cta-box__s">Book a free strategy call and we'll show you exactly what we would build.</p>
+        </div>
         <div class="cta-box__btns">
           <button onclick="openCal()" class="btn btn-p">
-            Book a Consultation
+            Book a Strategy Call
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </button>
-          <a href="mailto:contact@nexusagency.us?subject=Service Request" class="btn btn-o">
-            Request a Service
-          </a>
+          <a href="mailto:contact@nexusagency.us?subject=Service Request" class="btn btn-o">Request a Service</a>
         </div>
-        <p class="cta-note">🕵 Free. No commitment. Just a conversation.</p>
       </div>
     </div>
   </section>
@@ -837,6 +1078,32 @@
         tog.querySelectorAll('span').forEach(s => { s.style.transform = ''; s.style.opacity = ''; });
       });
     });
+
+    /* ================================================
+       STAT COUNT-UPS
+    ================================================ */
+    function countUp(el, from, to, duration, fmt) {
+      if (!el) return;
+      const start = performance.now();
+      (function tick(now) {
+        const t = Math.min((now - start) / duration, 1);
+        const ease = 1 - Math.pow(1 - t, 3);
+        el.textContent = fmt(from + (to - from) * ease);
+        if (t < 1) requestAnimationFrame(tick);
+      })(performance.now());
+    }
+
+    const statsGrid = document.querySelector('.stats-grid');
+    if (statsGrid) {
+      new IntersectionObserver(entries => {
+        if (entries[0].isIntersecting) {
+          countUp(document.getElementById('statRev'),    0, 2,   1600, v => '$' + v.toFixed(1) + 'M+');
+          countUp(document.getElementById('statBrands'), 0, 15,  1400, v => Math.round(v) + '+');
+          countUp(document.getElementById('statYrs'),    0, 6,   1200, v => Math.round(v) + ' Yrs');
+          countUp(document.getElementById('statRoas'),   0, 4.8, 1500, v => v.toFixed(1) + 'x');
+        }
+      }, { threshold: 0.3 }).observe(statsGrid);
+    }
 
     /* ================================================
        REVEAL ON SCROLL
@@ -984,6 +1251,158 @@
       sparkleCSS.textContent = `@keyframes sparkle{0%{opacity:.8;transform:translate(-50%,-50%) scale(1)}100%{opacity:0;transform:translate(-50%,-50%) scale(0) translateY(-12px)}}`;
       document.head.appendChild(sparkleCSS);
     }
+
+    /* ================================================
+       DUO SECTION ANIMATIONS
+    ================================================ */
+    function cuDuo(el, from, to, dur, fmt) {
+      if (!el) return;
+      // preserve gradient background-clip by using a child text node
+      const useNode = el.childNodes[0] && el.childNodes[0].nodeType === 3;
+      const st = performance.now();
+      (function tick(now) {
+        const t = Math.min((now - st) / dur, 1), e = 1 - Math.pow(1 - t, 3);
+        const val = fmt(from + (to - from) * e);
+        if (useNode) el.childNodes[0].nodeValue = val;
+        else el.textContent = val;
+        if (t < 1) requestAnimationFrame(tick);
+      })(performance.now());
+    }
+
+    // Reset helpers
+    function resetGT(id, val) {
+      const el = document.getElementById(id); if (!el) return;
+      if (el.childNodes[0] && el.childNodes[0].nodeType === 3) el.childNodes[0].nodeValue = val;
+      else el.textContent = val;
+    }
+    function resetBar(id) {
+      const el = document.getElementById(id); if (!el) return;
+      el.style.transition = 'none'; el.style.width = '0%';
+      el.getBoundingClientRect(); el.style.transition = '';
+    }
+    function resetRing(id) {
+      const el = document.getElementById(id); if (!el) return;
+      el.style.transition = 'none'; el.style.strokeDashoffset = '163.4';
+      el.getBoundingClientRect(); el.style.transition = '';
+    }
+
+    // Brandon — fires every time card scrolls into view
+    const duoCardB = document.getElementById('duoCardB');
+    if (duoCardB) new IntersectionObserver(entries => {
+      if (!entries[0].isIntersecting) return;
+      // reset
+      resetGT('dRevVal','$0'); resetBar('dRevBar');
+      resetGT('dRoasVal','0x'); resetBar('dRoasBar');
+      resetGT('dBrandVal','0'); resetBar('dBrandBar');
+      ['daTikTok','daAffiliate','daCampaigns','daCreators','daConv','daOrders']
+        .forEach(id => resetGT(id, '0'));
+      // animate
+      setTimeout(() => {
+        cuDuo(document.getElementById('dRevVal'), 0, 2, 1800, v => '$' + v.toFixed(1) + 'M+');
+        const b = document.getElementById('dRevBar'); if (b) b.style.width = '92%';
+      }, 100);
+      setTimeout(() => {
+        cuDuo(document.getElementById('dRoasVal'), 0, 4.8, 1600, v => v.toFixed(1) + 'x');
+        const b = document.getElementById('dRoasBar'); if (b) b.style.width = '80%';
+      }, 320);
+      setTimeout(() => {
+        cuDuo(document.getElementById('dBrandVal'), 0, 15, 1400, v => Math.round(v) + '+');
+        const b = document.getElementById('dBrandBar'); if (b) b.style.width = '75%';
+      }, 540);
+      setTimeout(() => cuDuo(document.getElementById('daTikTok'),    0, 50,  1800, v => Math.round(v) + 'M+'), 200);
+      setTimeout(() => cuDuo(document.getElementById('daAffiliate'), 0, 840, 1700, v => '$' + Math.round(v) + 'K+'), 350);
+      setTimeout(() => cuDuo(document.getElementById('daCampaigns'), 0, 120, 1500, v => Math.round(v) + '+'), 500);
+      setTimeout(() => cuDuo(document.getElementById('daCreators'),  0, 340, 1600, v => Math.round(v) + '+'), 650);
+      setTimeout(() => cuDuo(document.getElementById('daConv'),      0, 6.4, 1400, v => v.toFixed(1) + '%'), 800);
+      setTimeout(() => cuDuo(document.getElementById('daOrders'),    0, 18,  1500, v => Math.round(v) + 'K+'), 950);
+    }, { threshold: 0.25 }).observe(duoCardB);
+
+    // Darsh — fires every time card scrolls into view
+    let termStarted = false;
+    const duoCardD = document.getElementById('duoCardD');
+    if (duoCardD) new IntersectionObserver(entries => {
+      if (!entries[0].isIntersecting) return;
+      // reset rings + stack bars + grid values
+      ['drPerf','drSEO','drA11y'].forEach(resetRing);
+      ['drPerfN','drSEON','drA11yN'].forEach(id => { const el = document.getElementById(id); if (el) el.textContent = '0'; });
+      ['stk1','stk2','stk3','stk4'].forEach(resetBar);
+      ['stk1p','stk2p','stk3p','stk4p'].forEach(id => resetGT(id,'0%'));
+      ['dtSites','dtAnim','dtAI','dtLoad','dtInteg','dtSat'].forEach(id => resetGT(id,'0'));
+      // animate
+      // 3 score rings
+      const ringData = [
+        { ring:'drPerf', num:'drPerfN', tgt:98  },
+        { ring:'drSEO',  num:'drSEON',  tgt:100 },
+        { ring:'drA11y', num:'drA11yN', tgt:97  },
+      ];
+      ringData.forEach(({ ring, num, tgt }, i) => {
+        setTimeout(() => {
+          const r = document.getElementById(ring);
+          const n = document.getElementById(num);
+          if (r) r.style.strokeDashoffset = 163.4 * (1 - tgt / 100);
+          if (n) cuDuo(n, 0, tgt, 1600, v => Math.round(v));
+        }, 100 + i * 180);
+      });
+
+      // terminal scroll
+      const termLines2 = [
+        { text: '$ npm run build',           cls: 't-cmd' },
+        { text: '  bundling assets...',       cls: 't-dim' },
+        { text: '✓ 14 animations loaded',     cls: 't-ok'  },
+        { text: '✓ CSS minified  12kb→4kb',   cls: 't-ok'  },
+        { text: '$ lighthouse --perf',        cls: 't-cmd' },
+        { text: '  auditing...',              cls: 't-dim' },
+        { text: '✓ Performance:  98 / 100',   cls: 't-ok'  },
+        { text: '✓ SEO:          100 / 100',  cls: 't-ok'  },
+        { text: '$ gsap init --premium',      cls: 't-cmd' },
+        { text: '  loading ScrollTrigger...', cls: 't-dim' },
+        { text: '✓ 3D tilt  active',          cls: 't-ok'  },
+        { text: '✓ Parallax  active',         cls: 't-ok'  },
+        { text: '$ deploy --prod',            cls: 't-cmd' },
+        { text: '  pushing to CDN...',        cls: 't-dim' },
+        { text: '✓ Live  —  load 1.4s',       cls: 't-ok'  },
+        { text: '✓ Uptime  99.99%',           cls: 't-ok'  },
+      ];
+      const termBody = document.getElementById('duoTermBody');
+      if (termBody && !termStarted) {
+        termStarted = true;
+        let tIdx = 0;
+        function addTermLine() {
+          const { text, cls } = termLines2[tIdx % termLines2.length];
+          tIdx++;
+          if (termBody.children.length >= 4) {
+            const old = termBody.children[0];
+            old.style.transition = 'opacity .2s';
+            old.style.opacity = '0';
+            setTimeout(() => old.remove(), 200);
+          }
+          const ln = document.createElement('div');
+          ln.className = cls; ln.textContent = text;
+          ln.style.cssText = 'opacity:0;transform:translateY(3px);transition:opacity .25s,transform .25s;';
+          termBody.appendChild(ln);
+          requestAnimationFrame(() => { ln.style.opacity='1'; ln.style.transform='none'; });
+          setTimeout(addTermLine, cls === 't-cmd' ? 900 : 480);
+        }
+        setTimeout(addTermLine, 300);
+      }
+
+      // tech stack bars
+      [{ f:'stk1',p:'stk1p',w:96 },{ f:'stk2',p:'stk2p',w:93 },{ f:'stk3',p:'stk3p',w:89 },{ f:'stk4',p:'stk4p',w:91 }]
+        .forEach(({ f, p, w }, i) => {
+          setTimeout(() => {
+            const el = document.getElementById(f); if (el) el.style.width = w + '%';
+            cuDuo(document.getElementById(p), 0, w, 1500, v => Math.round(v) + '%');
+          }, 200 + i * 150);
+        });
+
+      // tech grid
+      setTimeout(() => cuDuo(document.getElementById('dtSites'),  0, 40,  1400, v => Math.round(v) + '+'), 200);
+      setTimeout(() => cuDuo(document.getElementById('dtAnim'),   0, 200, 1600, v => Math.round(v) + '+'), 350);
+      setTimeout(() => cuDuo(document.getElementById('dtAI'),     0, 12,  1200, v => Math.round(v) + '+'), 500);
+      setTimeout(() => cuDuo(document.getElementById('dtLoad'),   0, 1.4, 1300, v => v.toFixed(1) + 's'),  650);
+      setTimeout(() => cuDuo(document.getElementById('dtInteg'),  0, 85,  1500, v => Math.round(v) + '+'), 800);
+      setTimeout(() => cuDuo(document.getElementById('dtSat'),    0, 100, 1600, v => Math.round(v) + '%'), 950);
+    }, { threshold: 0.25 }).observe(duoCardD);
   </script>
 </body>
 </html>
